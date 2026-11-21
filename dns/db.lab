@@ -1,0 +1,18 @@
+$TTL 300
+
+@ IN SOA ns.lab. admin.lab. (
+    2026111101
+    3600
+    900
+    604800
+    300
+)
+
+@          IN NS ns.lab.
+ns         IN A  10.10.0.53
+
+alpha      IN MX 10 mail.alpha.lab.
+mail.alpha IN A  10.10.1.10
+
+beta       IN MX 10 mail.beta.lab.
+mail.beta  IN A  10.10.2.10
