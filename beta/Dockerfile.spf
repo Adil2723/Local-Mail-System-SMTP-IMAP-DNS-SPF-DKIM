@@ -1,0 +1,17 @@
+FROM cn12-mail-beta-imap:local
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && \
+apt-get install -y --no-install-recommends \
+postfix-policyd-spf-python && \
+rm -rf /var/lib/apt/lists/*
+RUN postconf -e \
+'smtpd_recipient_restrictions = reject_unauth_destination, check_policy_service unix:private/policyd-spf' && \
+postconf -e 'policyd-spf_time_limit = 3600s'
+RUN grep -q '^policyd-spf[[:space:]]' \
+/etc/postfix/master.cf || \
+printf '%s\n' \
+'policyd-spf unix - n n - 0 spawn' \
+' user=policyd-spf argv=/usr/bin/policyd-spf' \
+>> /etc/postfix/master.cf
+RUN command -v policyd-spf && postfix check
+CMD ["/usr/local/bin/start-beta-imap.sh"]

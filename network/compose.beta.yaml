@@ -1,0 +1,18 @@
+services:
+  mail-beta:
+    build:
+      context: ../beta
+    image: cn12-mail-beta:local
+    hostname: mail.beta.lab
+    cap_add:
+      - NET_ADMIN
+    depends_on:
+      - r2
+    networks:
+      beta:
+        ipv4_address: 10.10.2.10
+    volumes:
+      - beta_maildir:/home/adil/Maildir
+
+volumes:
+  beta_maildir:

@@ -1,0 +1,8 @@
+services:
+  mail-beta:
+    build:
+      context: ../beta
+      dockerfile: Dockerfile.imap
+    image: cn12-mail-beta-imap:local
+    volumes:
+      - ../beta/dovecot/users:/run/secrets/adil-imap-users:ro

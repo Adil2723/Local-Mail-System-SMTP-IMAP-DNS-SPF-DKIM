@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Environment secrets
+.env
+*.pem
+*.key
+
+# Temporary files
+*.log
+*.tmp
+
+# Captures (large files)
+*.pcap
+*.pcapng
+beta/dovecot/users
+beta/backups/
+phase3_terminal_log.txt
+# CN Project 12 - private runtime data
+/beta/dovecot/users
+/beta/backups/
+/captures/
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pcap
+*.pcapng
+*.tar.gz
+*.backup
+*.bak
+*.tmp
+*.log
+phase3_terminal_log.txt
+phase3_full_terminal_log.txt
+phase3_new_terminal_log.txt
+phase3_command_history.txt
+terminal_history.txt
+issue.txt

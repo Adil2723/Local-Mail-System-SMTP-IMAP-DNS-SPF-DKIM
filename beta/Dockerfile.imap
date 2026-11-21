@@ -1,0 +1,11 @@
+FROM cn12-mail-beta:local
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && \
+apt-get install -y --no-install-recommends \
+dovecot-core \
+dovecot-imapd && \
+rm -rf /var/lib/apt/lists/*
+COPY dovecot/dovecot.conf /etc/dovecot/dovecot.conf
+COPY start-beta-imap.sh /usr/local/bin/start-beta-imap.sh
+RUN chmod +x /usr/local/bin/start-beta-imap.sh
+CMD ["/usr/local/bin/start-beta-imap.sh"]
