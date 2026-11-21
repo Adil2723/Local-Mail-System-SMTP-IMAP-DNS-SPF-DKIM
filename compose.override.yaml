@@ -1,0 +1,26 @@
+services:
+  client-alpha:
+    volumes:
+      - alpha-public-cert:/run/lab-certs:ro
+
+  mail-alpha:
+    image: cn-mail-lab-mail-alpha:local
+    init: true
+    hostname: mail.alpha.lab
+    cap_add:
+      - NET_ADMIN
+    dns:
+      - 10.10.0.53
+    command: ["sh", "/usr/local/bin/start-mail-alpha"]
+    volumes:
+      - alpha-mailbox:/home/alice/Maildir
+      - alpha-tls:/etc/postfix/tls
+      - alpha-public-cert:/run/lab-certs
+    networks:
+      alpha:
+        ipv4_address: 10.10.1.10
+
+volumes:
+  alpha-mailbox:
+  alpha-tls:
+  alpha-public-cert:
