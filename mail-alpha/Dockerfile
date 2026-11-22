@@ -11,7 +11,7 @@ RUN printf '%s\n' \
 COPY main.cf /etc/postfix/main.cf
 COPY start.sh /usr/local/bin/start-mail-alpha
 
-RUN useradd --create-home --user-group alice \
+RUN useradd --create-home --user-group zaid \
     && chmod 644 /etc/postfix/main.cf \
     && printf 'postmaster: root\n' > /etc/aliases \
     && newaliases \

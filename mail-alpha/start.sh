@@ -3,7 +3,7 @@ set -eu
 
 ip route replace 10.10.0.0/24 via 10.10.1.254
 ip route replace 10.10.2.0/24 via 10.10.1.254
-install -d -o alice -g alice -m 0700 /home/alice/Maildir
+install -d -o zaid -g zaid -m 0700 /home/zaid/Maildir
 
 tls_dir=/etc/postfix/tls
 identity="$tls_dir/server.pem"

@@ -10,7 +10,7 @@ from time import perf_counter
 
 HOST = "mail.alpha.lab"
 PORT = 25
-SENDER = "alice@alpha.lab"
+SENDER = "zaid@alpha.lab"
 CA_FILE = "/run/lab-certs/alpha.crt"
 
 
@@ -41,7 +41,7 @@ def send_command(connection, reader, command, *expected_codes):
 
 def main():
     parser = argparse.ArgumentParser(description="Send a test email in the mail lab.")
-    parser.add_argument("recipient", choices=("alice@alpha.lab", "bob@beta.lab"))
+    parser.add_argument("recipient", choices=("zaid@alpha.lab", "adil@beta.lab"))
     parser.add_argument("--starttls", action="store_true")
     args = parser.parse_args()
     recipient = args.recipient

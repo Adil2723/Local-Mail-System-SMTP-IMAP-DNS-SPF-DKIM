@@ -1,0 +1,59 @@
+services:
+  client-alpha:
+    dns:
+      - 10.10.0.53
+    volumes:
+      - alpha_public_cert:/run/lab-certs:ro
+
+  client-beta:
+    dns:
+      - 10.10.0.53
+
+  mail-beta:
+    dns:
+      - 10.10.0.53
+
+  dns:
+    image: cn-mail-lab-dns:local
+    hostname: ns.lab
+    init: true
+    cap_add:
+      - NET_ADMIN
+    depends_on:
+      - r1
+      - r2
+    command:
+      - sh
+      - -ec
+      - |
+        ip route replace 10.10.1.0/24 via 10.10.0.11
+        ip route replace 10.10.2.0/24 via 10.10.0.12
+        exec named -g -4 -u bind -c /etc/bind/named.conf
+    networks:
+      core:
+        ipv4_address: 10.10.0.53
+
+  mail-alpha:
+    image: cn-mail-lab-mail-alpha:local
+    hostname: mail.alpha.lab
+    init: true
+    cap_add:
+      - NET_ADMIN
+    depends_on:
+      - r1
+      - dns
+    dns:
+      - 10.10.0.53
+    command: ["sh", "/usr/local/bin/start-mail-alpha"]
+    networks:
+      alpha:
+        ipv4_address: 10.10.1.10
+    volumes:
+      - alpha_maildir:/home/zaid/Maildir
+      - alpha_tls:/etc/postfix/tls
+      - alpha_public_cert:/run/lab-certs
+
+volumes:
+  alpha_maildir:
+  alpha_tls:
+  alpha_public_cert:
