@@ -1,0 +1,13 @@
+FROM cn-mail-lab-mail-alpha:local
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends opendkim opendkim-tools \
+    && rm -rf /var/lib/apt/lists/*
+COPY dkim/opendkim.conf /etc/opendkim.conf
+COPY dkim/TrustedHosts /etc/opendkim/TrustedHosts
+COPY dkim/start-alpha-dkim.sh /usr/local/bin/start-alpha-dkim
+RUN chmod 755 /usr/local/bin/start-alpha-dkim \
+    && postconf -e 'smtpd_milters = inet:127.0.0.1:8891' \
+    && postconf -e 'non_smtpd_milters = inet:127.0.0.1:8891' \
+    && postconf -e 'milter_default_action = tempfail' \
+    && postconf -e 'milter_protocol = 6' \
+    && postfix check

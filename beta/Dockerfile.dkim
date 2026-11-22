@@ -1,0 +1,12 @@
+FROM cn12-mail-beta-spf:local
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends opendkim opendkim-tools \
+    && rm -rf /var/lib/apt/lists/*
+COPY dkim/opendkim.conf /etc/opendkim.conf
+COPY dkim/start-beta-dkim.sh /usr/local/bin/start-beta-dkim
+RUN chmod 755 /usr/local/bin/start-beta-dkim \
+    && postconf -e 'smtpd_milters = inet:127.0.0.1:8891' \
+    && postconf -e 'non_smtpd_milters = inet:127.0.0.1:8891' \
+    && postconf -e 'milter_default_action = tempfail' \
+    && postconf -e 'milter_protocol = 6' \
+    && postfix check

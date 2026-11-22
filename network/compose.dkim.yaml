@@ -1,0 +1,15 @@
+services:
+  mail-alpha:
+    image: cn-mail-lab-mail-alpha-dkim:local
+    build:
+      context: ../mail-alpha
+      dockerfile: Dockerfile.dkim
+    command: ["sh", "/usr/local/bin/start-alpha-dkim"]
+    volumes:
+      - ../mail-alpha/dkim/keys:/etc/opendkim/keys:ro
+  mail-beta:
+    image: cn12-mail-beta-dkim:local
+    build:
+      context: ../beta
+      dockerfile: Dockerfile.dkim
+    command: ["sh", "/usr/local/bin/start-beta-dkim"]

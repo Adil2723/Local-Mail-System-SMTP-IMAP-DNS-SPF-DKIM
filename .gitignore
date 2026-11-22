@@ -46,3 +46,6 @@ phase3_new_terminal_log.txt
 phase3_command_history.txt
 terminal_history.txt
 issue.txt
+
+# DKIM private key - NEVER commit
+/mail-alpha/dkim/keys/
