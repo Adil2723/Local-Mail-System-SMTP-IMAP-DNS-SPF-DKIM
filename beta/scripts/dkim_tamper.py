@@ -17,7 +17,7 @@ body = body.replace(needle, b'Hello from a deliberately modified DKIM test.', 1)
 # Remove previous verifier results, but preserve all DKIM-signed message headers.
 filtered, skipping = [], False
 for line in header.splitlines(keepends=True):
-    if line.lower().startswith(b'authentication-results:'):
+    if line.lower().startswith((b'authentication-results:', b'delivered-to:', b'x-original-to:', b'return-path:', b'received:')):
         skipping = True
         continue
     if skipping and line.startswith((b' ', b'\t')):
