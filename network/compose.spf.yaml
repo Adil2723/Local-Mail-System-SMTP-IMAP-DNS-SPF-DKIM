@@ -1,0 +1,6 @@
+services:
+  mail-beta:
+    image: cn12-mail-beta-spf:local
+    build:
+      context: ../beta
+      dockerfile: Dockerfile.spf

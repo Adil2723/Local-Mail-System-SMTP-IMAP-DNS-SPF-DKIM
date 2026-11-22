@@ -4,6 +4,7 @@ RUN apt-get update && \
 apt-get install -y --no-install-recommends \
 postfix-policyd-spf-python && \
 rm -rf /var/lib/apt/lists/*
+COPY postfix/policyd-spf.conf /etc/postfix-policyd-spf-python/policyd-spf.conf
 RUN postconf -e \
 'smtpd_recipient_restrictions = reject_unauth_destination, check_policy_service unix:private/policyd-spf' && \
 postconf -e 'policyd-spf_time_limit = 3600s'
