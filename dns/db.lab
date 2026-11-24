@@ -1,7 +1,7 @@
 $TTL 300
 
 @ IN SOA ns.lab. admin.lab. (
-    2026111102
+    2026111103
     3600
     900
     604800
@@ -20,3 +20,5 @@ mail.beta  IN A  10.10.2.10
 mail._domainkey.alpha IN TXT	( "v=DKIM1; h=sha256; k=rsa; "
 	  "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxSldTMQY58rYsmNM0Zulq215k7fA25BcMd23KOLSAp8pFGQ1QDqKF5Z08ncCcOmt1DooI2sx4WJrZehfq7AjhtrlkzvvDXFJvdG5HzxyeonB7VUpDSDfMKASuDNmKNqeOhrmRcG2PCJ3OUzrMomkBnULOdbekobPtXg+gz6DrZPkK8HQuJDTE3lpZBtQqwLGOnyn5b/mtuZNF3"
 	  "SHeOirIFk9q2Ps1Kw9XPZ8efC5zonOx/ILvL8EkwJVcU2kQPOf+nPc+ZctV3BZPwCG65G7+xOZEeBhSS69aJKAdnOPSC5+VXSJ0zzmWaNnjLvm2lFbbNAHDPo+5r/9Od64BEOcnQIDAQAB" )  ; ----- DKIM key mail for alpha.lab
+
+alpha IN TXT "v=spf1 ip4:10.10.1.10 -all"
