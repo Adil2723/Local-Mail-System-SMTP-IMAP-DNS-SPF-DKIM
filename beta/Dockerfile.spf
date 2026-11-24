@@ -6,7 +6,7 @@ postfix-policyd-spf-python && \
 rm -rf /var/lib/apt/lists/*
 COPY postfix/policyd-spf.conf /etc/postfix-policyd-spf-python/policyd-spf.conf
 RUN postconf -e \
-'smtpd_recipient_restrictions = reject_unauth_destination, check_policy_service unix:private/policyd-spf' && \
+'smtpd_recipient_restrictions = permit_mynetworks, reject_unauth_destination, check_policy_service unix:private/policyd-spf' && \
 postconf -e 'policyd-spf_time_limit = 3600s'
 RUN grep -q '^policyd-spf[[:space:]]' \
 /etc/postfix/master.cf || \
