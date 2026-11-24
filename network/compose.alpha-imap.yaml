@@ -1,0 +1,9 @@
+services:
+  mail-alpha:
+    image: cn12-mail-alpha-imap:local
+    build:
+      context: ../mail-alpha
+      dockerfile: Dockerfile.imap
+    command: ["sh", "/usr/local/bin/start-alpha-imap.sh"]
+    volumes:
+      - ../mail-alpha/dovecot/users:/run/secrets/zaid-imap-users:ro

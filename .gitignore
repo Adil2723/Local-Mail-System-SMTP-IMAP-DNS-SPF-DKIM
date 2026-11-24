@@ -49,3 +49,5 @@ issue.txt
 
 # DKIM private key - NEVER commit
 /mail-alpha/dkim/keys/
+
+/mail-alpha/dovecot/users
