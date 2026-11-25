@@ -1,0 +1,4 @@
+network,cidr,subnet_mask,first_usable_ip,last_usable_ip,broadcast,usable_host_addresses,docker_network
+Alpha LAN,10.10.1.0/24,255.255.255.0,10.10.1.1,10.10.1.254,10.10.1.255,254,cn12-topology_alpha
+Core Network,10.10.0.0/24,255.255.255.0,10.10.0.1,10.10.0.254,10.10.0.255,254,cn12-topology_core
+Beta LAN,10.10.2.0/24,255.255.255.0,10.10.2.1,10.10.2.254,10.10.2.255,254,cn12-topology_beta

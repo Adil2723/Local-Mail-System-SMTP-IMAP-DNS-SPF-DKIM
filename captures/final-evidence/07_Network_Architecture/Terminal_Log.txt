@@ -1,0 +1,94 @@
+========================================
+FINAL STEP 05 - NETWORK ARCHITECTURE
+========================================
+===== STARTING COMPLETE PROJECT =====
+ Container cn12-topology-r1-1 Running 
+ Container cn12-topology-r2-1 Running 
+ Container cn12-topology-client-alpha-1 Running 
+ Container cn12-topology-client-beta-1 Running 
+ Container cn12-topology-mail-beta-1 Running 
+ Container cn12-topology-dns-1 Running 
+ Container cn12-topology-mail-alpha-1 Running 
+NAME                           IMAGE                        COMMAND                  SERVICE        CREATED        STATUS          PORTS
+cn12-topology-client-alpha-1   cn12-nettools:local          "sh /lab/start.sh"       client-alpha   3 days ago     Up 14 minutes   
+cn12-topology-client-beta-1    cn12-nettools:local          "sh /lab/start.sh"       client-beta    3 days ago     Up 14 minutes   
+cn12-topology-dns-1            cn-mail-lab-dns:local        "sh -ec 'ip route re…"   dns            22 hours ago   Up 14 minutes   
+cn12-topology-mail-alpha-1     cn12-mail-alpha-imap:local   "sh /usr/local/bin/s…"   mail-alpha     21 hours ago   Up 14 minutes   
+cn12-topology-mail-beta-1      cn12-mail-beta-dkim:local    "sh /usr/local/bin/s…"   mail-beta      19 hours ago   Up 14 minutes   
+cn12-topology-r1-1             cn12-nettools:local          "sh /lab/start.sh"       r1             3 days ago     Up 14 minutes   
+cn12-topology-r2-1             cn12-nettools:local          "sh /lab/start.sh"       r2             3 days ago     Up 14 minutes   
+===== VERIFYING LIVE NETWORK CONFIGURATION =====
+PASS: r1: 10.10.0.11, 10.10.1.254
+PASS: r2: 10.10.0.12, 10.10.2.254
+PASS: dns: 10.10.0.53
+PASS: client-alpha: 10.10.1.20
+PASS: client-beta: 10.10.2.20
+PASS: mail-alpha: 10.10.1.10
+PASS: mail-beta: 10.10.2.10
+
+===== GENERATING SUBNETTING TABLE =====
+PASS: Alpha LAN: 10.10.1.0/24
+PASS: Core Network: 10.10.0.0/24
+PASS: Beta LAN: 10.10.2.0/24
+
+===== VERIFYING ROUTING TABLES =====
+r1
+default via 10.10.1.1 dev eth0 
+10.10.0.0/24 dev eth1 proto kernel scope link src 10.10.0.11 
+10.10.1.0/24 dev eth0 proto kernel scope link src 10.10.1.254 
+10.10.2.0/24 via 10.10.0.12 dev eth1 
+
+r2
+default via 10.10.2.1 dev eth0 
+10.10.0.0/24 dev eth1 proto kernel scope link src 10.10.0.12 
+10.10.1.0/24 via 10.10.0.11 dev eth1 
+10.10.2.0/24 dev eth0 proto kernel scope link src 10.10.2.254 
+
+client-alpha
+default via 10.10.1.254 dev eth0 
+10.10.1.0/24 dev eth0 proto kernel scope link src 10.10.1.20 
+
+client-beta
+default via 10.10.2.254 dev eth0 
+10.10.2.0/24 dev eth0 proto kernel scope link src 10.10.2.20 
+
+PASS: r1 IP forwarding enabled
+PASS: r2 IP forwarding enabled
+PASS: r1 -> 10.10.2.10 via 10.10.0.12
+PASS: r2 -> 10.10.1.10 via 10.10.0.11
+PASS: client-alpha -> 10.10.2.10 via 10.10.1.254
+PASS: client-beta -> 10.10.1.10 via 10.10.2.254
+
+===== GENERATING LIVE TOPOLOGY DIAGRAM =====
+PASS: High-resolution topology PNG generated
+PASS: Live topology SVG generated
+PASS: All nine IP addresses verified
+PASS: All three Docker networks verified
+PASS: Static routing verified
+===== ALPHA TO BETA TRACEROUTE =====
+traceroute to 10.10.2.10 (10.10.2.10), 8 hops max, 60 byte packets
+ 1  10.10.1.254  1.803 ms  0.035 ms  0.012 ms
+ 2  10.10.0.12  1.345 ms  0.029 ms  0.005 ms
+ 3  10.10.2.10  0.216 ms  0.007 ms  0.006 ms
+===== BETA TO ALPHA TRACEROUTE =====
+traceroute to 10.10.1.10 (10.10.1.10), 8 hops max, 60 byte packets
+ 1  10.10.2.254  0.620 ms  0.026 ms  0.004 ms
+ 2  10.10.0.11  0.062 ms  0.007 ms  0.006 ms
+ 3  10.10.1.10  0.125 ms  0.008 ms  0.006 ms
+PASS: Traceroute_Alpha_to_Beta.txt
+PASS: Traceroute_Beta_to_Alpha.txt
+PASS: Both two-router paths verified
+===== SAVED ARCHITECTURE EVIDENCE =====
+total 484K
+-rw------- 1 system system 443K Nov 25 21:19 CN12_Final_Network_Topology.png
+-rw------- 1 system system 9.4K Nov 25 21:19 CN12_Final_Network_Topology.svg
+-rw------- 1 system system  784 Nov 25 21:19 IP_Addressing_Table.csv
+-rw------- 1 system system  664 Nov 25 21:19 Routing_Tables.txt
+-rw------- 1 system system  392 Nov 25 21:19 Subnetting_Table.csv
+-rw------- 1 system system 3.6K Nov 25 21:19 Terminal_Log.txt
+-rw------- 1 system system  203 Nov 25 21:19 Traceroute_Alpha_to_Beta.txt
+-rw------- 1 system system  203 Nov 25 21:19 Traceroute_Beta_to_Alpha.txt
+-rw------- 1 system system  277 Nov 25 21:19 Verified_Routes.txt
+========================================
+FINAL STEP 05 - ARCHITECTURE: PASSED
+========================================
