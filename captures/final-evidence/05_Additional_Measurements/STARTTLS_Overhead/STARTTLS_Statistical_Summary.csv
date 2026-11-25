@@ -1,0 +1,13 @@
+mode,metric,samples,mean_ms,stddev_ms,minimum_ms,maximum_ms
+Plaintext,connect_ms,30,9.228501,8.659624,4.41774,52.582189
+Plaintext,initial_ehlo_ms,30,0.643299,0.465987,0.077171,2.653244
+Plaintext,tls_negotiation_ms,30,0.0,0.0,0.0,0.0
+Plaintext,post_tls_ehlo_ms,30,0.0,0.0,0.0,0.0
+Plaintext,message_submission_ms,30,116.938479,14.142649,95.960573,160.371174
+Plaintext,total_transaction_ms,30,128.480678,19.546514,104.152696,202.642732
+STARTTLS,connect_ms,30,7.366635,2.059472,4.906768,12.276285
+STARTTLS,initial_ehlo_ms,30,0.730336,0.435531,0.082615,1.530784
+STARTTLS,tls_negotiation_ms,30,7.471482,20.616894,1.747334,116.480055
+STARTTLS,post_tls_ehlo_ms,30,0.913416,0.496415,0.13496,2.07579
+STARTTLS,message_submission_ms,30,118.457655,17.573632,97.81233,185.878163
+STARTTLS,total_transaction_ms,30,136.445641,26.469036,110.357877,241.27117

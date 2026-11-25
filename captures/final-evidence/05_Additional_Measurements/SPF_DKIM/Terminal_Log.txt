@@ -1,0 +1,69 @@
+============================================================
+FINAL STEP 03 - CORRECTED AUTHENTICATION EVALUATION
+============================================================
+
+===== DISCOVERING BASELINE EVIDENCE =====
+Folder: Test-01_Baseline_Run-1_20261125-111949
+Workload: CN12-Test-01-1795587633539000530
+Mean latency: 4619.110591
+
+Folder: Test-01_Baseline_Run-1_20261125-112558
+Workload: CN12-Test-01-1795587991961015964
+Mean latency: 2026.617407
+
+Folder: Test-02_Baseline_Run-2_20261125-112558
+Workload: CN12-Test-01-1795587991961015964
+Mean latency: 2026.617407
+
+Folder: Test-02_Baseline_Run-2_20261125-113204
+Workload: CN12-Test-02-1795588351765776254
+Mean latency: 5875.148794
+
+PASS: Original baseline Run 1 identified
+PASS: Original baseline Run 2 identified
+PASS: Duplicate baseline evidence excluded
+
+===== VERIFYING ALL WORKLOAD AUTHENTICATION RESULTS =====
+Test-01: SPF 1000/1000 | DKIM 1000/1000
+Test-02: SPF 1000/1000 | DKIM 1000/1000
+Test-03: SPF 1000/1000 | DKIM 1000/1000
+Test-04: SPF 1000/1000 | DKIM 1000/1000
+Test-05: SPF 1000/1000 | DKIM 1000/1000
+Test-06: SPF 1000/1000 | DKIM 1000/1000
+Test-07: SPF 1000/1000 | DKIM 1000/1000
+Test-08: SPF 1000/1000 | DKIM 1000/1000
+Test-09: SPF 1000/1000 | DKIM 1000/1000
+Test-10: SPF 1000/1000 | DKIM 1000/1000
+Test-11: SPF 1000/1000 | DKIM 1000/1000
+Test-12: SPF 1000/1000 | DKIM 1000/1000
+Test-13: SPF 1000/1000 | DKIM 1000/1000
+Test-14: SPF 1000/1000 | DKIM 1000/1000
+Test-15: SPF 1000/1000 | DKIM 1000/1000
+
+===== VERIFYING SPF NEGATIVE EVIDENCE =====
+PASS: Unauthorized SPF sender rejected
+
+===== VERIFYING DKIM NEGATIVE EVIDENCE =====
+PASS: Tampered DKIM signature detected
+
+===== VERIFYING WIRESHARK REJECTION EVIDENCE =====
+PASS: Wireshark SPF rejection verified
+
+========================================
+FINAL AUTHENTICATION RESULTS
+========================================
+Verified workload experiments: 15 /15
+Unique workloads: 15
+Total verified emails: 15000
+SPF pass: 15000/15000
+SPF pass rate: 100.00%
+DKIM pass: 15000/15000
+DKIM pass rate: 100.00%
+SPF negative test verified: True
+DKIM negative test verified: True
+Wireshark rejection verified: True
+
+========================================
+FINAL STEP 03 - AUTHENTICATION: PASSED
+========================================
+Evidence directory: /home/system/computer-networks-project/captures/05_results/Authentication_Evaluation_Corrected_20261125-211556

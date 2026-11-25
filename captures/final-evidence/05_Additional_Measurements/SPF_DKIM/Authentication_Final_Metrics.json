@@ -1,0 +1,24 @@
+{
+  "verified_workload_runs": 15,
+  "total_workload_messages": 15000,
+  "spf_pass": 15000,
+  "spf_nonpass": 0,
+  "spf_pass_percent": 100.0,
+  "dkim_pass": 15000,
+  "dkim_nonpass": 0,
+  "dkim_pass_percent": 100.0,
+  "spf_negative_verified": true,
+  "dkim_negative_verified": true,
+  "wireshark_rejection_verified": true,
+  "spf_evidence": "captures/01_functional_tests/Test-16_SPF_Fail_20261125-020724.txt",
+  "dkim_evidence": "captures/01_functional_tests/Test-18_DKIM_Fail_20261125-020915.txt",
+  "wireshark_evidence": "captures/05_results/wireshark/Capture-10_SPF_Rejection_20261125-103455.txt",
+  "duplicate_workloads_excluded": true,
+  "methodology_notes": [
+    "Baseline runs identified using recorded screenshot measurements.",
+    "Original evidence preserved.",
+    "Negative functional scenarios have one verified sample each.",
+    "Supplementary SMTP RTT and STARTTLS probes excluded.",
+    "DKIM failure detection does not imply message rejection."
+  ]
+}

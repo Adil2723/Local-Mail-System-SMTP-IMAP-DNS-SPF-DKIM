@@ -1,0 +1,128 @@
+========================================
+FINAL STEP 01 - SMTP COMMAND RTT
+========================================
+Wed Nov 25 09:05:46 PM PKT 2026
+===== STARTING COMPLETE PROJECT =====
+ Container cn12-topology-mail-beta-1 Running 
+ Container cn12-topology-mail-alpha-1 Running 
+ Container cn12-topology-dns-1 Running 
+ Container cn12-topology-r1-1 Running 
+ Container cn12-topology-r2-1 Running 
+ Container cn12-topology-client-alpha-1 Running 
+ Container cn12-topology-client-beta-1 Running 
+===== VERIFYING ALL CONTAINERS =====
+PASS: r1 running
+PASS: r2 running
+PASS: dns running
+PASS: client-alpha running
+PASS: client-beta running
+PASS: mail-alpha running
+PASS: mail-beta running
+===== CHECKING NETWORK CONDITIONS =====
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+===== CHECKING MAIL QUEUES =====
+Mail queue is empty
+Mail queue is empty
+Mail queue is empty
+Mail queue is empty
+R1 core interface: eth1
+R2 core interface: eth1
+===== PREPARING SMTP RTT MEASUREMENT SCRIPT =====
+===== BASELINE SMTP RTT MEASUREMENT =====
+PING 10.10.2.10 (10.10.2.10) 56(84) bytes of data.
+64 bytes from 10.10.2.10: icmp_seq=1 ttl=62 time=1.46 ms
+64 bytes from 10.10.2.10: icmp_seq=2 ttl=62 time=0.108 ms
+64 bytes from 10.10.2.10: icmp_seq=3 ttl=62 time=0.056 ms
+64 bytes from 10.10.2.10: icmp_seq=4 ttl=62 time=0.078 ms
+64 bytes from 10.10.2.10: icmp_seq=5 ttl=62 time=0.179 ms
+
+--- 10.10.2.10 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 6430ms
+rtt min/avg/max/mdev = 0.056/0.375/1.457/0.542 ms
+===== BASELINE RUN 1 OF 3 =====
+PASS: Baseline Run 1: 10 SMTP transactions
+===== BASELINE RUN 2 OF 3 =====
+PASS: Baseline Run 2: 10 SMTP transactions
+===== BASELINE RUN 3 OF 3 =====
+PASS: Baseline Run 3: 10 SMTP transactions
+===== CONFIGURING 100ms ADDITIONAL RTT =====
+R1:
+qdisc netem 8001: root refcnt 5 limit 1000 delay 50ms
+ Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+R2:
+qdisc netem 8002: root refcnt 5 limit 1000 delay 50ms
+ Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+PING 10.10.2.10 (10.10.2.10) 56(84) bytes of data.
+64 bytes from 10.10.2.10: icmp_seq=1 ttl=62 time=418 ms
+64 bytes from 10.10.2.10: icmp_seq=2 ttl=62 time=638 ms
+64 bytes from 10.10.2.10: icmp_seq=3 ttl=62 time=338 ms
+64 bytes from 10.10.2.10: icmp_seq=4 ttl=62 time=657 ms
+64 bytes from 10.10.2.10: icmp_seq=5 ttl=62 time=373 ms
+
+--- 10.10.2.10 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 5255ms
+rtt min/avg/max/mdev = 338.432/484.967/656.927/135.355 ms
+===== DELAYED SMTP RTT MEASUREMENT =====
+===== 100ms RTT RUN 1 OF 3 =====
+PASS: 100ms_RTT Run 1: 10 SMTP transactions
+===== 100ms RTT RUN 2 OF 3 =====
+PASS: 100ms_RTT Run 2: 10 SMTP transactions
+===== 100ms RTT RUN 3 OF 3 =====
+PASS: 100ms_RTT Run 3: 10 SMTP transactions
+===== RESTORING NORMAL NETWORK =====
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+PASS: Normal network restored
+===== GENERATING SMTP RTT RESULTS =====
+
+===== FINAL SMTP COMMAND RTT RESULTS =====
+
+Network condition: Baseline
+EHLO                 Mean:      0.753 ms | SD:      0.683 ms
+MAIL FROM            Mean:      1.851 ms | SD:      1.786 ms
+RCPT TO              Mean:     15.747 ms | SD:     33.966 ms
+DATA                 Mean:      2.761 ms | SD:      1.395 ms
+MESSAGE_ACCEPTANCE   Mean:    123.391 ms | SD:     93.829 ms
+QUIT                 Mean:      3.914 ms | SD:      4.589 ms
+
+Network condition: 100ms_RTT
+EHLO                 Mean:    334.917 ms | SD:    171.453 ms
+MAIL FROM            Mean:    363.455 ms | SD:    220.950 ms
+RCPT TO              Mean:    649.124 ms | SD:    242.339 ms
+DATA                 Mean:    319.846 ms | SD:    201.044 ms
+MESSAGE_ACCEPTANCE   Mean:    377.018 ms | SD:    161.303 ms
+QUIT                 Mean:    323.911 ms | SD:    153.232 ms
+
+SMTP transactions verified: 60/60
+Command measurements verified: 360/360
+PASS: SMTP command response codes verified
+PASS: Statistical results generated
+===== FINAL MAIL QUEUES =====
+Mail queue is empty
+Mail queue is empty
+===== SAVED EVIDENCE =====
+total 68K
+-rw------- 1 system system 2.4K Nov 25 21:06 100ms_RTT_Run-1.csv
+-rw------- 1 system system 2.4K Nov 25 21:07 100ms_RTT_Run-2.csv
+-rw------- 1 system system 2.4K Nov 25 21:08 100ms_RTT_Run-3.csv
+-rw------- 1 system system  489 Nov 25 21:06 Baseline_Network_RTT.txt
+-rw------- 1 system system 2.2K Nov 25 21:06 Baseline_Run-1.csv
+-rw------- 1 system system 2.2K Nov 25 21:06 Baseline_Run-2.csv
+-rw------- 1 system system 2.2K Nov 25 21:06 Baseline_Run-3.csv
+-rw------- 1 system system  488 Nov 25 21:06 Delayed_Network_RTT.txt
+-rw------- 1 system system  284 Nov 25 21:06 Delayed_Traffic_Control.txt
+-rw------- 1 system system  14K Nov 25 21:08 SMTP_RTT_All_Measurements.csv
+-rw------- 1 system system 2.3K Nov 25 21:06 smtp_rtt_probe.py
+-rw------- 1 system system  958 Nov 25 21:08 SMTP_RTT_Summary.csv
+-rw------- 1 system system 4.4K Nov 25 21:08 Terminal_Log.txt

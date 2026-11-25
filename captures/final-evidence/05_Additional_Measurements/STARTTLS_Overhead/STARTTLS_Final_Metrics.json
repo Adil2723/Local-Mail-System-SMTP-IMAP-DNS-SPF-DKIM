@@ -1,0 +1,17 @@
+{
+  "plaintext_transactions": 30,
+  "starttls_transactions": 30,
+  "plaintext_mean_ms": 128.4806779,
+  "plaintext_stddev_ms": 19.54651404232672,
+  "starttls_mean_ms": 136.44564063333334,
+  "starttls_stddev_ms": 26.46903629392744,
+  "mean_tls_negotiation_ms": 7.471481733333333,
+  "tls_negotiation_stddev_ms": 20.61689376184484,
+  "mean_overhead_ms": 7.9649627333333335,
+  "overhead_stddev_ms": 19.86443427185353,
+  "overhead_percent": 6.199346752772194,
+  "tls_versions": [
+    "TLSv1.3"
+  ],
+  "certificate_validation": "Enabled"
+}

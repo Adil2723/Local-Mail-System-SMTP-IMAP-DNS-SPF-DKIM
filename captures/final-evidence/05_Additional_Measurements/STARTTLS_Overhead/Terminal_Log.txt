@@ -1,0 +1,79 @@
+========================================
+FINAL STEP 02 - STARTTLS OVERHEAD
+========================================
+Wed Nov 25 09:11:47 PM PKT 2026
+===== STARTING COMPLETE PROJECT =====
+ Container cn12-topology-mail-beta-1 Running 
+ Container cn12-topology-dns-1 Running 
+ Container cn12-topology-mail-alpha-1 Running 
+ Container cn12-topology-r1-1 Running 
+ Container cn12-topology-r2-1 Running 
+ Container cn12-topology-client-alpha-1 Running 
+ Container cn12-topology-client-beta-1 Running 
+===== VERIFYING ALL CONTAINERS =====
+PASS: r1 running
+PASS: r2 running
+PASS: dns running
+PASS: client-alpha running
+PASS: client-beta running
+PASS: mail-alpha running
+PASS: mail-beta running
+===== VERIFYING BASELINE NETWORK =====
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+PASS: Normal network conditions
+===== VERIFYING TLS CERTIFICATE =====
+PASS: TLS certificate available
+===== CHECKING INITIAL MAIL QUEUES =====
+Mail queue is empty
+Mail queue is empty
+Mail queue is empty
+Mail queue is empty
+===== PREPARING STARTTLS BENCHMARK =====
+===== EXECUTING STARTTLS BENCHMARK =====
+PASS: Run 1/3 completed - 20 transactions
+PASS: Run 2/3 completed - 20 transactions
+PASS: Run 3/3 completed - 20 transactions
+PASS: All 60 SMTP transactions completed
+===== GENERATING STATISTICAL RESULTS =====
+
+========================================
+FINAL STARTTLS PERFORMANCE RESULTS
+========================================
+plaintext_transactions: 30
+starttls_transactions: 30
+plaintext_mean_ms: 128.480678
+plaintext_stddev_ms: 19.546514
+starttls_mean_ms: 136.445641
+starttls_stddev_ms: 26.469036
+mean_tls_negotiation_ms: 7.471482
+tls_negotiation_stddev_ms: 20.616894
+mean_overhead_ms: 7.964963
+overhead_stddev_ms: 19.864434
+overhead_percent: 6.199347
+tls_versions: ['TLSv1.3']
+certificate_validation: Enabled
+
+PASS: Plaintext transactions 30/30
+PASS: Encrypted transactions 30/30
+PASS: TLS certificate validation
+PASS: STARTTLS overhead calculated
+PASS: Mean and standard deviation calculated
+===== VERIFYING FINAL MAIL QUEUES =====
+Mail queue is empty
+Mail queue is empty
+Mail queue is empty
+Mail queue is empty
+===== SAVED EVIDENCE =====
+total 28K
+-rw------- 1 system system 7.9K Nov 25 21:12 STARTTLS_All_Measurements.csv
+-rw------- 1 system system  532 Nov 25 21:12 STARTTLS_Final_Metrics.json
+-rw------- 1 system system 3.3K Nov 25 21:12 starttls_overhead_probe.py
+-rw------- 1 system system 1.4K Nov 25 21:12 STARTTLS_Paired_Overhead.csv
+-rw------- 1 system system  853 Nov 25 21:12 STARTTLS_Statistical_Summary.csv
+-rw------- 1 system system 2.3K Nov 25 21:12 Terminal_Log.txt
+FINAL STEP 02 - STARTTLS OVERHEAD: PASSED
