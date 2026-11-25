@@ -1,0 +1,65 @@
+========================================
+TEST 03: ROUTING AND IP FORWARDING
+========================================
+Wed Nov 25 12:44:07 AM PKT 2026
+===== DISPLAYING ALL ROUTING TABLES =====
+----- r1 -----
+default via 10.10.1.1 dev eth0 
+10.10.0.0/24 dev eth1 proto kernel scope link src 10.10.0.11 
+10.10.1.0/24 dev eth0 proto kernel scope link src 10.10.1.254 
+10.10.2.0/24 via 10.10.0.12 dev eth1 
+----- r2 -----
+default via 10.10.2.1 dev eth0 
+10.10.0.0/24 dev eth1 proto kernel scope link src 10.10.0.12 
+10.10.1.0/24 via 10.10.0.11 dev eth1 
+10.10.2.0/24 dev eth0 proto kernel scope link src 10.10.2.254 
+----- dns -----
+default via 10.10.0.1 dev eth0 
+10.10.0.0/24 dev eth0 proto kernel scope link src 10.10.0.53 
+10.10.1.0/24 via 10.10.0.11 dev eth0 
+10.10.2.0/24 via 10.10.0.12 dev eth0 
+----- client-alpha -----
+default via 10.10.1.254 dev eth0 
+10.10.1.0/24 dev eth0 proto kernel scope link src 10.10.1.20 
+----- client-beta -----
+default via 10.10.2.254 dev eth0 
+10.10.2.0/24 dev eth0 proto kernel scope link src 10.10.2.20 
+----- mail-alpha -----
+default via 10.10.1.1 dev eth0 
+10.10.0.0/24 via 10.10.1.254 dev eth0 
+10.10.1.0/24 dev eth0 proto kernel scope link src 10.10.1.10 
+10.10.2.0/24 via 10.10.1.254 dev eth0 
+----- mail-beta -----
+default via 10.10.2.254 dev eth0 
+10.10.2.0/24 dev eth0 proto kernel scope link src 10.10.2.10 
+===== VERIFYING IP FORWARDING =====
+PASS: r1 IP forwarding enabled
+PASS: r2 IP forwarding enabled
+===== VERIFYING ROUTING PATHS =====
+r1: 10.10.2.10 via 10.10.0.12 dev eth1 src 10.10.0.11 uid 0 
+    cache 
+PASS: r1 routes to 10.10.2.10 via 10.10.0.12
+r2: 10.10.1.10 via 10.10.0.11 dev eth1 src 10.10.0.12 uid 0 
+    cache 
+PASS: r2 routes to 10.10.1.10 via 10.10.0.11
+client-alpha: 10.10.2.10 via 10.10.1.254 dev eth0 src 10.10.1.20 uid 0 
+    cache 
+PASS: client-alpha routes to 10.10.2.10 via 10.10.1.254
+mail-alpha: 10.10.2.10 via 10.10.1.254 dev eth0 src 10.10.1.10 uid 0 
+    cache 
+PASS: mail-alpha routes to 10.10.2.10 via 10.10.1.254
+client-beta: 10.10.1.10 via 10.10.2.254 dev eth0 src 10.10.2.20 uid 0 
+    cache 
+PASS: client-beta routes to 10.10.1.10 via 10.10.2.254
+mail-beta: 10.10.1.10 via 10.10.2.254 dev eth0 src 10.10.2.10 uid 0 
+    cache 
+PASS: mail-beta routes to 10.10.1.10 via 10.10.2.254
+dns: 10.10.1.10 via 10.10.0.11 dev eth0 src 10.10.0.53 uid 0 
+    cache 
+PASS: dns routes to 10.10.1.10 via 10.10.0.11
+dns: 10.10.2.10 via 10.10.0.12 dev eth0 src 10.10.0.53 uid 0 
+    cache 
+PASS: dns routes to 10.10.2.10 via 10.10.0.12
+Both routers have IP forwarding enabled
+All eight expected routing paths verified
+TEST 03 RESULT: PASSED

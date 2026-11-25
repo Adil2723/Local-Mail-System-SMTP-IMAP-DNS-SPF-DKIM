@@ -1,0 +1,71 @@
+========================================
+TEST 18: DKIM TAMPERED SIGNATURE
+========================================
+Wed Nov 25 02:09:15 AM PKT 2026
+===== GENERATING VALID SIGNED MESSAGE =====
+
+=== POSITIVE TEST - send signed email from Alpha SMTP to Adil ===
+S: 220 mail.alpha.lab ESMTP Postfix
+C: EHLO client-alpha.alpha.lab
+S: 250-mail.alpha.lab
+S: 250-PIPELINING
+S: 250-SIZE 10240000
+S: 250-VRFY
+S: 250-ETRN
+S: 250-STARTTLS
+S: 250-ENHANCEDSTATUSCODES
+S: 250-8BITMIME
+S: 250-DSN
+S: 250-SMTPUTF8
+S: 250 CHUNKING
+C: MAIL FROM:<zaid@alpha.lab>
+S: 250 2.1.0 Ok
+C: RCPT TO:<adil@beta.lab>
+S: 250 2.1.5 Ok
+C: DATA
+S: 354 End data with <CR><LF>.<CR><LF>
+C: [message data]
+S: 250 2.0.0 Ok: queued as 3CB085600FC
+C: QUIT
+S: 221 2.0.0 Bye
+Latest message: 1795554556.V802I521234M492790.mail.beta.lab
+From: zaid@alpha.lab
+To: adil@beta.lab
+Subject: Python SMTP test
+DKIM-Signature present: True
+Authentication-Results: mail.beta.lab;	dkim=pass (2048-bit key; unprotected) header.d=alpha.lab header.i=@alpha.lab header.a=rsa-sha256 header.s=mail header.b=xCWiQ8d1;	dkim-atps=neutral
+REQUIRE: newest message has DKIM-Signature and Authentication-Results dkim=pass
+Original mailbox file: 1795554556.V802I521234M492790.mail.beta.lab
+===== EXECUTING DKIM NEGATIVE TEST =====
+
+=== NEGATIVE TEST - replay altered signed body directly from authorized Alpha IP ===
+Created: /tmp/cn12-dkim-tampered.eml
+ cn12-topology-mail-alpha-1 Copying /tmp/cn12-dkim-tampered.eml to cn12-topology-mail-alpha-1:/tmp/cn12-dkim-tampered.eml
+ cn12-topology-mail-alpha-1 Copied /tmp/cn12-dkim-tampered.eml to cn12-topology-mail-alpha-1:/tmp/cn12-dkim-tampered.eml
+Direct connection source IP: 10.10.1.10
+Modified signed message submitted directly from Alpha IP to Beta
+Latest message: 1795554561.V802I521236M859816.mail.beta.lab
+From: zaid@alpha.lab
+To: adil@beta.lab
+Subject: Python SMTP test
+DKIM-Signature present: True
+Authentication-Results: mail.beta.lab;	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=alpha.lab header.i=@alpha.lab header.a=rsa-sha256 header.s=mail header.b=xCWiQ8d1;	dkim-atps=neutral
+REQUIRE: new Authentication-Results dkim=fail (or explicit signature failure)
+DKIM verification failure normally does NOT imply SMTP rejection.
+Tampered mailbox file: 1795554561.V802I521236M859816.mail.beta.lab
+PASS: Two distinct mailbox files identified
+Direct connection source IP: 10.10.1.10
+PASS: Authorized Alpha source IP verified
+===== VERIFYING ACTUAL MESSAGE HEADERS =====
+Original Authentication-Results: mail.beta.lab;	dkim=pass (2048-bit key; unprotected) header.d=alpha.lab header.i=@alpha.lab header.a=rsa-sha256 header.s=mail header.b=xCWiQ8d1;	dkim-atps=neutral
+Tampered Authentication-Results: mail.beta.lab;	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=alpha.lab header.i=@alpha.lab header.a=rsa-sha256 header.s=mail header.b=xCWiQ8d1;	dkim-atps=neutral
+PASS: Original DKIM authentication successful
+PASS: Message body modification confirmed
+PASS: DKIM signature retained in tampered message
+PASS: Beta detected invalid DKIM signature
+Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=10.10.1.10; helo=mail.alpha.lab; envelope-from=zaid@alpha.lab; receiver=beta.lab 
+Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=10.10.1.10; helo=mail.alpha.lab; envelope-from=zaid@alpha.lab; receiver=beta.lab 
+PASS: SPF passed while DKIM failed
+PASS: DKIM tampering detection verified
+DKIM negative verification completed
+TEST 18 RESULT: PASSED

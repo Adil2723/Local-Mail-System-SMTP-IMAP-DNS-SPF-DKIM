@@ -1,0 +1,116 @@
+========================================
+TEST 20: COMPLETE END-TO-END DEMONSTRATION
+========================================
+Wed Nov 25 02:13:54 AM PKT 2026
+===== STEP 1: VERIFYING ALL CONTAINERS =====
+NAME                           IMAGE                        COMMAND                  SERVICE        CREATED          STATUS         PORTS
+cn12-topology-client-alpha-1   cn12-nettools:local          "sh /lab/start.sh"       client-alpha   2 days ago       Up 2 hours     
+cn12-topology-client-beta-1    cn12-nettools:local          "sh /lab/start.sh"       client-beta    2 days ago       Up 2 hours     
+cn12-topology-dns-1            cn-mail-lab-dns:local        "sh -ec 'ip route re…"   dns            2 hours ago      Up 2 hours     
+cn12-topology-mail-alpha-1     cn12-mail-alpha-imap:local   "sh /usr/local/bin/s…"   mail-alpha     2 hours ago      Up 3 minutes   
+cn12-topology-mail-beta-1      cn12-mail-beta-dkim:local    "sh /usr/local/bin/s…"   mail-beta      19 minutes ago   Up 3 minutes   
+cn12-topology-r1-1             cn12-nettools:local          "sh /lab/start.sh"       r1             2 days ago       Up 2 hours     
+cn12-topology-r2-1             cn12-nettools:local          "sh /lab/start.sh"       r2             2 days ago       Up 2 hours     
+PASS: r1 is running
+PASS: r2 is running
+PASS: dns is running
+PASS: client-alpha is running
+PASS: client-beta is running
+PASS: mail-alpha is running
+PASS: mail-beta is running
+===== STEP 2: VERIFYING DNS =====
+DNS verification from client-alpha
+10 mail.alpha.lab.
+10 mail.beta.lab.
+10.10.1.10
+10.10.2.10
+DNS verification from client-beta
+10 mail.alpha.lab.
+10 mail.beta.lab.
+10.10.1.10
+10.10.2.10
+PASS: DNS resolution verified
+===== STEP 3: ENCRYPTED ALPHA EMAIL =====
+TLS version: TLSv1.3
+TLS cipher: ('TLS_AES_256_GCM_SHA384', 'TLSv1.3', 256)
+TLS negotiation time: 16.49 ms
+Message-ID: <test20-forward-1795554840132908441@alpha.lab>
+PASS: Encrypted email submitted by Zaid
+===== STEP 4: BETA IMAP RETRIEVAL AND AUTHENTICATION =====
+PASS: IMAP authentication successful for adil@beta.lab
+INBOX messages: 22
+From: zaid@alpha.lab
+To: adil@beta.lab
+Subject: Test 20 - End-to-End Secure Email
+Message-ID: <test20-forward-1795554840132908441@alpha.lab>
+Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=10.10.1.10; helo=mail.alpha.lab; envelope-from=zaid@alpha.lab; receiver=beta.lab 
+Authentication-Results: mail.beta.lab;	dkim=pass (2048-bit key; unprotected) header.d=alpha.lab header.i=@alpha.lab header.a=rsa-sha256 header.s=mail header.b=mu+5XH6d;	dkim-atps=neutral
+PASS: SPF authentication verified
+PASS: DKIM authentication verified
+PASS: Exact new email retrieved
+===== STEP 5: REVERSE EMAIL FROM ADIL =====
+Reply Message-ID: <test20-reply-1795554840137377987@beta.lab>
+PASS: Reply submitted by Adil
+===== STEP 6: ALPHA IMAP RETRIEVAL =====
+PASS: IMAP authentication successful for zaid@alpha.lab
+INBOX messages: 5
+From: adil@beta.lab
+To: zaid@alpha.lab
+Subject: Re: Test 20 - End-to-End Secure Email
+Message-ID: <test20-reply-1795554840137377987@beta.lab>
+PASS: Exact new email retrieved
+===== STEP 7: VERIFYING SPOOFING PROTECTION =====
+Direct SMTP connection source IP: 10.10.1.20
+MAIL FROM: 250 2.1.0 Ok
+RCPT TO: 550 5.7.23 <adil@beta.lab>: Recipient address rejected: Message rejected due to: SPF fail - not authorized. Please see http://www.openspf.net/Why?s=mfrom;id=zaid@alpha.lab;ip=10.10.1.20;r=beta.lab
+PASS: SPF rejected unauthorized source at RCPT
+PASS: SPF rejected unauthorized source at RCPT
+PASS: Unauthorized sender blocked
+===== STEP 8: FINAL POSTFIX LOGS =====
+mail-alpha-1  | Nov 24 21:14:00 mail postfix/smtpd[136]: connect from cn12-topology-client-alpha-1.cn12-topology_alpha[10.10.1.20]
+mail-alpha-1  | Nov 24 21:14:00 mail postfix/smtpd[136]: Anonymous TLS connection established from cn12-topology-client-alpha-1.cn12-topology_alpha[10.10.1.20]: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits) key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
+mail-alpha-1  | Nov 24 21:14:00 mail postfix/smtpd[136]: 923FC5606AB: client=cn12-topology-client-alpha-1.cn12-topology_alpha[10.10.1.20]
+mail-alpha-1  | Nov 24 21:14:00 mail postfix/cleanup[141]: 923FC5606AB: message-id=<test20-forward-1795554840132908441@alpha.lab>
+mail-alpha-1  | Nov 24 21:14:00 mail postfix/smtpd[136]: disconnect from cn12-topology-client-alpha-1.cn12-topology_alpha[10.10.1.20] ehlo=2 starttls=1 mail=1 rcpt=1 data=1 quit=1 commands=7
+mail-alpha-1  | Nov 24 21:14:00 mail postfix/qmgr[115]: 923FC5606AB: from=<zaid@alpha.lab>, size=578, nrcpt=1 (queue active)
+mail-alpha-1  | Nov 24 21:14:01 mail postfix/smtp[142]: 923FC5606AB: to=<adil@beta.lab>, relay=mail.beta.lab[10.10.2.10]:25, delay=0.48, delays=0.12/0.03/0.08/0.25, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as E65125606AC)
+mail-alpha-1  | Nov 24 21:14:01 mail postfix/qmgr[115]: 923FC5606AB: removed
+mail-alpha-1  | Nov 24 21:14:01 mail postfix/smtpd[136]: connect from unknown[10.10.2.10]
+mail-alpha-1  | Nov 24 21:14:01 mail postfix/smtpd[136]: EB4BB5606AC: client=unknown[10.10.2.10]
+mail-alpha-1  | Nov 24 21:14:01 mail postfix/cleanup[141]: EB4BB5606AC: message-id=<test20-reply-1795554840137377987@beta.lab>
+mail-alpha-1  | Nov 24 21:14:02 mail postfix/qmgr[115]: EB4BB5606AC: from=<adil@beta.lab>, size=832, nrcpt=1 (queue active)
+mail-alpha-1  | Nov 24 21:14:02 mail postfix/smtpd[136]: disconnect from unknown[10.10.2.10] ehlo=1 mail=1 rcpt=1 data=1 quit=1 commands=5
+mail-alpha-1  | Nov 24 21:14:02 mail postfix/local[144]: EB4BB5606AC: to=<zaid@alpha.lab>, relay=local, delay=0.08, delays=0.06/0.01/0/0.01, dsn=2.0.0, status=sent (delivered to maildir)
+mail-alpha-1  | Nov 24 21:14:02 mail postfix/qmgr[115]: EB4BB5606AC: removed
+mail-alpha-1  | Nov 24 21:14:02 imap-login: Info: Login: user=<zaid@alpha.lab>, method=PLAIN, rip=10.10.1.20, lip=10.10.1.10, mpid=148, session=<G+2MMAxhkuAKCgEU>
+mail-alpha-1  | Nov 24 21:14:02 imap(zaid@alpha.lab)<148><G+2MMAxhkuAKCgEU>: Info: Disconnected: Logged out in=154 out=1769 deleted=0 expunged=0 trashed=0 hdr_count=1 hdr_bytes=834 body_count=0 body_bytes=0
+mail-beta-1   | Nov 24 21:14:00 mail postfix/smtpd[216]: warning: dict_nis_init: NIS domain name not set - NIS lookups disabled
+mail-beta-1   | Nov 24 21:14:00 mail postfix/smtpd[216]: connect from unknown[10.10.1.10]
+mail-beta-1   | Nov 24 21:14:00 mail postfix/smtpd[216]: E65125606AC: client=unknown[10.10.1.10]
+mail-beta-1   | Nov 24 21:14:00 mail postfix/cleanup[221]: E65125606AC: message-id=<test20-forward-1795554840132908441@alpha.lab>
+mail-beta-1   | Nov 24 21:14:01 mail postfix/qmgr[190]: E65125606AC: from=<zaid@alpha.lab>, size=1427, nrcpt=1 (queue active)
+mail-beta-1   | Nov 24 21:14:01 mail postfix/smtpd[216]: disconnect from unknown[10.10.1.10] ehlo=1 mail=1 rcpt=1 data=1 quit=1 commands=5
+mail-beta-1   | Nov 24 21:14:01 mail postfix/local[223]: warning: dict_nis_init: NIS domain name not set - NIS lookups disabled
+mail-beta-1   | Nov 24 21:14:01 mail postfix/local[223]: E65125606AC: to=<adil@beta.lab>, relay=local, delay=0.26, delays=0.24/0.02/0/0.01, dsn=2.0.0, status=sent (delivered to maildir)
+mail-beta-1   | Nov 24 21:14:01 mail postfix/qmgr[190]: E65125606AC: removed
+mail-beta-1   | Nov 24 21:14:01 imap-login: Info: Login: user=<adil@beta.lab>, method=PLAIN, rip=10.10.2.20, lip=10.10.2.10, mpid=227, session=<Tvp8MAxhHLcKCgIU>
+mail-beta-1   | Nov 24 21:14:01 imap(adil@beta.lab)<227><Tvp8MAxhHLcKCgIU>: Info: Disconnected: Logged out in=158 out=2572 deleted=0 expunged=0 trashed=0 hdr_count=1 hdr_bytes=1622 body_count=0 body_bytes=0
+mail-beta-1   | Nov 24 21:14:01 mail postfix/smtpd[216]: connect from unknown[127.0.0.1]
+mail-beta-1   | Nov 24 21:14:01 mail postfix/smtpd[216]: C7D865606AB: client=unknown[127.0.0.1]
+mail-beta-1   | Nov 24 21:14:01 mail postfix/cleanup[221]: C7D865606AB: message-id=<test20-reply-1795554840137377987@beta.lab>
+mail-beta-1   | Nov 24 21:14:01 mail postfix/qmgr[190]: C7D865606AB: from=<adil@beta.lab>, size=661, nrcpt=1 (queue active)
+mail-beta-1   | Nov 24 21:14:01 mail postfix/smtpd[216]: disconnect from unknown[127.0.0.1] ehlo=1 mail=1 rcpt=1 data=1 quit=1 commands=5
+mail-beta-1   | Nov 24 21:14:02 mail postfix/smtp[234]: C7D865606AB: to=<zaid@alpha.lab>, relay=mail.alpha.lab[10.10.1.10]:25, delay=0.2, delays=0.06/0.03/0.04/0.06, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as EB4BB5606AC)
+mail-beta-1   | Nov 24 21:14:02 mail postfix/qmgr[190]: C7D865606AB: removed
+mail-beta-1   | Nov 24 21:14:02 mail postfix/smtpd[216]: connect from unknown[10.10.1.20]
+mail-beta-1   | Nov 24 21:14:02 mail postfix/smtpd[216]: NOQUEUE: reject: RCPT from unknown[10.10.1.20]: 550 5.7.23 <adil@beta.lab>: Recipient address rejected: Message rejected due to: SPF fail - not authorized. Please see http://www.openspf.net/Why?s=mfrom;id=zaid@alpha.lab;ip=10.10.1.20;r=beta.lab; from=<zaid@alpha.lab> to=<adil@beta.lab> proto=ESMTP helo=<client-alpha.alpha.lab>
+mail-beta-1   | Nov 24 21:14:02 mail postfix/smtpd[216]: using backwards-compatible default setting smtpd_relay_before_recipient_restrictions=no to reject recipient "adil@beta.lab" from client "unknown[10.10.1.20]"
+mail-beta-1   | Nov 24 21:14:02 mail postfix/smtpd[216]: disconnect from unknown[10.10.1.20] ehlo=1 mail=1 rcpt=0/1 quit=1 commands=3/4
+===== FINAL MAIL QUEUES =====
+Mail queue is empty
+Mail queue is empty
+========================================
+PASS: ALL INTEGRATED SYSTEM CHECKS
+END-TO-END DEMONSTRATION SUCCESSFUL
+========================================
+TEST 20 RESULT: PASSED

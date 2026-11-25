@@ -1,0 +1,27 @@
+========================================
+TEST 12: ALPHA IMAP AUTHENTICATION
+========================================
+Wed Nov 25 01:58:16 AM PKT 2026
+===== CHECKING ALPHA IMAP SERVICE =====
+State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess
+LISTEN 0      4096       127.0.0.1:8891       0.0.0.0:*          
+LISTEN 0      4096      127.0.0.11:37297      0.0.0.0:*          
+LISTEN 0      100          0.0.0.0:25         0.0.0.0:*          
+LISTEN 0      100          0.0.0.0:143        0.0.0.0:*          
+===== COPYING PYTHON IMAP CLIENT =====
+ cn12-topology-client-alpha-1 Copying mail-alpha/scripts/imap_test.py to cn12-topology-client-alpha-1:/tmp/alpha-imap-test.py
+ cn12-topology-client-alpha-1 Copied mail-alpha/scripts/imap_test.py to cn12-topology-client-alpha-1:/tmp/alpha-imap-test.py
+===== AUTHENTICATION AND RETRIEVAL =====
+/usr/lib/python3.12/getpass.py:91: GetPassWarning: Can not control echo on the terminal.
+  passwd = fallback_getpass(prompt, stream)
+Warning: Password input may be echoed.
+[POTENTIALLY SENSITIVE LINE REDACTED]
+IMAP login successful!
+INBOX: 4 messages
+From: adil@beta.lab
+To: zaid@alpha.lab
+Subject: Test 11 - Final Reverse Delivery
+Message-ID: <test11-final-1795553789812717412@beta.lab>
+PASS: Alpha IMAP authentication verified
+PASS: Email retrieval verified
+TEST 12 RESULT: PASSED

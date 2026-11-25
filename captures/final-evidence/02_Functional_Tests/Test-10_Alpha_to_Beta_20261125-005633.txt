@@ -1,0 +1,47 @@
+========================================
+TEST 10: ALPHA TO BETA EMAIL DELIVERY
+========================================
+Wed Nov 25 12:56:33 AM PKT 2026
+===== SENDING EMAIL FROM ZAID TO ADIL =====
+S: 220 mail.alpha.lab ESMTP Postfix
+C: EHLO client-alpha.alpha.lab
+S: 250-mail.alpha.lab
+S: 250-PIPELINING
+S: 250-SIZE 10240000
+S: 250-VRFY
+S: 250-ETRN
+S: 250-STARTTLS
+S: 250-ENHANCEDSTATUSCODES
+S: 250-8BITMIME
+S: 250-DSN
+S: 250-SMTPUTF8
+S: 250 CHUNKING
+C: MAIL FROM:<zaid@alpha.lab>
+S: 250 2.1.0 Ok
+C: RCPT TO:<adil@beta.lab>
+S: 250 2.1.5 Ok
+C: DATA
+S: 354 End data with <CR><LF>.<CR><LF>
+C: [message data]
+S: 250 2.0.0 Ok: queued as 1E6DA5606BE
+C: QUIT
+S: 221 2.0.0 Bye
+PASS: SMTP message accepted
+Alpha Queue ID: 1E6DA5606BE
+===== ALPHA POSTFIX DELIVERY LOG =====
+mail-alpha-1  | Nov 24 19:56:34 mail postfix/smtpd[206]: 1E6DA5606BE: client=cn12-topology-client-alpha-1.cn12-topology_alpha[10.10.1.20]
+mail-alpha-1  | Nov 24 19:56:34 mail postfix/cleanup[210]: 1E6DA5606BE: message-id=<179555019407.273.1110429542721024906@alpha.lab>
+mail-alpha-1  | Nov 24 19:56:34 mail postfix/qmgr[115]: 1E6DA5606BE: from=<zaid@alpha.lab>, size=556, nrcpt=1 (queue active)
+mail-alpha-1  | Nov 24 19:56:35 mail postfix/smtp[212]: 1E6DA5606BE: to=<adil@beta.lab>, relay=mail.beta.lab[10.10.2.10]:25, delay=1.1, delays=0.11/0.07/0.19/0.73, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as EFBD55606C1)
+mail-alpha-1  | Nov 24 19:56:35 mail postfix/qmgr[115]: 1E6DA5606BE: removed
+Message-ID: <179555019407.273.1110429542721024906@alpha.lab>
+===== VERIFYING ACTUAL BETA MAILDIR DELIVERY =====
+Mailbox file: 1795550195.V802I521223M280972.mail.beta.lab
+From: zaid@alpha.lab
+To: adil@beta.lab
+Subject: Python SMTP test
+Message-ID: <179555019407.273.1110429542721024906@alpha.lab>
+PASS: Matching message found in Beta Maildir
+PASS: Correct sender and recipient verified
+Alpha-to-Beta email delivery verified successfully
+TEST 10 RESULT: PASSED

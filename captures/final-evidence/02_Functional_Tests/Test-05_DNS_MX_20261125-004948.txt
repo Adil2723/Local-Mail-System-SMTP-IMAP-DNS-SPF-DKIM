@@ -1,0 +1,114 @@
+========================================
+TEST 05: DNS MX RECORD VERIFICATION
+========================================
+Wed Nov 25 12:49:48 AM PKT 2026
+===== client-alpha querying alpha.lab =====
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.9-Ubuntu <<>> @10.10.0.53 alpha.lab MX +time=3 +tries=2
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 32936
+;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 2
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 584abd0e236de55a010000006b05ea5ddb8d013bce1121cd (good)
+;; QUESTION SECTION:
+;alpha.lab.			IN	MX
+
+;; ANSWER SECTION:
+alpha.lab.		300	IN	MX	10 mail.alpha.lab.
+
+;; ADDITIONAL SECTION:
+mail.alpha.lab.		300	IN	A	10.10.1.10
+
+;; Query time: 19 msec
+;; SERVER: 10.10.0.53#53(10.10.0.53) (UDP)
+;; WHEN: Tue Nov 24 19:49:49 UTC 2026
+;; MSG SIZE  rcvd: 103
+PASS: alpha.lab MX points to mail.alpha.lab
+===== client-alpha querying beta.lab =====
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.9-Ubuntu <<>> @10.10.0.53 beta.lab MX +time=3 +tries=2
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 27959
+;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 2
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 2f31d7ab9446024b010000006b05ea5d4d2da8d0a27acc30 (good)
+;; QUESTION SECTION:
+;beta.lab.			IN	MX
+
+;; ANSWER SECTION:
+beta.lab.		300	IN	MX	10 mail.beta.lab.
+
+;; ADDITIONAL SECTION:
+mail.beta.lab.		300	IN	A	10.10.2.10
+
+;; Query time: 11 msec
+;; SERVER: 10.10.0.53#53(10.10.0.53) (UDP)
+;; WHEN: Tue Nov 24 19:49:49 UTC 2026
+;; MSG SIZE  rcvd: 102
+PASS: beta.lab MX points to mail.beta.lab
+===== client-beta querying alpha.lab =====
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.9-Ubuntu <<>> @10.10.0.53 alpha.lab MX +time=3 +tries=2
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 418
+;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 2
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 0e888efb88c3b72e010000006b05ea5eab1f7b291b353689 (good)
+;; QUESTION SECTION:
+;alpha.lab.			IN	MX
+
+;; ANSWER SECTION:
+alpha.lab.		300	IN	MX	10 mail.alpha.lab.
+
+;; ADDITIONAL SECTION:
+mail.alpha.lab.		300	IN	A	10.10.1.10
+
+;; Query time: 3 msec
+;; SERVER: 10.10.0.53#53(10.10.0.53) (UDP)
+;; WHEN: Tue Nov 24 19:49:50 UTC 2026
+;; MSG SIZE  rcvd: 103
+PASS: alpha.lab MX points to mail.alpha.lab
+===== client-beta querying beta.lab =====
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.9-Ubuntu <<>> @10.10.0.53 beta.lab MX +time=3 +tries=2
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 33349
+;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 2
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 7448a6e7a35b7f54010000006b05ea5e1cec206ce07f9587 (good)
+;; QUESTION SECTION:
+;beta.lab.			IN	MX
+
+;; ANSWER SECTION:
+beta.lab.		300	IN	MX	10 mail.beta.lab.
+
+;; ADDITIONAL SECTION:
+mail.beta.lab.		300	IN	A	10.10.2.10
+
+;; Query time: 6 msec
+;; SERVER: 10.10.0.53#53(10.10.0.53) (UDP)
+;; WHEN: Tue Nov 24 19:49:50 UTC 2026
+;; MSG SIZE  rcvd: 102
+PASS: beta.lab MX points to mail.beta.lab
+All four MX record checks passed
+TEST 05 RESULT: PASSED

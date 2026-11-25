@@ -1,0 +1,122 @@
+========================================
+TEST 06: DNS A RECORD VERIFICATION
+========================================
+Wed Nov 25 12:50:51 AM PKT 2026
+===== client-alpha querying mail.alpha.lab =====
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.9-Ubuntu <<>> @10.10.0.53 mail.alpha.lab A +norecurse +time=3 +tries=2
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 29404
+;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 5dedd686c2f3a9e2010000006b05ea9bcf1ef443ae45322b (good)
+;; QUESTION SECTION:
+;mail.alpha.lab.			IN	A
+
+;; ANSWER SECTION:
+mail.alpha.lab.		300	IN	A	10.10.1.10
+
+;; AUTHORITY SECTION:
+lab.			300	IN	NS	ns.lab.
+
+;; ADDITIONAL SECTION:
+ns.lab.			300	IN	A	10.10.0.53
+
+;; Query time: 0 msec
+;; SERVER: 10.10.0.53#53(10.10.0.53) (UDP)
+;; WHEN: Tue Nov 24 19:50:51 UTC 2026
+;; MSG SIZE  rcvd: 123
+PASS: mail.alpha.lab resolves to 10.10.1.10
+===== client-alpha querying mail.beta.lab =====
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.9-Ubuntu <<>> @10.10.0.53 mail.beta.lab A +norecurse +time=3 +tries=2
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 21809
+;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: f6be5000ae0d1299010000006b05ea9cc6a115a3dcda5532 (good)
+;; QUESTION SECTION:
+;mail.beta.lab.			IN	A
+
+;; ANSWER SECTION:
+mail.beta.lab.		300	IN	A	10.10.2.10
+
+;; AUTHORITY SECTION:
+lab.			300	IN	NS	ns.lab.
+
+;; ADDITIONAL SECTION:
+ns.lab.			300	IN	A	10.10.0.53
+
+;; Query time: 0 msec
+;; SERVER: 10.10.0.53#53(10.10.0.53) (UDP)
+;; WHEN: Tue Nov 24 19:50:52 UTC 2026
+;; MSG SIZE  rcvd: 122
+PASS: mail.beta.lab resolves to 10.10.2.10
+===== client-beta querying mail.alpha.lab =====
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.9-Ubuntu <<>> @10.10.0.53 mail.alpha.lab A +norecurse +time=3 +tries=2
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 27248
+;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 63ac047e09e41b5a010000006b05ea9cb3409ccbb376e6d3 (good)
+;; QUESTION SECTION:
+;mail.alpha.lab.			IN	A
+
+;; ANSWER SECTION:
+mail.alpha.lab.		300	IN	A	10.10.1.10
+
+;; AUTHORITY SECTION:
+lab.			300	IN	NS	ns.lab.
+
+;; ADDITIONAL SECTION:
+ns.lab.			300	IN	A	10.10.0.53
+
+;; Query time: 0 msec
+;; SERVER: 10.10.0.53#53(10.10.0.53) (UDP)
+;; WHEN: Tue Nov 24 19:50:52 UTC 2026
+;; MSG SIZE  rcvd: 123
+PASS: mail.alpha.lab resolves to 10.10.1.10
+===== client-beta querying mail.beta.lab =====
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.9-Ubuntu <<>> @10.10.0.53 mail.beta.lab A +norecurse +time=3 +tries=2
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 26598
+;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: a8eaac96e647df2d010000006b05ea9d7618a6dcf3ad0eba (good)
+;; QUESTION SECTION:
+;mail.beta.lab.			IN	A
+
+;; ANSWER SECTION:
+mail.beta.lab.		300	IN	A	10.10.2.10
+
+;; AUTHORITY SECTION:
+lab.			300	IN	NS	ns.lab.
+
+;; ADDITIONAL SECTION:
+ns.lab.			300	IN	A	10.10.0.53
+
+;; Query time: 0 msec
+;; SERVER: 10.10.0.53#53(10.10.0.53) (UDP)
+;; WHEN: Tue Nov 24 19:50:53 UTC 2026
+;; MSG SIZE  rcvd: 122
+PASS: mail.beta.lab resolves to 10.10.2.10
+All four DNS A record checks passed
+TEST 06 RESULT: PASSED

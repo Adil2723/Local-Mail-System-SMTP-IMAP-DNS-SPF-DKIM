@@ -1,0 +1,27 @@
+========================================
+TEST 13: BETA IMAP AUTHENTICATION
+========================================
+Wed Nov 25 02:00:25 AM PKT 2026
+===== CHECKING BETA IMAP SERVICE =====
+State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess
+LISTEN 0      4096       127.0.0.1:8891       0.0.0.0:*          
+LISTEN 0      100          0.0.0.0:143        0.0.0.0:*          
+LISTEN 0      100          0.0.0.0:25         0.0.0.0:*          
+LISTEN 0      4096      127.0.0.11:43609      0.0.0.0:*          
+===== COPYING PYTHON IMAP CLIENT =====
+ cn12-topology-client-beta-1 Copying beta/scripts/imap_test.py to cn12-topology-client-beta-1:/tmp/beta-imap-test.py
+ cn12-topology-client-beta-1 Copied beta/scripts/imap_test.py to cn12-topology-client-beta-1:/tmp/beta-imap-test.py
+===== AUTHENTICATION AND RETRIEVAL =====
+/usr/lib/python3.12/getpass.py:91: GetPassWarning: Can not control echo on the terminal.
+  passwd = fallback_getpass(prompt, stream)
+Warning: Password input may be echoed.
+[POTENTIALLY SENSITIVE LINE REDACTED]
+IMAP login successful!
+INBOX: 16 messages
+From: zaid@alpha.lab
+To: adil@beta.lab
+Subject: Python SMTP test
+Message-ID: <179555019407.273.1110429542721024906@alpha.lab>
+PASS: Beta IMAP authentication verified
+PASS: Email retrieval verified
+TEST 13 RESULT: PASSED

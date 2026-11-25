@@ -1,0 +1,70 @@
+========================================
+TEST 07: SPF TXT RECORD VERIFICATION
+========================================
+Wed Nov 25 12:52:29 AM PKT 2026
+===== SPF QUERY FROM client-alpha =====
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.9-Ubuntu <<>> @10.10.0.53 alpha.lab TXT +norecurse +time=3 +tries=2
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 49061
+;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 1fdccf1e1d39262b010000006b05eafd0d987c2652c88b04 (good)
+;; QUESTION SECTION:
+;alpha.lab.			IN	TXT
+
+;; ANSWER SECTION:
+alpha.lab.		300	IN	TXT	"v=spf1 ip4:10.10.1.10 -all"
+
+;; AUTHORITY SECTION:
+lab.			300	IN	NS	ns.lab.
+
+;; ADDITIONAL SECTION:
+ns.lab.			300	IN	A	10.10.0.53
+
+;; Query time: 5 msec
+;; SERVER: 10.10.0.53#53(10.10.0.53) (UDP)
+;; WHEN: Tue Nov 24 19:52:29 UTC 2026
+;; MSG SIZE  rcvd: 138
+
+"v=spf1 ip4:10.10.1.10 -all"
+PASS: Correct SPF policy retrieved from client-alpha
+===== SPF QUERY FROM client-beta =====
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.9-Ubuntu <<>> @10.10.0.53 alpha.lab TXT +norecurse +time=3 +tries=2
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 59593
+;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 5cb87b534e06ea1f010000006b05eaff0344a5b4aa5e144e (good)
+;; QUESTION SECTION:
+;alpha.lab.			IN	TXT
+
+;; ANSWER SECTION:
+alpha.lab.		300	IN	TXT	"v=spf1 ip4:10.10.1.10 -all"
+
+;; AUTHORITY SECTION:
+lab.			300	IN	NS	ns.lab.
+
+;; ADDITIONAL SECTION:
+ns.lab.			300	IN	A	10.10.0.53
+
+;; Query time: 0 msec
+;; SERVER: 10.10.0.53#53(10.10.0.53) (UDP)
+;; WHEN: Tue Nov 24 19:52:31 UTC 2026
+;; MSG SIZE  rcvd: 138
+
+"v=spf1 ip4:10.10.1.10 -all"
+PASS: Correct SPF policy retrieved from client-beta
+Authorized sender: 10.10.1.10
+Unauthorized senders: SPF hard fail
+Both SPF TXT record checks passed
+TEST 07 RESULT: PASSED

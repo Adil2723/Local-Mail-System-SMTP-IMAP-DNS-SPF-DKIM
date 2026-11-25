@@ -1,0 +1,138 @@
+========================================
+TEST 04: CONNECTIVITY AND TRACEROUTE
+========================================
+Wed Nov 25 12:47:24 AM PKT 2026
+===== LOCAL NETWORK CONNECTIVITY =====
+===== PING: client-alpha to 10.10.1.10 =====
+PING 10.10.1.10 (10.10.1.10) 56(84) bytes of data.
+64 bytes from 10.10.1.10: icmp_seq=1 ttl=64 time=0.758 ms
+64 bytes from 10.10.1.10: icmp_seq=2 ttl=64 time=0.060 ms
+64 bytes from 10.10.1.10: icmp_seq=3 ttl=64 time=0.067 ms
+64 bytes from 10.10.1.10: icmp_seq=4 ttl=64 time=0.051 ms
+
+--- 10.10.1.10 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3266ms
+rtt min/avg/max/mdev = 0.051/0.234/0.758/0.302 ms
+PASS: client-alpha can reach 10.10.1.10
+===== PING: client-beta to 10.10.2.10 =====
+PING 10.10.2.10 (10.10.2.10) 56(84) bytes of data.
+64 bytes from 10.10.2.10: icmp_seq=1 ttl=64 time=0.772 ms
+64 bytes from 10.10.2.10: icmp_seq=2 ttl=64 time=0.044 ms
+64 bytes from 10.10.2.10: icmp_seq=3 ttl=64 time=0.043 ms
+64 bytes from 10.10.2.10: icmp_seq=4 ttl=64 time=0.060 ms
+
+--- 10.10.2.10 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3061ms
+rtt min/avg/max/mdev = 0.043/0.229/0.772/0.313 ms
+PASS: client-beta can reach 10.10.2.10
+===== GATEWAY CONNECTIVITY =====
+===== PING: client-alpha to 10.10.1.254 =====
+PING 10.10.1.254 (10.10.1.254) 56(84) bytes of data.
+64 bytes from 10.10.1.254: icmp_seq=1 ttl=64 time=0.545 ms
+64 bytes from 10.10.1.254: icmp_seq=2 ttl=64 time=0.057 ms
+64 bytes from 10.10.1.254: icmp_seq=3 ttl=64 time=0.067 ms
+64 bytes from 10.10.1.254: icmp_seq=4 ttl=64 time=0.056 ms
+
+--- 10.10.1.254 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3091ms
+rtt min/avg/max/mdev = 0.056/0.181/0.545/0.210 ms
+PASS: client-alpha can reach 10.10.1.254
+===== PING: client-beta to 10.10.2.254 =====
+PING 10.10.2.254 (10.10.2.254) 56(84) bytes of data.
+64 bytes from 10.10.2.254: icmp_seq=1 ttl=64 time=0.756 ms
+64 bytes from 10.10.2.254: icmp_seq=2 ttl=64 time=0.062 ms
+64 bytes from 10.10.2.254: icmp_seq=3 ttl=64 time=0.062 ms
+64 bytes from 10.10.2.254: icmp_seq=4 ttl=64 time=0.052 ms
+
+--- 10.10.2.254 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3088ms
+rtt min/avg/max/mdev = 0.052/0.233/0.756/0.301 ms
+PASS: client-beta can reach 10.10.2.254
+===== DNS SERVER CONNECTIVITY =====
+===== PING: client-alpha to 10.10.0.53 =====
+PING 10.10.0.53 (10.10.0.53) 56(84) bytes of data.
+64 bytes from 10.10.0.53: icmp_seq=1 ttl=63 time=0.612 ms
+64 bytes from 10.10.0.53: icmp_seq=2 ttl=63 time=0.082 ms
+64 bytes from 10.10.0.53: icmp_seq=3 ttl=63 time=0.161 ms
+64 bytes from 10.10.0.53: icmp_seq=4 ttl=63 time=0.067 ms
+
+--- 10.10.0.53 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3226ms
+rtt min/avg/max/mdev = 0.067/0.230/0.612/0.223 ms
+PASS: client-alpha can reach 10.10.0.53
+===== PING: client-beta to 10.10.0.53 =====
+PING 10.10.0.53 (10.10.0.53) 56(84) bytes of data.
+64 bytes from 10.10.0.53: icmp_seq=1 ttl=63 time=0.384 ms
+64 bytes from 10.10.0.53: icmp_seq=2 ttl=63 time=0.184 ms
+64 bytes from 10.10.0.53: icmp_seq=3 ttl=63 time=0.059 ms
+64 bytes from 10.10.0.53: icmp_seq=4 ttl=63 time=0.056 ms
+
+--- 10.10.0.53 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3095ms
+rtt min/avg/max/mdev = 0.056/0.170/0.384/0.133 ms
+PASS: client-beta can reach 10.10.0.53
+===== CROSS-NETWORK CONNECTIVITY =====
+===== PING: client-alpha to 10.10.2.10 =====
+PING 10.10.2.10 (10.10.2.10) 56(84) bytes of data.
+64 bytes from 10.10.2.10: icmp_seq=1 ttl=62 time=0.420 ms
+64 bytes from 10.10.2.10: icmp_seq=2 ttl=62 time=0.064 ms
+64 bytes from 10.10.2.10: icmp_seq=3 ttl=62 time=0.068 ms
+64 bytes from 10.10.2.10: icmp_seq=4 ttl=62 time=0.104 ms
+
+--- 10.10.2.10 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3096ms
+rtt min/avg/max/mdev = 0.064/0.164/0.420/0.148 ms
+PASS: client-alpha can reach 10.10.2.10
+===== PING: client-beta to 10.10.1.10 =====
+PING 10.10.1.10 (10.10.1.10) 56(84) bytes of data.
+64 bytes from 10.10.1.10: icmp_seq=1 ttl=62 time=0.233 ms
+64 bytes from 10.10.1.10: icmp_seq=2 ttl=62 time=0.071 ms
+64 bytes from 10.10.1.10: icmp_seq=3 ttl=62 time=0.070 ms
+64 bytes from 10.10.1.10: icmp_seq=4 ttl=62 time=0.061 ms
+
+--- 10.10.1.10 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3073ms
+rtt min/avg/max/mdev = 0.061/0.108/0.233/0.071 ms
+PASS: client-beta can reach 10.10.1.10
+===== PING: mail-alpha to 10.10.2.10 =====
+PING 10.10.2.10 (10.10.2.10) 56(84) bytes of data.
+64 bytes from 10.10.2.10: icmp_seq=1 ttl=62 time=0.404 ms
+64 bytes from 10.10.2.10: icmp_seq=2 ttl=62 time=0.061 ms
+64 bytes from 10.10.2.10: icmp_seq=3 ttl=62 time=0.085 ms
+64 bytes from 10.10.2.10: icmp_seq=4 ttl=62 time=0.092 ms
+
+--- 10.10.2.10 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 4209ms
+rtt min/avg/max/mdev = 0.061/0.160/0.404/0.141 ms
+PASS: mail-alpha can reach 10.10.2.10
+===== PING: mail-beta to 10.10.1.10 =====
+Using network-tools image in mail-beta network namespace
+PING 10.10.1.10 (10.10.1.10) 56(84) bytes of data.
+64 bytes from 10.10.1.10: icmp_seq=1 ttl=62 time=1.10 ms
+64 bytes from 10.10.1.10: icmp_seq=2 ttl=62 time=0.094 ms
+64 bytes from 10.10.1.10: icmp_seq=3 ttl=62 time=0.092 ms
+64 bytes from 10.10.1.10: icmp_seq=4 ttl=62 time=0.062 ms
+
+--- 10.10.1.10 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 4024ms
+rtt min/avg/max/mdev = 0.062/0.337/1.103/0.442 ms
+PASS: mail-beta can reach 10.10.1.10
+===== ALPHA TO BETA TRACEROUTE =====
+traceroute to 10.10.2.10 (10.10.2.10), 8 hops max, 60 byte packets
+ 1  10.10.1.254  1.099 ms  0.017 ms  0.003 ms
+ 2  10.10.0.12  0.286 ms  0.009 ms  0.005 ms
+ 3  10.10.2.10  0.144 ms  0.014 ms  0.007 ms
+PASS: Expected hop 10.10.1.254 found
+PASS: Expected hop 10.10.0.12 found
+PASS: Expected hop 10.10.2.10 found
+===== BETA TO ALPHA TRACEROUTE =====
+traceroute to 10.10.1.10 (10.10.1.10), 8 hops max, 60 byte packets
+ 1  10.10.2.254  0.083 ms  0.005 ms  0.004 ms
+ 2  10.10.0.11  0.090 ms  0.008 ms  0.005 ms
+ 3  10.10.1.10  0.099 ms  0.008 ms  0.006 ms
+PASS: Expected hop 10.10.2.254 found
+PASS: Expected hop 10.10.0.11 found
+PASS: Expected hop 10.10.1.10 found
+All ten connectivity checks passed
+Both traceroute paths verified
+TEST 04 RESULT: PASSED

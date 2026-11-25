@@ -1,0 +1,32 @@
+========================================
+TEST 16: SPF UNAUTHORIZED SENDER
+========================================
+Wed Nov 25 02:07:24 AM PKT 2026
+===== VERIFYING SPF LIBRARY =====
+SPF result: ('fail', 'SPF fail - not authorized')
+PASS: Unauthorized sender detected
+===== VERIFYING ACTIVE SPF CONFIGURATION =====
+mynetworks = 127.0.0.0/8
+smtpd_recipient_restrictions = permit_mynetworks, reject_unauth_destination, check_policy_service unix:private/policyd-spf
+debugLevel = 2
+TestOnly = 1
+HELO_reject = Fail
+Mail_From_reject = Fail
+===== EXECUTING SPOOFED SENDER TEST =====
+Direct SMTP connection source IP: 10.10.1.20
+MAIL FROM: 250 2.1.0 Ok
+RCPT TO: 550 5.7.23 <adil@beta.lab>: Recipient address rejected: Message rejected due to: SPF fail - not authorized. Please see http://www.openspf.net/Why?s=mfrom;id=zaid@alpha.lab;ip=10.10.1.20;r=beta.lab
+PASS: SPF rejected unauthorized source at RCPT
+Direct SMTP connection source IP: 10.10.1.20
+PASS: SPF rejected unauthorized source at RCPT
+===== VERIFYING POSTFIX REJECTION LOGS =====
+mail-beta-1  | Nov 24 21:07:26 mail postfix/smtpd[269]: connect from unknown[10.10.1.20]
+mail-beta-1  | Nov 24 21:07:26 mail postfix/smtpd[269]: NOQUEUE: reject: RCPT from unknown[10.10.1.20]: 550 5.7.23 <adil@beta.lab>: Recipient address rejected: Message rejected due to: SPF fail - not authorized. Please see http://www.openspf.net/Why?s=mfrom;id=zaid@alpha.lab;ip=10.10.1.20;r=beta.lab; from=<zaid@alpha.lab> to=<adil@beta.lab> proto=ESMTP helo=<client-alpha.alpha.lab>
+mail-beta-1  | Nov 24 21:07:26 mail postfix/smtpd[269]: using backwards-compatible default setting smtpd_relay_before_recipient_restrictions=no to reject recipient "adil@beta.lab" from client "unknown[10.10.1.20]"
+mail-beta-1  | Nov 24 21:07:26 mail postfix/smtpd[269]: disconnect from unknown[10.10.1.20] ehlo=1 mail=1 rcpt=0/1 quit=1 commands=3/4
+mail-beta-1  | Nov 24 21:07:26 mail postfix/smtpd[269]: NOQUEUE: reject: RCPT from unknown[10.10.1.20]: 550 5.7.23 <adil@beta.lab>: Recipient address rejected: Message rejected due to: SPF fail - not authorized. Please see http://www.openspf.net/Why?s=mfrom;id=zaid@alpha.lab;ip=10.10.1.20;r=beta.lab; from=<zaid@alpha.lab> to=<adil@beta.lab> proto=ESMTP helo=<client-alpha.alpha.lab>
+PASS: Unauthorized source IP verified
+PASS: SMTP recipient rejected
+PASS: SPF rejection confirmed in Postfix logs
+PASS: Spoofed message prevented before DATA
+TEST 16 RESULT: PASSED

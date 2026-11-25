@@ -1,0 +1,53 @@
+========================================
+TEST 02: IP ADDRESSING AND SUBNETS
+========================================
+Wed Nov 25 12:42:36 AM PKT 2026
+===== DISPLAYING ALL IP ADDRESSES =====
+----- r1 -----
+lo               UNKNOWN        127.0.0.1/8 
+eth0@if11        UP             10.10.1.254/24 
+eth1@if12        UP             10.10.0.11/24 
+----- r2 -----
+lo               UNKNOWN        127.0.0.1/8 
+eth0@if13        UP             10.10.2.254/24 
+eth1@if14        UP             10.10.0.12/24 
+----- dns -----
+lo               UNKNOWN        127.0.0.1/8 
+eth0@if15        UP             10.10.0.53/24 
+----- client-alpha -----
+lo               UNKNOWN        127.0.0.1/8 
+eth0@if18        UP             10.10.1.20/24 
+----- client-beta -----
+lo               UNKNOWN        127.0.0.1/8 
+eth0@if17        UP             10.10.2.20/24 
+----- mail-alpha -----
+lo               UNKNOWN        127.0.0.1/8 
+eth0@if47        UP             10.10.1.10/24 
+----- mail-beta -----
+lo               UNKNOWN        127.0.0.1/8 
+eth0@if35        UP             10.10.2.10/24 
+===== VERIFYING EXPECTED IP ADDRESSES =====
+10.10.1.254/24
+PASS: r1 has 10.10.1.254/24
+10.10.0.11/24
+PASS: r1 has 10.10.0.11/24
+10.10.0.12/24
+PASS: r2 has 10.10.0.12/24
+10.10.2.254/24
+PASS: r2 has 10.10.2.254/24
+10.10.0.53/24
+PASS: dns has 10.10.0.53/24
+10.10.1.20/24
+PASS: client-alpha has 10.10.1.20/24
+10.10.1.10/24
+PASS: mail-alpha has 10.10.1.10/24
+10.10.2.20/24
+PASS: client-beta has 10.10.2.20/24
+10.10.2.10/24
+PASS: mail-beta has 10.10.2.10/24
+===== SUBNET VERIFICATION =====
+PASS: Alpha subnet 10.10.1.0/24
+PASS: Core subnet 10.10.0.0/24
+PASS: Beta subnet 10.10.2.0/24
+All nine expected interface addresses verified
+TEST 02 RESULT: PASSED

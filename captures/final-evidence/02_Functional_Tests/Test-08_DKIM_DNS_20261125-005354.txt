@@ -1,0 +1,76 @@
+========================================
+TEST 08: DKIM PUBLIC KEY VERIFICATION
+========================================
+Wed Nov 25 12:53:54 AM PKT 2026
+===== DKIM DNS QUERY FROM client-alpha =====
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.9-Ubuntu <<>> @10.10.0.53 mail._domainkey.alpha.lab TXT +norecurse +time=3 +tries=2
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 30743
+;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: e64f726a0e4f04cf010000006b05eb535626ea346be04ee8 (good)
+;; QUESTION SECTION:
+;mail._domainkey.alpha.lab.	IN	TXT
+
+;; ANSWER SECTION:
+mail._domainkey.alpha.lab. 300	IN	TXT	"v=DKIM1; h=sha256; k=rsa; " "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxSldTMQY58rYsmNM0Zulq215k7fA25BcMd23KOLSAp8pFGQ1QDqKF5Z08ncCcOmt1DooI2sx4WJrZehfq7AjhtrlkzvvDXFJvdG5HzxyeonB7VUpDSDfMKASuDNmKNqeOhrmRcG2PCJ3OUzrMomkBnULOdbekobPtXg+gz6DrZPkK8HQuJDTE3lpZBtQqwLGOnyn5b/mtuZNF3" "SHeOirIFk9q2Ps1Kw9XPZ8efC5zonOx/ILvL8EkwJVcU2kQPOf+nPc+ZctV3BZPwCG65G7+xOZEeBhSS69aJKAdnOPSC5+VXSJ0zzmWaNnjLvm2lFbbNAHDPo+5r/9Od64BEOcnQIDAQAB"
+
+;; AUTHORITY SECTION:
+lab.			300	IN	NS	ns.lab.
+
+;; ADDITIONAL SECTION:
+ns.lab.			300	IN	A	10.10.0.53
+
+;; Query time: 3 msec
+;; SERVER: 10.10.0.53#53(10.10.0.53) (UDP)
+;; WHEN: Tue Nov 24 19:53:55 UTC 2026
+;; MSG SIZE  rcvd: 553
+
+"v=DKIM1; h=sha256; k=rsa; " "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxSldTMQY58rYsmNM0Zulq215k7fA25BcMd23KOLSAp8pFGQ1QDqKF5Z08ncCcOmt1DooI2sx4WJrZehfq7AjhtrlkzvvDXFJvdG5HzxyeonB7VUpDSDfMKASuDNmKNqeOhrmRcG2PCJ3OUzrMomkBnULOdbekobPtXg+gz6DrZPkK8HQuJDTE3lpZBtQqwLGOnyn5b/mtuZNF3" "SHeOirIFk9q2Ps1Kw9XPZ8efC5zonOx/ILvL8EkwJVcU2kQPOf+nPc+ZctV3BZPwCG65G7+xOZEeBhSS69aJKAdnOPSC5+VXSJ0zzmWaNnjLvm2lFbbNAHDPo+5r/9Od64BEOcnQIDAQAB"
+PASS: DKIM public key retrieved from client-alpha
+===== DKIM DNS QUERY FROM client-beta =====
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.9-Ubuntu <<>> @10.10.0.53 mail._domainkey.alpha.lab TXT +norecurse +time=3 +tries=2
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 42651
+;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 5567e05e7f80776d010000006b05eb54023b5d3326d0f914 (good)
+;; QUESTION SECTION:
+;mail._domainkey.alpha.lab.	IN	TXT
+
+;; ANSWER SECTION:
+mail._domainkey.alpha.lab. 300	IN	TXT	"v=DKIM1; h=sha256; k=rsa; " "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxSldTMQY58rYsmNM0Zulq215k7fA25BcMd23KOLSAp8pFGQ1QDqKF5Z08ncCcOmt1DooI2sx4WJrZehfq7AjhtrlkzvvDXFJvdG5HzxyeonB7VUpDSDfMKASuDNmKNqeOhrmRcG2PCJ3OUzrMomkBnULOdbekobPtXg+gz6DrZPkK8HQuJDTE3lpZBtQqwLGOnyn5b/mtuZNF3" "SHeOirIFk9q2Ps1Kw9XPZ8efC5zonOx/ILvL8EkwJVcU2kQPOf+nPc+ZctV3BZPwCG65G7+xOZEeBhSS69aJKAdnOPSC5+VXSJ0zzmWaNnjLvm2lFbbNAHDPo+5r/9Od64BEOcnQIDAQAB"
+
+;; AUTHORITY SECTION:
+lab.			300	IN	NS	ns.lab.
+
+;; ADDITIONAL SECTION:
+ns.lab.			300	IN	A	10.10.0.53
+
+;; Query time: 2 msec
+;; SERVER: 10.10.0.53#53(10.10.0.53) (UDP)
+;; WHEN: Tue Nov 24 19:53:56 UTC 2026
+;; MSG SIZE  rcvd: 553
+
+"v=DKIM1; h=sha256; k=rsa; " "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxSldTMQY58rYsmNM0Zulq215k7fA25BcMd23KOLSAp8pFGQ1QDqKF5Z08ncCcOmt1DooI2sx4WJrZehfq7AjhtrlkzvvDXFJvdG5HzxyeonB7VUpDSDfMKASuDNmKNqeOhrmRcG2PCJ3OUzrMomkBnULOdbekobPtXg+gz6DrZPkK8HQuJDTE3lpZBtQqwLGOnyn5b/mtuZNF3" "SHeOirIFk9q2Ps1Kw9XPZ8efC5zonOx/ILvL8EkwJVcU2kQPOf+nPc+ZctV3BZPwCG65G7+xOZEeBhSS69aJKAdnOPSC5+VXSJ0zzmWaNnjLvm2lFbbNAHDPo+5r/9Od64BEOcnQIDAQAB"
+PASS: DKIM public key retrieved from client-beta
+===== VERIFYING ACTIVE DKIM SIGNING KEY =====
+opendkim-testkey: using default configfile /etc/opendkim.conf
+opendkim-testkey: key loaded from /etc/opendkim/keys/mail.private
+opendkim-testkey: checking key 'mail._domainkey.alpha.lab'
+opendkim-testkey: key not secure
+opendkim-testkey: key OK
+PASS: OpenDKIM key verification successful
+Both DKIM DNS queries passed
+DKIM signing key verification passed
+TEST 08 RESULT: PASSED

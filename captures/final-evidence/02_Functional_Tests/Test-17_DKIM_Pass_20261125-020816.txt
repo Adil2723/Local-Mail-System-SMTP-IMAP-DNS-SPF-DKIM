@@ -1,0 +1,30 @@
+========================================
+TEST 17: DKIM VALID SIGNATURE
+========================================
+Wed Nov 25 02:08:16 AM PKT 2026
+===== VERIFYING DKIM KEY =====
+opendkim-testkey: using default configfile /etc/opendkim.conf
+opendkim-testkey: key loaded from /etc/opendkim/keys/mail.private
+opendkim-testkey: checking key 'mail._domainkey.alpha.lab'
+opendkim-testkey: key not secure
+opendkim-testkey: key OK
+opendkim-testkey: key OK
+PASS: DKIM signing key verified
+Message-ID: <test17-dkim-1795554496879499171@alpha.lab>
+===== SENDING NEW EMAIL FROM ALPHA =====
+PASS: Email submitted to Alpha Postfix
+===== VERIFYING DKIM SIGNATURE IN BETA MAILDIR =====
+Mailbox file: 1795554497.V802I521233M953445.mail.beta.lab
+From: zaid@alpha.lab
+To: adil@beta.lab
+Subject: Test 17 - DKIM Valid Signature
+Message-ID: <test17-dkim-1795554496879499171@alpha.lab>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alpha.lab; s=mail;	t=1795554497; bh=lwRPpuAfyCxjh1oV2nGJ1pAxvzOQsPiyi3MV32eoqjw=;	h=From:To:Subject:Date;	b=xDUNgRvuOYM/ECDrcnvfZpb0yB2OgMZj8cbQE+QGuPVqiDpZyFSGgGCdEldqaZNTa	 Jkbhv3DYubh/dE00yyuPHIbpks6hsx8IwIdodXO7S7jEObll76/bKCLKl/BsZ6/RJZ	 b89/lRfLj2XRLJT7V9l1DsHVd8C3aYt3A5bJumVu0gcjUgE7WRmItYqBR3/lfkWj4n	 8ZiN5XJ/pRB16a+OKQHR6rCPDzH8jRBMLzdxvtUT3XXO5f02MfPLamyfRgLrvQ67Cb	 /tHSvul1wxaJGz0GDcgL+GzKL9fUEdjmUHwaO4qKH2RqFUDKOoPVEJnBcd5iXdNLia	 q7TeipSYoW1JA==
+PASS: DKIM signature present
+PASS: Signing domain alpha.lab verified
+PASS: DKIM selector mail verified
+Authentication-Results: mail.beta.lab;	dkim=pass (2048-bit key; unprotected) header.d=alpha.lab header.i=@alpha.lab header.a=rsa-sha256 header.s=mail header.b=xDUNgRvu;	dkim-atps=neutral
+PASS: Beta authenticated DKIM signature
+PASS: Matching signed message delivered successfully
+DKIM positive verification completed
+TEST 17 RESULT: PASSED

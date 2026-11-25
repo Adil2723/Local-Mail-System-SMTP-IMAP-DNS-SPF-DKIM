@@ -1,0 +1,147 @@
+========================================
+TEST 19: RESTART AND MAILBOX PERSISTENCE
+========================================
+Wed Nov 25 02:10:32 AM PKT 2026
+===== RECORDING MAILBOXES BEFORE RESTART =====
+Alpha messages before restart: 4
+Beta messages before restart: 21
+===== INSPECTING PERSISTENT STORAGE =====
+----- mail-alpha mounts -----
+volume /var/lib/docker/volumes/cn12-topology_alpha_public_cert/_data -> /run/lab-certs
+bind /home/system/computer-networks-project/mail-alpha/dkim/keys -> /etc/opendkim/keys
+volume /var/lib/docker/volumes/cn12-topology_alpha_tls/_data -> /etc/postfix/tls
+volume /var/lib/docker/volumes/cn12-topology_alpha_maildir/_data -> /home/zaid/Maildir
+bind /home/system/computer-networks-project/mail-alpha/dovecot/users -> /run/secrets/zaid-imap-users
+
+----- mail-beta mounts -----
+volume /var/lib/docker/volumes/cn12-topology_beta_maildir/_data -> /home/adil/Maildir
+bind /home/system/computer-networks-project/beta/dovecot/users -> /run/secrets/adil-imap-users
+
+===== RESTARTING MAIL SERVERS =====
+ Container cn12-topology-mail-beta-1 Restarting 
+ Container cn12-topology-mail-alpha-1 Restarting 
+ Container cn12-topology-mail-beta-1 Started 
+ Container cn12-topology-mail-alpha-1 Started 
+===== VERIFYING CONTAINERS AFTER RESTART =====
+NAME                           IMAGE                        COMMAND                  SERVICE        CREATED          STATUS         PORTS
+cn12-topology-client-alpha-1   cn12-nettools:local          "sh /lab/start.sh"       client-alpha   2 days ago       Up 2 hours     
+cn12-topology-client-beta-1    cn12-nettools:local          "sh /lab/start.sh"       client-beta    2 days ago       Up 2 hours     
+cn12-topology-dns-1            cn-mail-lab-dns:local        "sh -ec 'ip route re…"   dns            2 hours ago      Up 2 hours     
+cn12-topology-mail-alpha-1     cn12-mail-alpha-imap:local   "sh /usr/local/bin/s…"   mail-alpha     2 hours ago      Up 6 seconds   
+cn12-topology-mail-beta-1      cn12-mail-beta-dkim:local    "sh /usr/local/bin/s…"   mail-beta      15 minutes ago   Up 6 seconds   
+cn12-topology-r1-1             cn12-nettools:local          "sh /lab/start.sh"       r1             2 days ago       Up 2 hours     
+cn12-topology-r2-1             cn12-nettools:local          "sh /lab/start.sh"       r2             2 days ago       Up 2 hours     
+PASS: r1 is running
+PASS: r2 is running
+PASS: dns is running
+PASS: client-alpha is running
+PASS: client-beta is running
+PASS: mail-alpha is running
+PASS: mail-beta is running
+===== VERIFYING MAIL SERVICE PORTS =====
+LISTEN 0      4096   127.0.0.11:36659 0.0.0.0:*
+LISTEN 0      100       0.0.0.0:25    0.0.0.0:*
+LISTEN 0      100       0.0.0.0:143   0.0.0.0:*
+LISTEN 0      4096    127.0.0.1:8891  0.0.0.0:*
+PASS: mail-alpha port 25 is listening
+PASS: mail-alpha port 143 is listening
+PASS: mail-alpha port 8891 is listening
+LISTEN 0      100       0.0.0.0:143   0.0.0.0:*
+LISTEN 0      100       0.0.0.0:25    0.0.0.0:*
+LISTEN 0      4096   127.0.0.11:37011 0.0.0.0:*
+LISTEN 0      4096    127.0.0.1:8891  0.0.0.0:*
+PASS: mail-beta port 25 is listening
+PASS: mail-beta port 143 is listening
+PASS: mail-beta port 8891 is listening
+===== RECORDING MAILBOXES AFTER RESTART =====
+Alpha messages after restart: 4
+Beta messages after restart: 21
+===== VERIFYING MAILBOX PERSISTENCE =====
+PASS: All original alpha emails preserved
+PASS: All original beta emails preserved
+===== VERIFYING POSTFIX DNS CONFIGURATION =====
+nameserver 10.10.0.53
+PASS: Beta DNS correction survived restart
+===== VERIFYING SPF AFTER RESTART =====
+Direct SMTP connection source IP: 10.10.1.20
+MAIL FROM: 250 2.1.0 Ok
+RCPT TO: 550 5.7.23 <adil@beta.lab>: Recipient address rejected: Message rejected due to: SPF fail - not authorized. Please see http://www.openspf.net/Why?s=mfrom;id=zaid@alpha.lab;ip=10.10.1.20;r=beta.lab
+PASS: SPF rejected unauthorized source at RCPT
+PASS: SPF rejected unauthorized source at RCPT
+PASS: SPF protection survived restart
+===== VERIFYING DKIM AFTER RESTART =====
+opendkim-testkey: using default configfile /etc/opendkim.conf
+opendkim-testkey: key loaded from /etc/opendkim/keys/mail.private
+opendkim-testkey: checking key 'mail._domainkey.alpha.lab'
+opendkim-testkey: key not secure
+opendkim-testkey: key OK
+opendkim-testkey: key OK
+PASS: DKIM signing key remains operational
+===== FINAL MAIL SERVER LOGS =====
+mail-alpha-1  | Nov 24 21:09:16 mail postfix/smtpd[291]: connect from cn12-topology-client-alpha-1.cn12-topology_alpha[10.10.1.20]
+mail-alpha-1  | Nov 24 21:09:16 mail postfix/smtpd[291]: 3CB085600FC: client=cn12-topology-client-alpha-1.cn12-topology_alpha[10.10.1.20]
+mail-alpha-1  | Nov 24 21:09:16 mail postfix/cleanup[295]: 3CB085600FC: message-id=<179555455623.330.3579210809628110331@alpha.lab>
+mail-alpha-1  | Nov 24 21:09:16 mail postfix/qmgr[115]: 3CB085600FC: from=<zaid@alpha.lab>, size=556, nrcpt=1 (queue active)
+mail-alpha-1  | Nov 24 21:09:16 mail postfix/smtpd[291]: disconnect from cn12-topology-client-alpha-1.cn12-topology_alpha[10.10.1.20] ehlo=1 mail=1 rcpt=1 data=1 quit=1 commands=5
+mail-alpha-1  | Nov 24 21:09:16 mail postfix/smtp[296]: 3CB085600FC: to=<adil@beta.lab>, relay=mail.beta.lab[10.10.2.10]:25, delay=0.24, delays=0.1/0/0.01/0.12, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as 5DF285600FD)
+mail-alpha-1  | Nov 24 21:09:16 mail postfix/qmgr[115]: 3CB085600FC: removed
+mail-alpha-1  | Preparing Alpha Maildir...
+mail-alpha-1  | Preparing Zaid IMAP authentication...
+mail-alpha-1  | Checking Dovecot configuration...
+mail-alpha-1  | Starting Alpha Dovecot...
+mail-alpha-1  | Nov 24 21:10:36 master: Info: Dovecot v2.3.21 (47349e2482) starting up for imap
+mail-alpha-1  | Starting existing Alpha DKIM and Postfix...
+mail-alpha-1  | postfix/postlog: starting the Postfix mail system
+mail-alpha-1  | Nov 24 21:10:36 mail postfix/postfix-script[112]: starting the Postfix mail system
+mail-alpha-1  | Nov 24 21:10:36 mail postfix/master[113]: daemon started -- version 3.8.6, configuration /etc/postfix
+mail-beta-1   | Nov 24 21:09:16 mail postfix/smtpd[269]: connect from unknown[10.10.1.10]
+mail-beta-1   | Nov 24 21:09:16 mail postfix/smtpd[269]: 5DF285600FD: client=unknown[10.10.1.10]
+mail-beta-1   | Nov 24 21:09:16 mail postfix/cleanup[311]: 5DF285600FD: message-id=<179555455623.330.3579210809628110331@alpha.lab>
+mail-beta-1   | Nov 24 21:09:16 mail postfix/smtpd[269]: disconnect from unknown[10.10.1.10] ehlo=1 mail=1 rcpt=1 data=1 quit=1 commands=5
+mail-beta-1   | Nov 24 21:09:16 mail postfix/qmgr[190]: 5DF285600FD: from=<zaid@alpha.lab>, size=1405, nrcpt=1 (queue active)
+mail-beta-1   | Nov 24 21:09:16 mail postfix/local[313]: 5DF285600FD: to=<adil@beta.lab>, relay=local, delay=0.13, delays=0.12/0/0/0.01, dsn=2.0.0, status=sent (delivered to maildir)
+mail-beta-1   | Nov 24 21:09:16 mail postfix/qmgr[190]: 5DF285600FD: removed
+mail-beta-1   | Nov 24 21:09:21 mail postfix/smtpd[269]: connect from unknown[10.10.1.10]
+mail-beta-1   | Nov 24 21:09:21 mail postfix/smtpd[269]: B6CA75600FE: client=unknown[10.10.1.10]
+mail-beta-1   | Nov 24 21:09:21 mail postfix/cleanup[311]: B6CA75600FE: message-id=<179555455623.330.3579210809628110331@alpha.lab>
+mail-beta-1   | Nov 24 21:09:21 mail postfix/qmgr[190]: B6CA75600FE: from=<zaid@alpha.lab>, size=1341, nrcpt=1 (queue active)
+mail-beta-1   | Nov 24 21:09:21 mail postfix/smtpd[269]: disconnect from unknown[10.10.1.10] ehlo=1 mail=1 rcpt=1 data=1 quit=1 commands=5
+mail-beta-1   | Nov 24 21:09:21 mail postfix/local[313]: B6CA75600FE: to=<adil@beta.lab>, relay=local, delay=0.13, delays=0.12/0/0/0, dsn=2.0.0, status=sent (delivered to maildir)
+mail-beta-1   | Nov 24 21:09:21 mail postfix/qmgr[190]: B6CA75600FE: removed
+mail-beta-1   | Nov 24 21:10:34 log(25): Warning: Killed with signal 15 (by pid=1 uid=0 code=kill)
+mail-beta-1   | Preparing Dovecot authentication...
+mail-beta-1   | Checking Dovecot configuration...
+mail-beta-1   | Starting Dovecot...
+mail-beta-1   | Starting existing Beta Postfix setup...
+mail-beta-1   | Nov 24 21:10:36 master: Info: Dovecot v2.3.21 (47349e2482) starting up for imap
+mail-beta-1   | Starting Beta mail server...
+mail-beta-1   | postfix: Postfix is using backwards-compatible default settings
+mail-beta-1   | postfix: See http://www.postfix.org/COMPATIBILITY_README.html for details
+mail-beta-1   | postfix: To disable backwards compatibility use "postconf compatibility_level=3.6" and "postfix reload"
+mail-beta-1   | Nov 24 21:10:36 mail postfix[29]: Postfix is using backwards-compatible default settings
+mail-beta-1   | Nov 24 21:10:36 mail postfix[29]: See http://www.postfix.org/COMPATIBILITY_README.html for details
+mail-beta-1   | Nov 24 21:10:36 mail postfix[29]: To disable backwards compatibility use "postconf compatibility_level=3.6" and "postfix reload"
+mail-beta-1   | postfix/postlog: warning: /var/spool/postfix/etc/resolv.conf and /etc/resolv.conf differ
+mail-beta-1   | Nov 24 21:10:36 mail postfix/postfix-script[99]: warning: /var/spool/postfix/etc/resolv.conf and /etc/resolv.conf differ
+mail-beta-1   | Beta routing configured:
+mail-beta-1   | default via 10.10.2.254 dev eth0 
+mail-beta-1   | 10.10.2.0/24 dev eth0 proto kernel scope link src 10.10.2.10 
+mail-beta-1   | Starting Postfix...
+mail-beta-1   | postfix: Postfix is using backwards-compatible default settings
+mail-beta-1   | postfix: See http://www.postfix.org/COMPATIBILITY_README.html for details
+mail-beta-1   | postfix: To disable backwards compatibility use "postconf compatibility_level=3.6" and "postfix reload"
+mail-beta-1   | Nov 24 21:10:36 mail postfix[1]: Postfix is using backwards-compatible default settings
+mail-beta-1   | Nov 24 21:10:36 mail postfix[1]: See http://www.postfix.org/COMPATIBILITY_README.html for details
+mail-beta-1   | Nov 24 21:10:36 mail postfix[1]: To disable backwards compatibility use "postconf compatibility_level=3.6" and "postfix reload"
+mail-beta-1   | postfix/postlog: warning: /var/spool/postfix/etc/resolv.conf and /etc/resolv.conf differ
+mail-beta-1   | Nov 24 21:10:36 mail postfix/postfix-script[179]: warning: /var/spool/postfix/etc/resolv.conf and /etc/resolv.conf differ
+mail-beta-1   | postfix/postlog: starting the Postfix mail system
+mail-beta-1   | Nov 24 21:10:36 mail postfix/postfix-script[188]: starting the Postfix mail system
+mail-beta-1   | Nov 24 21:10:36 mail postfix/master[1]: daemon started -- version 3.8.6, configuration /etc/postfix
+mail-beta-1   | Nov 24 21:10:46 mail postfix/smtpd[210]: warning: dict_nis_init: NIS domain name not set - NIS lookups disabled
+mail-beta-1   | Nov 24 21:10:46 mail postfix/smtpd[210]: connect from unknown[10.10.1.20]
+mail-beta-1   | Nov 24 21:10:47 mail postfix/smtpd[210]: NOQUEUE: reject: RCPT from unknown[10.10.1.20]: 550 5.7.23 <adil@beta.lab>: Recipient address rejected: Message rejected due to: SPF fail - not authorized. Please see http://www.openspf.net/Why?s=mfrom;id=zaid@alpha.lab;ip=10.10.1.20;r=beta.lab; from=<zaid@alpha.lab> to=<adil@beta.lab> proto=ESMTP helo=<client-alpha.alpha.lab>
+mail-beta-1   | Nov 24 21:10:47 mail postfix/smtpd[210]: using backwards-compatible default setting smtpd_relay_before_recipient_restrictions=no to reject recipient "adil@beta.lab" from client "unknown[10.10.1.20]"
+mail-beta-1   | Nov 24 21:10:47 mail postfix/smtpd[210]: disconnect from unknown[10.10.1.20] ehlo=1 mail=1 rcpt=0/1 quit=1 commands=3/4
+Restart reliability and mailbox persistence verified
+TEST 19 RESULT: PASSED

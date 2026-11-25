@@ -1,0 +1,23 @@
+========================================
+TEST 15: SPF AUTHORIZED SENDER
+========================================
+Wed Nov 25 02:06:14 AM PKT 2026
+===== VERIFYING SPF LIBRARY =====
+SPF result: ('pass', 'sender SPF authorized')
+PASS: Alpha mail server is authorized
+Message-ID: <test15-spf-1795554375376497597@alpha.lab>
+===== SENDING AUTHORIZED EMAIL =====
+PASS: Authorized email submitted to Alpha Postfix
+===== VERIFYING SPF HEADER IN BETA MAILDIR =====
+Mailbox file: 1795554376.V802I521219M249406.mail.beta.lab
+From: zaid@alpha.lab
+To: adil@beta.lab
+Subject: Test 15 - SPF Authorized Sender
+Message-ID: <test15-spf-1795554375376497597@alpha.lab>
+Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=10.10.1.10; helo=mail.alpha.lab; envelope-from=zaid@alpha.lab; receiver=beta.lab 
+Authentication-Results: mail.beta.lab;	dkim=pass (2048-bit key; unprotected) header.d=alpha.lab header.i=@alpha.lab header.a=rsa-sha256 header.s=mail header.b=H3BWN/os;	dkim-atps=neutral
+PASS: SPF Pass header verified
+PASS: Authorized source IP verified
+PASS: Email successfully delivered to Beta
+SPF authorized sender verification completed
+TEST 15 RESULT: PASSED

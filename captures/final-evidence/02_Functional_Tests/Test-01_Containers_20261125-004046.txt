@@ -1,0 +1,41 @@
+========================================
+TEST 01: DOCKER CONTAINERS AND SERVICES
+========================================
+Wed Nov 25 12:40:46 AM PKT 2026
++ ./run-cn12.sh config --quiet
++ ./run-cn12.sh ps -a
+NAME                           IMAGE                        COMMAND                  SERVICE        CREATED          STATUS          PORTS
+cn12-topology-client-alpha-1   cn12-nettools:local          "sh /lab/start.sh"       client-alpha   2 days ago       Up 51 minutes   
+cn12-topology-client-beta-1    cn12-nettools:local          "sh /lab/start.sh"       client-beta    2 days ago       Up 52 minutes   
+cn12-topology-dns-1            cn-mail-lab-dns:local        "sh -ec 'ip route re…"   dns            56 minutes ago   Up 56 minutes   
+cn12-topology-mail-alpha-1     cn12-mail-alpha-imap:local   "sh /usr/local/bin/s…"   mail-alpha     8 minutes ago    Up 8 minutes    
+cn12-topology-mail-beta-1      cn12-mail-beta-dkim:local    "sh /usr/local/bin/s…"   mail-beta      32 minutes ago   Up 32 minutes   
+cn12-topology-r1-1             cn12-nettools:local          "sh /lab/start.sh"       r1             2 days ago       Up 56 minutes   
+cn12-topology-r2-1             cn12-nettools:local          "sh /lab/start.sh"       r2             2 days ago       Up 56 minutes   
++ set +x
+===== CHECKING ALL SEVEN CONTAINERS =====
+r1: running
+r2: running
+dns: running
+client-alpha: running
+client-beta: running
+mail-alpha: running
+mail-beta: running
+===== ALPHA AND BETA SERVICE PORTS =====
+Checking mail-alpha
+LISTEN 0      4096    127.0.0.1:8891  0.0.0.0:*
+LISTEN 0      4096   127.0.0.11:37297 0.0.0.0:*
+LISTEN 0      100       0.0.0.0:25    0.0.0.0:*
+LISTEN 0      100       0.0.0.0:143   0.0.0.0:*
+PASS: mail-alpha port 25 is listening
+PASS: mail-alpha port 143 is listening
+PASS: mail-alpha port 8891 is listening
+Checking mail-beta
+LISTEN 0      4096   127.0.0.11:36009 0.0.0.0:*
+LISTEN 0      4096    127.0.0.1:8891  0.0.0.0:*
+LISTEN 0      100       0.0.0.0:143   0.0.0.0:*
+LISTEN 0      100       0.0.0.0:25    0.0.0.0:*
+PASS: mail-beta port 25 is listening
+PASS: mail-beta port 143 is listening
+PASS: mail-beta port 8891 is listening
+TEST 01 RESULT: PASSED

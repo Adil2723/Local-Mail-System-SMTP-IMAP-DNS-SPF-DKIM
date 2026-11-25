@@ -1,0 +1,45 @@
+========================================
+TEST 09: RAW-SOCKET SMTP CLIENT
+========================================
+Wed Nov 25 12:55:29 AM PKT 2026
+===== VERIFYING PYTHON CLIENT =====
+PASS: Python SMTP client syntax verified
+===== EXECUTING SMTP SESSION =====
+S: 220 mail.alpha.lab ESMTP Postfix
+C: EHLO client-alpha.alpha.lab
+S: 250-mail.alpha.lab
+S: 250-PIPELINING
+S: 250-SIZE 10240000
+S: 250-VRFY
+S: 250-ETRN
+S: 250-STARTTLS
+S: 250-ENHANCEDSTATUSCODES
+S: 250-8BITMIME
+S: 250-DSN
+S: 250-SMTPUTF8
+S: 250 CHUNKING
+C: MAIL FROM:<zaid@alpha.lab>
+S: 250 2.1.0 Ok
+C: RCPT TO:<zaid@alpha.lab>
+S: 250 2.1.5 Ok
+C: DATA
+S: 354 End data with <CR><LF>.<CR><LF>
+C: [message data]
+S: 250 2.0.0 Ok: queued as 90A5B5606BE
+C: QUIT
+S: 221 2.0.0 Bye
+===== VERIFYING SMTP COMMAND SEQUENCE =====
+PASS: SMTP connection established
+PASS: EHLO command
+PASS: EHLO accepted
+PASS: MAIL FROM command
+PASS: Sender accepted
+PASS: RCPT TO command
+PASS: Recipient accepted
+PASS: DATA command
+PASS: DATA accepted
+PASS: Message queued successfully
+PASS: QUIT command
+PASS: SMTP session closed correctly
+All mandatory SMTP commands verified
+TEST 09 RESULT: PASSED

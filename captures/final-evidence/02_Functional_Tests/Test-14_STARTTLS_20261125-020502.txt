@@ -1,0 +1,58 @@
+========================================
+TEST 14: SMTP STARTTLS ENCRYPTION
+========================================
+Wed Nov 25 02:05:02 AM PKT 2026
+===== VERIFYING STARTTLS CONFIGURATION =====
+smtpd_tls_security_level = may
+smtpd_tls_cert_file =
+===== VERIFYING CLIENT CERTIFICATE =====
+PASS: Client trust certificate available
+===== VERIFYING TLS HANDSHAKE =====
+PASS: STARTTLS advertised
+TLS version: TLSv1.3
+Cipher: ('TLS_AES_256_GCM_SHA384', 'TLSv1.3', 256)
+TLS negotiation time: 215.68 ms
+PASS: Server certificate verified
+PASS: Encrypted connection established
+PASS: EHLO successful after TLS negotiation
+===== TESTING CUSTOM SMTP CLIENT WITH STARTTLS =====
+S: 220 mail.alpha.lab ESMTP Postfix
+C: EHLO client-alpha.alpha.lab
+S: 250-mail.alpha.lab
+S: 250-PIPELINING
+S: 250-SIZE 10240000
+S: 250-VRFY
+S: 250-ETRN
+S: 250-STARTTLS
+S: 250-ENHANCEDSTATUSCODES
+S: 250-8BITMIME
+S: 250-DSN
+S: 250-SMTPUTF8
+S: 250 CHUNKING
+C: STARTTLS
+S: 220 2.0.0 Ready to start TLS
+TLS: TLSv1.3 established in 12.02 ms
+C: EHLO client-alpha.alpha.lab
+S: 250-mail.alpha.lab
+S: 250-PIPELINING
+S: 250-SIZE 10240000
+S: 250-VRFY
+S: 250-ETRN
+S: 250-ENHANCEDSTATUSCODES
+S: 250-8BITMIME
+S: 250-DSN
+S: 250-SMTPUTF8
+S: 250 CHUNKING
+C: MAIL FROM:<zaid@alpha.lab>
+S: 250 2.1.0 Ok
+C: RCPT TO:<adil@beta.lab>
+S: 250 2.1.5 Ok
+C: DATA
+S: 354 End data with <CR><LF>.<CR><LF>
+C: [message data]
+S: 250 2.0.0 Ok: queued as F2B475600FB
+C: QUIT
+S: 221 2.0.0 Bye
+PASS: Custom SMTP client negotiated TLS
+PASS: Email accepted during encrypted SMTP session
+TEST 14 RESULT: PASSED
