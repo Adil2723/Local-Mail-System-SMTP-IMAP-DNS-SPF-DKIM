@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="780" viewBox="0 0 1400 780">
+<rect width="1400" height="780" fill="white"/>
+<text x="60" y="57" font-family="sans-serif" font-size="34" fill="#0f172a" text-anchor="start" font-weight="bold">Estimated Email Delivery Latency</text>
+<text x="60" y="94" font-family="sans-serif" font-size="20" fill="#334155" text-anchor="start" font-weight="normal">Three workload runs per condition; error bars: +/- 1 sample SD</text>
+<text x="60" y="132" font-family="sans-serif" font-size="19" fill="#334155" text-anchor="start" font-weight="normal">Milliseconds</text>
+<line x1="120" y1="635.0" x2="1350" y2="635.0" stroke="#e2e8f0" stroke-width="1"/>
+<text x="108" y="642.0" font-family="sans-serif" font-size="18" fill="#334155" text-anchor="end" font-weight="normal">0.00</text>
+<line x1="120" y1="539.0" x2="1350" y2="539.0" stroke="#e2e8f0" stroke-width="1"/>
+<text x="108" y="546.0" font-family="sans-serif" font-size="18" fill="#334155" text-anchor="end" font-weight="normal">6,962.70</text>
+<line x1="120" y1="443.0" x2="1350" y2="443.0" stroke="#e2e8f0" stroke-width="1"/>
+<text x="108" y="450.0" font-family="sans-serif" font-size="18" fill="#334155" text-anchor="end" font-weight="normal">13,925.40</text>
+<line x1="120" y1="347.0" x2="1350" y2="347.0" stroke="#e2e8f0" stroke-width="1"/>
+<text x="108" y="354.0" font-family="sans-serif" font-size="18" fill="#334155" text-anchor="end" font-weight="normal">20,888.10</text>
+<line x1="120" y1="251.0" x2="1350" y2="251.0" stroke="#e2e8f0" stroke-width="1"/>
+<text x="108" y="258.0" font-family="sans-serif" font-size="18" fill="#334155" text-anchor="end" font-weight="normal">27,850.81</text>
+<line x1="120" y1="155.0" x2="1350" y2="155.0" stroke="#e2e8f0" stroke-width="1"/>
+<text x="108" y="162.0" font-family="sans-serif" font-size="18" fill="#334155" text-anchor="end" font-weight="normal">34,813.51</text>
+<text x="243.0" y="673" font-family="sans-serif" font-size="19" fill="#334155" text-anchor="middle" font-weight="normal">Baseline</text>
+<rect x="193.0" y="584.0645087720735" width="100" height="50.93549122792649" rx="3" fill="#2563eb"/>
+<line x1="243.0" y1="564.1124726988305" x2="243.0" y2="604.0165448453166" stroke="#1e293b" stroke-width="2"/>
+<line x1="234.0" y1="564.1124726988305" x2="252.0" y2="564.1124726988305" stroke="#1e293b" stroke-width="2"/>
+<line x1="234.0" y1="604.0165448453166" x2="252.0" y2="604.0165448453166" stroke="#1e293b" stroke-width="2"/>
+<text x="243.0" y="554.1124726988305" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">3,694.26</text>
+<text x="489.0" y="673" font-family="sans-serif" font-size="19" fill="#334155" text-anchor="middle" font-weight="normal">100 ms RTT</text>
+<rect x="439.0" y="458.3931957591891" width="100" height="176.6068042408109" rx="3" fill="#2563eb"/>
+<line x1="489.0" y1="450.20096407912314" x2="489.0" y2="466.58542743925506" stroke="#1e293b" stroke-width="2"/>
+<line x1="480.0" y1="450.20096407912314" x2="498.0" y2="450.20096407912314" stroke="#1e293b" stroke-width="2"/>
+<line x1="480.0" y1="466.58542743925506" x2="498.0" y2="466.58542743925506" stroke="#1e293b" stroke-width="2"/>
+<text x="489.0" y="440.20096407912314" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">12,808.96</text>
+<text x="735.0" y="673" font-family="sans-serif" font-size="19" fill="#334155" text-anchor="middle" font-weight="normal">200 ms RTT</text>
+<rect x="685.0" y="237.921620089876" width="100" height="397.078379910124" rx="3" fill="#2563eb"/>
+<line x1="735.0" y1="228.2203389830508" x2="735.0" y2="247.62290119670115" stroke="#1e293b" stroke-width="2"/>
+<line x1="726.0" y1="228.2203389830508" x2="744.0" y2="228.2203389830508" stroke="#1e293b" stroke-width="2"/>
+<line x1="726.0" y1="247.62290119670115" x2="744.0" y2="247.62290119670115" stroke="#1e293b" stroke-width="2"/>
+<text x="735.0" y="218.2203389830508" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">28,799.36</text>
+<text x="981.0" y="673" font-family="sans-serif" font-size="19" fill="#334155" text-anchor="middle" font-weight="normal">2% loss</text>
+<rect x="931.0" y="556.9680304798702" width="100" height="78.03196952012979" rx="3" fill="#2563eb"/>
+<line x1="981.0" y1="517.0760173787577" x2="981.0" y2="596.8600435809827" stroke="#1e293b" stroke-width="2"/>
+<line x1="972.0" y1="517.0760173787577" x2="990.0" y2="517.0760173787577" stroke="#1e293b" stroke-width="2"/>
+<line x1="972.0" y1="596.8600435809827" x2="990.0" y2="596.8600435809827" stroke="#1e293b" stroke-width="2"/>
+<text x="981.0" y="507.0760173787577" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">5,659.51</text>
+<text x="1227.0" y="673" font-family="sans-serif" font-size="19" fill="#334155" text-anchor="middle" font-weight="normal">1 Mbps</text>
+<rect x="1177.0" y="609.2464357024364" width="100" height="25.75356429756357" rx="3" fill="#2563eb"/>
+<line x1="1227.0" y1="602.6010548370856" x2="1227.0" y2="615.8918165677873" stroke="#1e293b" stroke-width="2"/>
+<line x1="1218.0" y1="602.6010548370856" x2="1236.0" y2="602.6010548370856" stroke="#1e293b" stroke-width="2"/>
+<line x1="1218.0" y1="615.8918165677873" x2="1236.0" y2="615.8918165677873" stroke="#1e293b" stroke-width="2"/>
+<text x="1227.0" y="592.6010548370856" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">1,867.86</text>
+<line x1="120" y1="635" x2="1350" y2="635" stroke="#334155" stroke-width="2"/>
+<rect x="120" y="707" width="22" height="22" fill="#2563eb"/>
+<text x="152" y="725" font-family="sans-serif" font-size="20" fill="#334155" text-anchor="start" font-weight="normal">Mean latency</text>
+<text x="1355" y="760" font-family="sans-serif" font-size="16" fill="#334155" text-anchor="end" font-weight="normal">CN12 Local Mail System | Experimental results</text>
+</svg>

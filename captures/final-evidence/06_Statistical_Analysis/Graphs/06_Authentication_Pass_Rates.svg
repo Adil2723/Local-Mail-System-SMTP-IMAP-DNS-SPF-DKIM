@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="780" viewBox="0 0 1400 780">
+<rect width="1400" height="780" fill="white"/>
+<text x="60" y="57" font-family="sans-serif" font-size="34" fill="#0f172a" text-anchor="start" font-weight="bold">SPF and DKIM Authentication Success</text>
+<text x="60" y="94" font-family="sans-serif" font-size="20" fill="#334155" text-anchor="start" font-weight="normal">3,000 workload messages per network condition</text>
+<text x="60" y="132" font-family="sans-serif" font-size="19" fill="#334155" text-anchor="start" font-weight="normal">Pass rate (%)</text>
+<line x1="120" y1="635.0" x2="1350" y2="635.0" stroke="#e2e8f0" stroke-width="1"/>
+<text x="108" y="642.0" font-family="sans-serif" font-size="18" fill="#334155" text-anchor="end" font-weight="normal">0.00</text>
+<line x1="120" y1="539.0" x2="1350" y2="539.0" stroke="#e2e8f0" stroke-width="1"/>
+<text x="108" y="546.0" font-family="sans-serif" font-size="18" fill="#334155" text-anchor="end" font-weight="normal">23.60</text>
+<line x1="120" y1="443.0" x2="1350" y2="443.0" stroke="#e2e8f0" stroke-width="1"/>
+<text x="108" y="450.0" font-family="sans-serif" font-size="18" fill="#334155" text-anchor="end" font-weight="normal">47.20</text>
+<line x1="120" y1="347.0" x2="1350" y2="347.0" stroke="#e2e8f0" stroke-width="1"/>
+<text x="108" y="354.0" font-family="sans-serif" font-size="18" fill="#334155" text-anchor="end" font-weight="normal">70.80</text>
+<line x1="120" y1="251.0" x2="1350" y2="251.0" stroke="#e2e8f0" stroke-width="1"/>
+<text x="108" y="258.0" font-family="sans-serif" font-size="18" fill="#334155" text-anchor="end" font-weight="normal">94.40</text>
+<line x1="120" y1="155.0" x2="1350" y2="155.0" stroke="#e2e8f0" stroke-width="1"/>
+<text x="108" y="162.0" font-family="sans-serif" font-size="18" fill="#334155" text-anchor="end" font-weight="normal">118.00</text>
+<text x="243.0" y="673" font-family="sans-serif" font-size="19" fill="#334155" text-anchor="middle" font-weight="normal">Baseline</text>
+<rect x="154.3416" y="228.22033898305085" width="83.64" height="406.77966101694915" rx="3" fill="#2563eb"/>
+<text x="196.1616" y="218.22033898305085" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">100.00</text>
+<rect x="248.01839999999999" y="228.22033898305085" width="83.64" height="406.77966101694915" rx="3" fill="#d97706"/>
+<text x="289.8384" y="218.22033898305085" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">100.00</text>
+<text x="489.0" y="673" font-family="sans-serif" font-size="19" fill="#334155" text-anchor="middle" font-weight="normal">100 ms RTT</text>
+<rect x="400.3416" y="228.22033898305085" width="83.64" height="406.77966101694915" rx="3" fill="#2563eb"/>
+<text x="442.1616" y="218.22033898305085" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">100.00</text>
+<rect x="494.0184" y="228.22033898305085" width="83.64" height="406.77966101694915" rx="3" fill="#d97706"/>
+<text x="535.8384" y="218.22033898305085" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">100.00</text>
+<text x="735.0" y="673" font-family="sans-serif" font-size="19" fill="#334155" text-anchor="middle" font-weight="normal">200 ms RTT</text>
+<rect x="646.3416" y="228.22033898305085" width="83.64" height="406.77966101694915" rx="3" fill="#2563eb"/>
+<text x="688.1616" y="218.22033898305085" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">100.00</text>
+<rect x="740.0183999999999" y="228.22033898305085" width="83.64" height="406.77966101694915" rx="3" fill="#d97706"/>
+<text x="781.8384" y="218.22033898305085" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">100.00</text>
+<text x="981.0" y="673" font-family="sans-serif" font-size="19" fill="#334155" text-anchor="middle" font-weight="normal">2% loss</text>
+<rect x="892.3416" y="228.22033898305085" width="83.64" height="406.77966101694915" rx="3" fill="#2563eb"/>
+<text x="934.1616" y="218.22033898305085" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">100.00</text>
+<rect x="986.0184" y="228.22033898305085" width="83.64" height="406.77966101694915" rx="3" fill="#d97706"/>
+<text x="1027.8384" y="218.22033898305085" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">100.00</text>
+<text x="1227.0" y="673" font-family="sans-serif" font-size="19" fill="#334155" text-anchor="middle" font-weight="normal">1 Mbps</text>
+<rect x="1138.3416" y="228.22033898305085" width="83.64" height="406.77966101694915" rx="3" fill="#2563eb"/>
+<text x="1180.1616" y="218.22033898305085" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">100.00</text>
+<rect x="1232.0184000000002" y="228.22033898305085" width="83.64" height="406.77966101694915" rx="3" fill="#d97706"/>
+<text x="1273.8384" y="218.22033898305085" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">100.00</text>
+<line x1="120" y1="635" x2="1350" y2="635" stroke="#334155" stroke-width="2"/>
+<rect x="120" y="707" width="22" height="22" fill="#2563eb"/>
+<text x="152" y="725" font-family="sans-serif" font-size="20" fill="#334155" text-anchor="start" font-weight="normal">SPF pass rate</text>
+<rect x="510" y="707" width="22" height="22" fill="#d97706"/>
+<text x="542" y="725" font-family="sans-serif" font-size="20" fill="#334155" text-anchor="start" font-weight="normal">DKIM pass rate</text>
+<text x="1355" y="760" font-family="sans-serif" font-size="16" fill="#334155" text-anchor="end" font-weight="normal">CN12 Local Mail System | Experimental results</text>
+</svg>

@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="780" viewBox="0 0 1400 780">
+<rect width="1400" height="780" fill="white"/>
+<text x="60" y="57" font-family="sans-serif" font-size="34" fill="#0f172a" text-anchor="start" font-weight="bold">Individual SMTP Command Response Times</text>
+<text x="60" y="94" font-family="sans-serif" font-size="20" fill="#334155" text-anchor="start" font-weight="normal">30 measurements per command per condition; error bars: +/- 1 sample SD</text>
+<text x="60" y="132" font-family="sans-serif" font-size="19" fill="#334155" text-anchor="start" font-weight="normal">Milliseconds</text>
+<line x1="120" y1="635.0" x2="1350" y2="635.0" stroke="#e2e8f0" stroke-width="1"/>
+<text x="108" y="642.0" font-family="sans-serif" font-size="18" fill="#334155" text-anchor="end" font-weight="normal">0.00</text>
+<line x1="120" y1="539.0" x2="1350" y2="539.0" stroke="#e2e8f0" stroke-width="1"/>
+<text x="108" y="546.0" font-family="sans-serif" font-size="18" fill="#334155" text-anchor="end" font-weight="normal">210.39</text>
+<line x1="120" y1="443.0" x2="1350" y2="443.0" stroke="#e2e8f0" stroke-width="1"/>
+<text x="108" y="450.0" font-family="sans-serif" font-size="18" fill="#334155" text-anchor="end" font-weight="normal">420.77</text>
+<line x1="120" y1="347.0" x2="1350" y2="347.0" stroke="#e2e8f0" stroke-width="1"/>
+<text x="108" y="354.0" font-family="sans-serif" font-size="18" fill="#334155" text-anchor="end" font-weight="normal">631.16</text>
+<line x1="120" y1="251.0" x2="1350" y2="251.0" stroke="#e2e8f0" stroke-width="1"/>
+<text x="108" y="258.0" font-family="sans-serif" font-size="18" fill="#334155" text-anchor="end" font-weight="normal">841.54</text>
+<line x1="120" y1="155.0" x2="1350" y2="155.0" stroke="#e2e8f0" stroke-width="1"/>
+<text x="108" y="162.0" font-family="sans-serif" font-size="18" fill="#334155" text-anchor="end" font-weight="normal">1,051.93</text>
+<text x="222.5" y="673" font-family="sans-serif" font-size="19" fill="#334155" text-anchor="middle" font-weight="normal">EHLO</text>
+<rect x="148.618" y="634.6565618261777" width="69.7" height="0.34343817382227826" rx="3" fill="#2563eb"/>
+<line x1="183.468" y1="634.3450139162127" x2="183.468" y2="634.9681097361429" stroke="#1e293b" stroke-width="2"/>
+<line x1="174.468" y1="634.3450139162127" x2="192.468" y2="634.3450139162127" stroke="#1e293b" stroke-width="2"/>
+<line x1="174.468" y1="634.9681097361429" x2="192.468" y2="634.9681097361429" stroke="#1e293b" stroke-width="2"/>
+<text x="183.468" y="624.3450139162127" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">0.75</text>
+<rect x="226.682" y="482.17581092037875" width="69.7" height="152.82418907962125" rx="3" fill="#d97706"/>
+<line x1="261.532" y1="403.94070306802587" x2="261.532" y2="560.4109187727316" stroke="#1e293b" stroke-width="2"/>
+<line x1="252.53199999999998" y1="403.94070306802587" x2="270.532" y2="403.94070306802587" stroke="#1e293b" stroke-width="2"/>
+<line x1="252.53199999999998" y1="560.4109187727316" x2="270.532" y2="560.4109187727316" stroke="#1e293b" stroke-width="2"/>
+<text x="261.532" y="393.94070306802587" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">334.92</text>
+<text x="427.5" y="673" font-family="sans-serif" font-size="19" fill="#334155" text-anchor="middle" font-weight="normal">MAIL FROM</text>
+<rect x="353.618" y="634.1552105381902" width="69.7" height="0.8447894618097962" rx="3" fill="#2563eb"/>
+<line x1="388.468" y1="633.3401082983148" x2="388.468" y2="634.9703127780657" stroke="#1e293b" stroke-width="2"/>
+<line x1="379.468" y1="633.3401082983148" x2="397.468" y2="633.3401082983148" stroke="#1e293b" stroke-width="2"/>
+<line x1="379.468" y1="634.9703127780657" x2="397.468" y2="634.9703127780657" stroke="#1e293b" stroke-width="2"/>
+<text x="388.468" y="623.3401082983148" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">1.85</text>
+<rect x="431.68199999999996" y="469.1534202141321" width="69.7" height="165.8465797858679" rx="3" fill="#d97706"/>
+<line x1="466.532" y1="368.33272702528905" x2="466.532" y2="569.9741134029751" stroke="#1e293b" stroke-width="2"/>
+<line x1="457.532" y1="368.33272702528905" x2="475.532" y2="368.33272702528905" stroke="#1e293b" stroke-width="2"/>
+<line x1="457.532" y1="569.9741134029751" x2="475.532" y2="569.9741134029751" stroke="#1e293b" stroke-width="2"/>
+<text x="466.532" y="358.33272702528905" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">363.46</text>
+<text x="632.5" y="673" font-family="sans-serif" font-size="19" fill="#334155" text-anchor="middle" font-weight="normal">RCPT TO</text>
+<rect x="558.6179999999999" y="627.8146081105311" width="69.7" height="7.18539188946886" rx="3" fill="#2563eb"/>
+<line x1="593.468" y1="612.3159412448692" x2="593.468" y2="635.0" stroke="#1e293b" stroke-width="2"/>
+<line x1="584.468" y1="612.3159412448692" x2="602.468" y2="612.3159412448692" stroke="#1e293b" stroke-width="2"/>
+<line x1="584.468" y1="635.0" x2="602.468" y2="635.0" stroke="#1e293b" stroke-width="2"/>
+<text x="593.468" y="602.3159412448692" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">15.75</text>
+<rect x="636.682" y="338.80111523234206" width="69.7" height="296.19888476765794" rx="3" fill="#d97706"/>
+<line x1="671.532" y1="228.22033898305085" x2="671.532" y2="449.3818914816333" stroke="#1e293b" stroke-width="2"/>
+<line x1="662.532" y1="228.22033898305085" x2="680.532" y2="228.22033898305085" stroke="#1e293b" stroke-width="2"/>
+<line x1="662.532" y1="449.3818914816333" x2="680.532" y2="449.3818914816333" stroke="#1e293b" stroke-width="2"/>
+<text x="671.532" y="218.22033898305085" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">649.12</text>
+<text x="837.5" y="673" font-family="sans-serif" font-size="19" fill="#334155" text-anchor="middle" font-weight="normal">DATA</text>
+<rect x="763.6179999999999" y="633.7400074067519" width="69.7" height="1.2599925932480573" rx="3" fill="#2563eb"/>
+<line x1="798.468" y1="633.1034921046536" x2="798.468" y2="634.3765227088504" stroke="#1e293b" stroke-width="2"/>
+<line x1="789.468" y1="633.1034921046536" x2="807.468" y2="633.1034921046536" stroke="#1e293b" stroke-width="2"/>
+<line x1="789.468" y1="634.3765227088504" x2="807.468" y2="634.3765227088504" stroke="#1e293b" stroke-width="2"/>
+<text x="798.468" y="623.1034921046536" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">2.76</text>
+<rect x="841.682" y="489.0525118272807" width="69.7" height="145.94748817271932" rx="3" fill="#d97706"/>
+<line x1="876.532" y1="397.31491394310336" x2="876.532" y2="580.7901097114581" stroke="#1e293b" stroke-width="2"/>
+<line x1="867.532" y1="397.31491394310336" x2="885.532" y2="397.31491394310336" stroke="#1e293b" stroke-width="2"/>
+<line x1="867.532" y1="580.7901097114581" x2="885.532" y2="580.7901097114581" stroke="#1e293b" stroke-width="2"/>
+<text x="876.532" y="387.31491394310336" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">319.85</text>
+<text x="1042.5" y="673" font-family="sans-serif" font-size="19" fill="#334155" text-anchor="middle" font-weight="normal">Acceptance</text>
+<rect x="968.6179999999999" y="578.695934472783" width="69.7" height="56.30406552721695" rx="3" fill="#2563eb"/>
+<line x1="1003.468" y1="535.8810526589335" x2="1003.468" y2="621.5108162866327" stroke="#1e293b" stroke-width="2"/>
+<line x1="994.468" y1="535.8810526589335" x2="1012.468" y2="535.8810526589335" stroke="#1e293b" stroke-width="2"/>
+<line x1="994.468" y1="621.5108162866327" x2="1012.468" y2="621.5108162866327" stroke="#1e293b" stroke-width="2"/>
+<text x="1003.468" y="525.8810526589335" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">123.39</text>
+<rect x="1046.682" y="462.9649148334576" width="69.7" height="172.0350851665424" rx="3" fill="#d97706"/>
+<line x1="1081.532" y1="389.3613900547218" x2="1081.532" y2="536.5684396121934" stroke="#1e293b" stroke-width="2"/>
+<line x1="1072.532" y1="389.3613900547218" x2="1090.532" y2="389.3613900547218" stroke="#1e293b" stroke-width="2"/>
+<line x1="1072.532" y1="536.5684396121934" x2="1090.532" y2="536.5684396121934" stroke="#1e293b" stroke-width="2"/>
+<text x="1081.532" y="379.3613900547218" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">377.02</text>
+<text x="1247.5" y="673" font-family="sans-serif" font-size="19" fill="#334155" text-anchor="middle" font-weight="normal">QUIT</text>
+<rect x="1173.6180000000002" y="633.2139275663776" width="69.7" height="1.7860724336223939" rx="3" fill="#2563eb"/>
+<line x1="1208.468" y1="631.1197988708418" x2="1208.468" y2="635.0" stroke="#1e293b" stroke-width="2"/>
+<line x1="1199.468" y1="631.1197988708418" x2="1217.468" y2="631.1197988708418" stroke="#1e293b" stroke-width="2"/>
+<line x1="1199.468" y1="635.0" x2="1217.468" y2="635.0" stroke="#1e293b" stroke-width="2"/>
+<text x="1208.468" y="621.1197988708418" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">3.91</text>
+<rect x="1251.682" y="487.1977745741582" width="69.7" height="147.8022254258418" rx="3" fill="#d97706"/>
+<line x1="1286.532" y1="417.27700580192646" x2="1286.532" y2="557.11854334639" stroke="#1e293b" stroke-width="2"/>
+<line x1="1277.532" y1="417.27700580192646" x2="1295.532" y2="417.27700580192646" stroke="#1e293b" stroke-width="2"/>
+<line x1="1277.532" y1="557.11854334639" x2="1295.532" y2="557.11854334639" stroke="#1e293b" stroke-width="2"/>
+<text x="1286.532" y="407.27700580192646" font-family="sans-serif" font-size="17" fill="#334155" text-anchor="middle" font-weight="bold">323.91</text>
+<line x1="120" y1="635" x2="1350" y2="635" stroke="#334155" stroke-width="2"/>
+<rect x="120" y="707" width="22" height="22" fill="#2563eb"/>
+<text x="152" y="725" font-family="sans-serif" font-size="20" fill="#334155" text-anchor="start" font-weight="normal">Baseline</text>
+<rect x="510" y="707" width="22" height="22" fill="#d97706"/>
+<text x="542" y="725" font-family="sans-serif" font-size="20" fill="#334155" text-anchor="start" font-weight="normal">100 ms added RTT</text>
+<text x="1355" y="760" font-family="sans-serif" font-size="16" fill="#334155" text-anchor="end" font-weight="normal">CN12 Local Mail System | Experimental results</text>
+</svg>

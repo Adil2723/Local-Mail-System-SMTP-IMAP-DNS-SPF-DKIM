@@ -1,0 +1,5 @@
+scenario,samples,expected_outcome,verified_outcomes,success_percent
+Authorized SPF workload,15000,SPF pass,15000,100.0
+Valid DKIM workload,15000,DKIM pass,15000,100.0
+Unauthorized SPF sender,1,SMTP rejection,1,100
+Tampered DKIM signature,1,DKIM fail,1,100

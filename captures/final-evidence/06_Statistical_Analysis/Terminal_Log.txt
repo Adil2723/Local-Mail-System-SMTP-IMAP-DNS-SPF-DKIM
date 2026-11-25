@@ -1,0 +1,58 @@
+=================================================================
+FINAL STEP 04 - STATISTICS AND PERFORMANCE GRAPHS
+=================================================================
+
+===== LOADING VERIFIED EXPERIMENT MANIFEST =====
+PASS: 15 unique workload experiments identified
+
+===== COLLECTING ACTUAL PERFORMANCE METRICS =====
+PASS: Test-01 - Baseline - 1000 emails
+PASS: Test-02 - Baseline - 1000 emails
+PASS: Test-03 - Baseline - 1000 emails
+PASS: Test-04 - 100ms_RTT - 1000 emails
+PASS: Test-05 - 100ms_RTT - 1000 emails
+PASS: Test-06 - 100ms_RTT - 1000 emails
+PASS: Test-07 - 200ms_RTT - 1000 emails
+PASS: Test-08 - 200ms_RTT - 1000 emails
+PASS: Test-09 - 200ms_RTT - 1000 emails
+PASS: Test-10 - 2Percent_Loss - 1000 emails
+PASS: Test-11 - 2Percent_Loss - 1000 emails
+PASS: Test-12 - 2Percent_Loss - 1000 emails
+PASS: Test-13 - 1Mbps_Bandwidth - 1000 emails
+PASS: Test-14 - 1Mbps_Bandwidth - 1000 emails
+PASS: Test-15 - 1Mbps_Bandwidth - 1000 emails
+
+===== CALCULATING CONDITION STATISTICS =====
+Baseline             | Latency: 3694.256 ms | Throughput: 31.391 msg/s
+100ms_RTT            | Latency: 12808.963 ms | Throughput: 26.428 msg/s
+200ms_RTT            | Latency: 28799.357 ms | Throughput: 14.453 msg/s
+2Percent_Loss        | Latency: 5659.514 ms | Throughput: 15.254 msg/s
+1Mbps_Bandwidth      | Latency: 1867.858 ms | Throughput: 34.386 msg/s
+
+===== LOADING SMTP RTT RESULTS =====
+PASS: SMTP RTT measurements loaded
+
+===== LOADING STARTTLS RESULTS =====
+PASS: STARTTLS and authentication results loaded
+
+===== GENERATING PERFORMANCE GRAPHS =====
+PASS: Graph generated: 01_Delivery_Latency.svg
+PASS: Graph generated: 02_Delivery_Throughput.svg
+PASS: Graph generated: 03_Network_RTT.svg
+PASS: Graph generated: 04_SMTP_Command_RTT.svg
+PASS: Graph generated: 05_STARTTLS_Overhead.svg
+PASS: Graph generated: 06_Authentication_Pass_Rates.svg
+
+===== SAVING FINAL STATISTICAL NOTES =====
+
+========================================
+FINAL STATISTICAL ANALYSIS COMPLETED
+========================================
+Workload experiments: 15 /15
+Network conditions: 5 /5
+CSV tables generated: 5
+SVG graphs generated: 6
+PNG graphs generated: 6
+
+FINAL STEP 04 - STATISTICAL ANALYSIS: PASSED
+Evidence directory: /home/system/computer-networks-project/captures/06_final_summary/Final_Analysis_20261125-211728

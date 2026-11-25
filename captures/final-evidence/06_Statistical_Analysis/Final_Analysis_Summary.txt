@@ -1,0 +1,26 @@
+CN12 FINAL EXPERIMENTAL ANALYSIS
+
+Verified workload experiments: 15
+Unique workloads: 15
+Workload messages delivered: 15000
+Network conditions: 5
+SPF positive passes: 15000/15000
+DKIM positive passes: 15000/15000
+SMTP transactions: 60
+SMTP command measurements: 360
+STARTTLS comparison transactions: 60
+STARTTLS mean overhead: 6.199347%
+
+Methodology and limitations:
+Workload latency uses Received timestamps and Maildir modification times.
+Delivery latency estimates have limited timestamp precision.
+Workload error bars use sample SD of the three run averages.
+SMTP and STARTTLS error bars use individual measurement sample SD.
+Error bars extending below zero are clipped at zero.
+2% packet loss was configured in the forward direction.
+1 Mbps bandwidth restriction was configured in both directions.
+Test 02 was recovered from an independent repeated baseline run.
+Test 10 had a prolonged delivery; confirm whether manual queue flush was used.
+Negative SPF and DKIM functional cases each have one verified sample.
+DKIM failure detection does not necessarily imply rejection.
+Supplementary SMTP probes are excluded from workload authentication rates.
