@@ -1,0 +1,16 @@
+mail-beta-1  | Nov 25 16:21:05 mail postfix/smtpd[296]: warning: dict_nis_init: NIS domain name not set - NIS lookups disabled
+mail-beta-1  | Nov 25 16:21:05 mail postfix/smtpd[296]: connect from unknown[10.10.1.10]
+mail-beta-1  | Nov 25 16:21:05 mail postfix/smtpd[296]: 80256561916: client=unknown[10.10.1.10]
+mail-beta-1  | Nov 25 16:21:05 mail postfix/cleanup[302]: 80256561916: message-id=<final-forward-1795623664269280471@alpha.lab>
+mail-beta-1  | Nov 25 16:21:05 mail postfix/qmgr[190]: 80256561916: from=<zaid@alpha.lab>, size=1420, nrcpt=1 (queue active)
+mail-beta-1  | Nov 25 16:21:05 mail postfix/smtpd[296]: disconnect from unknown[10.10.1.10] ehlo=1 mail=1 rcpt=1 data=1 quit=1 commands=5
+mail-beta-1  | Nov 25 16:21:05 mail postfix/local[304]: warning: dict_nis_init: NIS domain name not set - NIS lookups disabled
+mail-beta-1  | Nov 25 16:21:05 mail postfix/local[304]: 80256561916: to=<adil@beta.lab>, relay=local, delay=0.42, delays=0.39/0.02/0/0.01, dsn=2.0.0, status=sent (delivered to maildir)
+mail-beta-1  | Nov 25 16:21:05 mail postfix/qmgr[190]: 80256561916: removed
+mail-beta-1  | Nov 25 16:21:20 mail postfix/smtpd[296]: connect from unknown[127.0.0.1]
+mail-beta-1  | Nov 25 16:21:20 mail postfix/smtpd[296]: C30AF5606A5: client=unknown[127.0.0.1]
+mail-beta-1  | Nov 25 16:21:20 mail postfix/cleanup[302]: C30AF5606A5: message-id=<final-reverse-1795623680178548801@beta.lab>
+mail-beta-1  | Nov 25 16:21:20 mail postfix/smtpd[296]: disconnect from unknown[127.0.0.1] ehlo=1 mail=1 rcpt=1 data=1 quit=1 commands=5
+mail-beta-1  | Nov 25 16:21:20 mail postfix/qmgr[190]: C30AF5606A5: from=<adil@beta.lab>, size=518, nrcpt=1 (queue active)
+mail-beta-1  | Nov 25 16:21:20 mail postfix/smtp[318]: C30AF5606A5: to=<zaid@alpha.lab>, relay=mail.alpha.lab[10.10.1.10]:25, delay=0.2, delays=0.06/0.03/0.03/0.07, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as E33B8561916)
+mail-beta-1  | Nov 25 16:21:20 mail postfix/qmgr[190]: C30AF5606A5: removed

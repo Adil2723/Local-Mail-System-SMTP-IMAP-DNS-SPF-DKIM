@@ -1,0 +1,15 @@
+mail-alpha-1  | Nov 25 16:21:04 mail postfix/smtpd[257]: connect from cn12-topology-client-alpha-1.cn12-topology_alpha[10.10.1.20]
+mail-alpha-1  | Nov 25 16:21:05 mail postfix/smtpd[257]: Anonymous TLS connection established from cn12-topology-client-alpha-1.cn12-topology_alpha[10.10.1.20]: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits) key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
+mail-alpha-1  | Nov 25 16:21:05 mail postfix/smtpd[257]: 0B4D65606A5: client=cn12-topology-client-alpha-1.cn12-topology_alpha[10.10.1.20]
+mail-alpha-1  | Nov 25 16:21:05 mail postfix/cleanup[260]: 0B4D65606A5: message-id=<final-forward-1795623664269280471@alpha.lab>
+mail-alpha-1  | Nov 25 16:21:05 mail postfix/smtpd[257]: disconnect from cn12-topology-client-alpha-1.cn12-topology_alpha[10.10.1.20] ehlo=2 starttls=1 mail=1 rcpt=1 data=1 quit=1 commands=7
+mail-alpha-1  | Nov 25 16:21:05 mail postfix/qmgr[115]: 0B4D65606A5: from=<zaid@alpha.lab>, size=571, nrcpt=1 (queue active)
+mail-alpha-1  | Nov 25 16:21:05 mail postfix/smtp[261]: 0B4D65606A5: to=<adil@beta.lab>, relay=mail.beta.lab[10.10.2.10]:25, delay=0.68, delays=0.14/0.04/0.08/0.42, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as 80256561916)
+mail-alpha-1  | Nov 25 16:21:05 mail postfix/qmgr[115]: 0B4D65606A5: removed
+mail-alpha-1  | Nov 25 16:21:20 mail postfix/smtpd[257]: connect from unknown[10.10.2.10]
+mail-alpha-1  | Nov 25 16:21:20 mail postfix/smtpd[257]: E33B8561916: client=unknown[10.10.2.10]
+mail-alpha-1  | Nov 25 16:21:20 mail postfix/cleanup[260]: E33B8561916: message-id=<final-reverse-1795623680178548801@beta.lab>
+mail-alpha-1  | Nov 25 16:21:20 mail postfix/qmgr[115]: E33B8561916: from=<adil@beta.lab>, size=689, nrcpt=1 (queue active)
+mail-alpha-1  | Nov 25 16:21:20 mail postfix/smtpd[257]: disconnect from unknown[10.10.2.10] ehlo=1 mail=1 rcpt=1 data=1 quit=1 commands=5
+mail-alpha-1  | Nov 25 16:21:21 mail postfix/local[263]: E33B8561916: to=<zaid@alpha.lab>, relay=local, delay=0.09, delays=0.07/0.02/0/0.01, dsn=2.0.0, status=sent (delivered to maildir)
+mail-alpha-1  | Nov 25 16:21:21 mail postfix/qmgr[115]: E33B8561916: removed

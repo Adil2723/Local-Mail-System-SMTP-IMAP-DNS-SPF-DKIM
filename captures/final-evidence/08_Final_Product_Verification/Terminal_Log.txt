@@ -1,0 +1,154 @@
+========================================
+FINAL STEP 06 - PRODUCT VERIFICATION
+========================================
+Wed Nov 25 09:20:30 PM PKT 2026
+===== STARTING COMPLETE PROJECT =====
+ Container cn12-topology-r2-1 Running 
+ Container cn12-topology-client-alpha-1 Running 
+ Container cn12-topology-mail-beta-1 Running 
+ Container cn12-topology-dns-1 Running 
+ Container cn12-topology-mail-alpha-1 Running 
+ Container cn12-topology-client-beta-1 Running 
+ Container cn12-topology-r1-1 Running 
+===== VERIFYING ALL SEVEN CONTAINERS =====
+PASS: r1 running
+PASS: r2 running
+PASS: dns running
+PASS: client-alpha running
+PASS: client-beta running
+PASS: mail-alpha running
+PASS: mail-beta running
+NAME                           IMAGE                        COMMAND                  SERVICE        CREATED        STATUS          PORTS
+cn12-topology-client-alpha-1   cn12-nettools:local          "sh /lab/start.sh"       client-alpha   3 days ago     Up 15 minutes   
+cn12-topology-client-beta-1    cn12-nettools:local          "sh /lab/start.sh"       client-beta    3 days ago     Up 15 minutes   
+cn12-topology-dns-1            cn-mail-lab-dns:local        "sh -ec 'ip route re…"   dns            22 hours ago   Up 15 minutes   
+cn12-topology-mail-alpha-1     cn12-mail-alpha-imap:local   "sh /usr/local/bin/s…"   mail-alpha     21 hours ago   Up 15 minutes   
+cn12-topology-mail-beta-1      cn12-mail-beta-dkim:local    "sh /usr/local/bin/s…"   mail-beta      19 hours ago   Up 15 minutes   
+cn12-topology-r1-1             cn12-nettools:local          "sh /lab/start.sh"       r1             3 days ago     Up 15 minutes   
+cn12-topology-r2-1             cn12-nettools:local          "sh /lab/start.sh"       r2             3 days ago     Up 15 minutes   
+===== VERIFYING ROUTING AND NETWORK CONDITIONS =====
+1
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+PASS: r1 forwarding and normal network conditions
+1
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+PASS: r2 forwarding and normal network conditions
+===== VERIFYING NETWORK CONNECTIVITY =====
+PING 10.10.2.10 (10.10.2.10) 56(84) bytes of data.
+64 bytes from 10.10.2.10: icmp_seq=1 ttl=62 time=0.501 ms
+64 bytes from 10.10.2.10: icmp_seq=2 ttl=62 time=0.081 ms
+64 bytes from 10.10.2.10: icmp_seq=3 ttl=62 time=0.211 ms
+
+--- 10.10.2.10 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2054ms
+rtt min/avg/max/mdev = 0.081/0.264/0.501/0.175 ms
+PING 10.10.1.10 (10.10.1.10) 56(84) bytes of data.
+64 bytes from 10.10.1.10: icmp_seq=1 ttl=62 time=0.239 ms
+64 bytes from 10.10.1.10: icmp_seq=2 ttl=62 time=0.135 ms
+64 bytes from 10.10.1.10: icmp_seq=3 ttl=62 time=0.120 ms
+
+--- 10.10.1.10 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2069ms
+rtt min/avg/max/mdev = 0.120/0.164/0.239/0.052 ms
+PASS: Both networks connected
+===== VERIFYING DNS A RECORDS =====
+10.10.1.10
+10.10.2.10
+PASS: DNS A records verified
+===== VERIFYING DNS MX RECORDS =====
+10 mail.beta.lab.
+10 mail.alpha.lab.
+PASS: DNS MX records verified
+===== VERIFYING SPF =====
+"v=spf1 ip4:10.10.1.10 -all"
+smtpd_recipient_restrictions = permit_mynetworks, reject_unauth_destination, check_policy_service unix:private/policyd-spf
+PASS: SPF configuration verified
+===== VERIFYING DKIM =====
+"v=DKIM1; h=sha256; k=rsa; " "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxSldTMQY58rYsmNM0Zulq215k7fA25BcMd23KOLSAp8pFGQ1QDqKF5Z08ncCcOmt1DooI2sx4WJrZehfq7AjhtrlkzvvDXFJvdG5HzxyeonB7VUpDSDfMKASuDNmKNqeOhrmRcG2PCJ3OUzrMomkBnULOdbekobPtXg+gz6DrZPkK8HQuJDTE3lpZBtQqwLGOnyn5b/mtuZNF3" "SHeOirIFk9q2Ps1Kw9XPZ8efC5zonOx/ILvL8EkwJVcU2kQPOf+nPc+ZctV3BZPwCG65G7+xOZEeBhSS69aJKAdnOPSC5+VXSJ0zzmWaNnjLvm2lFbbNAHDPo+5r/9Od64BEOcnQIDAQAB"
+opendkim-testkey: using default configfile /etc/opendkim.conf
+opendkim-testkey: key loaded from /etc/opendkim/keys/mail.private
+opendkim-testkey: checking key 'mail._domainkey.alpha.lab'
+opendkim-testkey: key not secure
+opendkim-testkey: key OK
+PASS: DKIM key verified
+===== VERIFYING MAIL SERVER SERVICES =====
+postfix/postlog: the Postfix mail system is running: PID: 113
+State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess
+LISTEN 0      100          0.0.0.0:25         0.0.0.0:*          
+LISTEN 0      100          0.0.0.0:143        0.0.0.0:*          
+LISTEN 0      4096      127.0.0.11:34431      0.0.0.0:*          
+LISTEN 0      4096       127.0.0.1:8891       0.0.0.0:*          
+LISTEN 0      100          0.0.0.0:25         0.0.0.0:*          
+PASS: mail-alpha port 25
+LISTEN 0      100          0.0.0.0:143        0.0.0.0:*          
+PASS: mail-alpha port 143
+LISTEN 0      4096       127.0.0.1:8891       0.0.0.0:*          
+PASS: mail-alpha port 8891
+postfix: Postfix is using backwards-compatible default settings
+postfix: See http://www.postfix.org/COMPATIBILITY_README.html for details
+postfix: To disable backwards compatibility use "postconf compatibility_level=3.6" and "postfix reload"
+postfix/postlog: the Postfix mail system is running: PID: 1
+State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess
+LISTEN 0      4096       127.0.0.1:8891       0.0.0.0:*          
+LISTEN 0      4096      127.0.0.11:36729      0.0.0.0:*          
+LISTEN 0      100          0.0.0.0:25         0.0.0.0:*          
+LISTEN 0      100          0.0.0.0:143        0.0.0.0:*          
+LISTEN 0      100          0.0.0.0:25         0.0.0.0:*          
+PASS: mail-beta port 25
+LISTEN 0      100          0.0.0.0:143        0.0.0.0:*          
+PASS: mail-beta port 143
+LISTEN 0      4096       127.0.0.1:8891       0.0.0.0:*          
+PASS: mail-beta port 8891
+===== VERIFYING IMAP SERVER RESPONSES =====
+IMAP capabilities: [b'IMAP4rev1 SASL-IR LOGIN-REFERRALS ID ENABLE IDLE LITERAL+ AUTH=PLAIN']
+PASS: Dovecot IMAP server responding
+IMAP capabilities: [b'IMAP4rev1 SASL-IR LOGIN-REFERRALS ID ENABLE IDLE LITERAL+ AUTH=PLAIN']
+PASS: Dovecot IMAP server responding
+===== CHECKING INITIAL MAIL QUEUES =====
+Mail queue is empty
+Mail queue is empty
+===== ENCRYPTED ALPHA TO BETA EMAIL =====
+TLS version: TLSv1.3
+TLS cipher: TLS_AES_256_GCM_SHA384
+Message-ID: <final-forward-1795623664269280471@alpha.lab>
+PASS: Encrypted SMTP submission successful
+===== VERIFYING BETA MAILBOX AND AUTHENTICATION =====
+From: zaid@alpha.lab
+To: adil@beta.lab
+Message-ID: <final-forward-1795623664269280471@alpha.lab>
+SPF: ['Pass (mailfrom) identity=mailfrom; client-ip=10.10.1.10; helo=mail.alpha.lab; envelope-from=zaid@alpha.lab; receiver=beta.lab ']
+Authentication: ['mail.beta.lab;\tdkim=pass (2048-bit key; unprotected) header.d=alpha.lab header.i=@alpha.lab header.a=rsa-sha256 header.s=mail header.b=lN4goG7p;\tdkim-atps=neutral']
+PASS: Alpha-to-Beta delivery verified
+PASS: SPF authentication
+PASS: DKIM authentication
+===== VERIFYING BETA TO ALPHA DELIVERY =====
+Message-ID: <final-reverse-1795623680178548801@beta.lab>
+PASS: Reverse SMTP submission successful
+===== VERIFYING ALPHA MAILBOX =====
+From: adil@beta.lab
+To: zaid@alpha.lab
+Message-ID: <final-reverse-1795623680178548801@beta.lab>
+PASS: Beta-to-Alpha delivery verified
+===== FINAL MAIL QUEUE VERIFICATION =====
+Mail queue is empty
+PASS: mail-alpha queue empty
+Mail queue is empty
+PASS: mail-beta queue empty
+===== SAVING FINAL POSTFIX LOGS =====
+===== SAVING FINAL CONTAINER STATUS =====
+NAME                           IMAGE                        COMMAND                  SERVICE        CREATED        STATUS          PORTS
+cn12-topology-client-alpha-1   cn12-nettools:local          "sh /lab/start.sh"       client-alpha   3 days ago     Up 16 minutes   
+cn12-topology-client-beta-1    cn12-nettools:local          "sh /lab/start.sh"       client-beta    3 days ago     Up 16 minutes   
+cn12-topology-dns-1            cn-mail-lab-dns:local        "sh -ec 'ip route re…"   dns            22 hours ago   Up 16 minutes   
+cn12-topology-mail-alpha-1     cn12-mail-alpha-imap:local   "sh /usr/local/bin/s…"   mail-alpha     21 hours ago   Up 16 minutes   
+cn12-topology-mail-beta-1      cn12-mail-beta-dkim:local    "sh /usr/local/bin/s…"   mail-beta      19 hours ago   Up 16 minutes   
+cn12-topology-r1-1             cn12-nettools:local          "sh /lab/start.sh"       r1             3 days ago     Up 16 minutes   
+cn12-topology-r2-1             cn12-nettools:local          "sh /lab/start.sh"       r2             3 days ago     Up 16 minutes   
+========================================
+FINAL STEP 06 - PRODUCT VERIFICATION: PASSED
+ALL CORE PROJECT SERVICES OPERATIONAL
+========================================
