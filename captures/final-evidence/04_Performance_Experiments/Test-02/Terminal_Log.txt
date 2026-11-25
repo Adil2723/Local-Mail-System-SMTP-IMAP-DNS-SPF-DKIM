@@ -1,0 +1,7 @@
+PERFORMANCE TEST 02 - BASELINE RUN 2
+Original evidence: captures/04_performance_tests/Test-01_Baseline_Run-1_20261125-112558
+Original workload identifier: CN12-Test-01-1795587991961015964
+Second independent execution of Test 01 registered as Test 02.
+Network conditions and measured values unchanged.
+Original terminal log preserved.
+PERFORMANCE TEST 02 RESULT: PASSED

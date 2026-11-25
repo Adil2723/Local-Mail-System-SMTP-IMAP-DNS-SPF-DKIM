@@ -1,0 +1,160 @@
+========================================
+PERFORMANCE TEST 08
+Condition: 200ms_RTT
+Run: 2 of 3
+Messages: 1000
+========================================
+Wed Nov 25 11:49:32 AM PKT 2026
+===== STARTING COMPLETE PROJECT =====
+ Container cn12-topology-client-alpha-1 Running 
+ Container cn12-topology-client-beta-1 Running 
+ Container cn12-topology-mail-beta-1 Running 
+ Container cn12-topology-dns-1 Running 
+ Container cn12-topology-mail-alpha-1 Running 
+ Container cn12-topology-r1-1 Running 
+ Container cn12-topology-r2-1 Running 
+===== VERIFYING ALL CONTAINERS =====
+PASS: r1 running
+PASS: r2 running
+PASS: dns running
+PASS: client-alpha running
+PASS: client-beta running
+PASS: mail-alpha running
+PASS: mail-beta running
+===== IDENTIFYING ROUTER INTERFACES =====
+R1 core interface: eth1
+R2 core interface: eth0
+===== CHECKING EXISTING NETWORK CONDITIONS =====
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+===== CHECKING INITIAL MAIL QUEUES =====
+Mail queue is empty
+Mail queue is empty
+Mail queue is empty
+Mail queue is empty
+===== CHECKING AVAILABLE STORAGE =====
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2        98G   49G   45G  53% /
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2        98G   49G   45G  53% /home/adil/Maildir
+===== APPLYING NETWORK CONDITION =====
+PASS: 200ms additional RTT configured
+===== VERIFYING TRAFFIC CONTROL =====
+R1:
+qdisc netem 8009: root refcnt 5 limit 1000 delay 100ms
+ Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+R2:
+qdisc netem 800a: root refcnt 5 limit 1000 delay 100ms
+ Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+===== MEASURING NETWORK RTT =====
+PING 10.10.2.10 (10.10.2.10) 56(84) bytes of data.
+64 bytes from 10.10.2.10: icmp_seq=1 ttl=62 time=397 ms
+64 bytes from 10.10.2.10: icmp_seq=2 ttl=62 time=623 ms
+64 bytes from 10.10.2.10: icmp_seq=3 ttl=62 time=404 ms
+64 bytes from 10.10.2.10: icmp_seq=4 ttl=62 time=402 ms
+64 bytes from 10.10.2.10: icmp_seq=5 ttl=62 time=698 ms
+64 bytes from 10.10.2.10: icmp_seq=6 ttl=62 time=291 ms
+64 bytes from 10.10.2.10: icmp_seq=7 ttl=62 time=591 ms
+64 bytes from 10.10.2.10: icmp_seq=8 ttl=62 time=329 ms
+64 bytes from 10.10.2.10: icmp_seq=9 ttl=62 time=607 ms
+64 bytes from 10.10.2.10: icmp_seq=10 ttl=62 time=205 ms
+64 bytes from 10.10.2.10: icmp_seq=11 ttl=62 time=272 ms
+64 bytes from 10.10.2.10: icmp_seq=12 ttl=62 time=420 ms
+64 bytes from 10.10.2.10: icmp_seq=13 ttl=62 time=560 ms
+64 bytes from 10.10.2.10: icmp_seq=14 ttl=62 time=435 ms
+64 bytes from 10.10.2.10: icmp_seq=15 ttl=62 time=349 ms
+64 bytes from 10.10.2.10: icmp_seq=16 ttl=62 time=340 ms
+64 bytes from 10.10.2.10: icmp_seq=17 ttl=62 time=553 ms
+64 bytes from 10.10.2.10: icmp_seq=18 ttl=62 time=610 ms
+64 bytes from 10.10.2.10: icmp_seq=19 ttl=62 time=439 ms
+64 bytes from 10.10.2.10: icmp_seq=20 ttl=62 time=422 ms
+
+--- 10.10.2.10 ping statistics ---
+20 packets transmitted, 20 received, 0% packet loss, time 10459ms
+rtt min/avg/max/mdev = 204.628/447.321/698.121/131.780 ms, pipe 2
+===== CHECKING SMTP WORKLOAD GENERATOR =====
+SMTP generator: /usr/sbin/smtp-source
+===== EXECUTING BENCHMARK =====
+===== CHECKING INITIAL MAIL QUEUES =====
+PASS: Both mail queues empty
+Run identifier: CN12-Test-08-1795589400056935819
+===== SENDING 1000 EMAILS =====
+SMTP submission completed
+Submission time: 13.560 s
+Delivered: 170/1000
+Delivered: 208/1000
+Delivered: 265/1000
+Delivered: 305/1000
+Delivered: 349/1000
+Delivered: 396/1000
+Delivered: 445/1000
+Delivered: 488/1000
+Delivered: 525/1000
+Delivered: 547/1000
+Delivered: 572/1000
+Delivered: 605/1000
+Delivered: 651/1000
+Delivered: 711/1000
+Delivered: 755/1000
+Delivered: 790/1000
+Delivered: 832/1000
+Delivered: 871/1000
+Delivered: 922/1000
+Delivered: 988/1000
+Delivered: 1000/1000
+
+===== BENCHMARK RESULTS =====
+experiment: Test-08
+network_condition: 200ms_RTT
+added_rtt_ms: 200
+started_utc: 2026-11-25T06:50:00.057016+00:00
+subject: CN12-Test-08-1795589400056935819
+messages_requested: 1000
+messages_delivered: 1000
+delivery_success_percent: 100.0
+parallel_sessions: 10
+payload_bytes: 1024
+submission_seconds: 13.560095464999904
+submission_messages_per_second: 73.74579349984002
+observed_delivery_seconds: 68.16235700099969
+observed_delivery_messages_per_second: 14.670854178140196
+spf_pass: 1000
+dkim_pass: 1000
+spf_pass_percent: 100.0
+dkim_pass_percent: 100.0
+latency_samples: 1000
+estimated_mean_latency_ms: 28241.011731
+estimated_latency_stddev_ms: 14142.800570749083
+PASS: All 1000 emails delivered
+PASS: SPF verification
+PASS: DKIM verification
+PASS: Both mail queues empty
+ALL BENCHMARK CHECKS COMPLETED
+===== FINAL CONTAINER STATUS =====
+NAME                           IMAGE                        COMMAND                  SERVICE        CREATED        STATUS          PORTS
+cn12-topology-client-alpha-1   cn12-nettools:local          "sh /lab/start.sh"       client-alpha   2 days ago     Up 32 minutes   
+cn12-topology-client-beta-1    cn12-nettools:local          "sh /lab/start.sh"       client-beta    2 days ago     Up 32 minutes   
+cn12-topology-dns-1            cn-mail-lab-dns:local        "sh -ec 'ip route re…"   dns            12 hours ago   Up 32 minutes   
+cn12-topology-mail-alpha-1     cn12-mail-alpha-imap:local   "sh /usr/local/bin/s…"   mail-alpha     11 hours ago   Up 32 minutes   
+cn12-topology-mail-beta-1      cn12-mail-beta-dkim:local    "sh /usr/local/bin/s…"   mail-beta      10 hours ago   Up 32 minutes   
+cn12-topology-r1-1             cn12-nettools:local          "sh /lab/start.sh"       r1             2 days ago     Up 32 minutes   
+cn12-topology-r2-1             cn12-nettools:local          "sh /lab/start.sh"       r2             2 days ago     Up 32 minutes   
+===== BENCHMARK EXECUTION COMPLETED =====
+===== SAVING FINAL NETWORK STATISTICS =====
+===== RESTORING NORMAL NETWORK =====
+r1:
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+r2:
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+PASS: Normal network restored
+PERFORMANCE TEST 08 RESULT: PASSED

@@ -1,0 +1,110 @@
+===== PERFORMANCE TEST 03 =====
+Baseline - Run 3 of 3
+Wed Nov 25 11:35:21 AM PKT 2026
+===== STARTING COMPLETE PROJECT =====
+ Container cn12-topology-client-beta-1 Running 
+ Container cn12-topology-r1-1 Running 
+ Container cn12-topology-r2-1 Running 
+ Container cn12-topology-client-alpha-1 Running 
+ Container cn12-topology-mail-beta-1 Running 
+ Container cn12-topology-dns-1 Running 
+ Container cn12-topology-mail-alpha-1 Running 
+===== VERIFYING ALL CONTAINERS =====
+PASS: r1 running
+PASS: r2 running
+PASS: dns running
+PASS: client-alpha running
+PASS: client-beta running
+PASS: mail-alpha running
+PASS: mail-beta running
+===== CHECKING BASELINE NETWORK =====
+r1:
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+r2:
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+PASS: Normal network conditions verified
+===== MEASURING ACTUAL NETWORK RTT =====
+PING 10.10.2.10 (10.10.2.10) 56(84) bytes of data.
+64 bytes from 10.10.2.10: icmp_seq=1 ttl=62 time=4.80 ms
+64 bytes from 10.10.2.10: icmp_seq=2 ttl=62 time=0.612 ms
+64 bytes from 10.10.2.10: icmp_seq=3 ttl=62 time=0.151 ms
+64 bytes from 10.10.2.10: icmp_seq=4 ttl=62 time=0.084 ms
+64 bytes from 10.10.2.10: icmp_seq=5 ttl=62 time=0.397 ms
+64 bytes from 10.10.2.10: icmp_seq=6 ttl=62 time=0.113 ms
+64 bytes from 10.10.2.10: icmp_seq=7 ttl=62 time=0.126 ms
+64 bytes from 10.10.2.10: icmp_seq=8 ttl=62 time=0.054 ms
+64 bytes from 10.10.2.10: icmp_seq=9 ttl=62 time=0.176 ms
+64 bytes from 10.10.2.10: icmp_seq=10 ttl=62 time=0.069 ms
+
+--- 10.10.2.10 ping statistics ---
+10 packets transmitted, 10 received, 0% packet loss, time 9626ms
+rtt min/avg/max/mdev = 0.054/0.657/4.795/1.389 ms
+===== CHECKING SMTP WORKLOAD GENERATOR =====
+SMTP generator: /usr/sbin/smtp-source
+===== CHECKING STORAGE =====
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2        98G   49G   45G  53% /
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2        98G   49G   45G  53% /home/adil/Maildir
+===== PREPARING BENCHMARK ENGINE =====
+===== EXECUTING PERFORMANCE TEST 03 =====
+===== CHECKING INITIAL MAIL QUEUES =====
+PASS: Both mail queues empty
+Run identifier: CN12-Test-03-1795588551225238200
+===== SENDING 1000 EMAILS =====
+SMTP submission completed
+Submission time: 22.614 s
+Delivered: 979/1000
+Delivered: 1000/1000
+
+===== BENCHMARK RESULTS =====
+experiment: Test-03
+network_condition: Baseline
+added_rtt_ms: 0
+started_utc: 2026-11-25T06:35:51.225758+00:00
+subject: CN12-Test-03-1795588551225238200
+messages_requested: 1000
+messages_delivered: 1000
+delivery_success_percent: 100.0
+parallel_sessions: 10
+payload_bytes: 1024
+submission_seconds: 22.613957073000165
+submission_messages_per_second: 44.22047838739137
+observed_delivery_seconds: 29.443498376000207
+observed_delivery_messages_per_second: 33.963355414827795
+spf_pass: 1000
+dkim_pass: 1000
+spf_pass_percent: 100.0
+dkim_pass_percent: 100.0
+latency_samples: 1000
+estimated_mean_latency_ms: 4437.041408
+estimated_latency_stddev_ms: 908.5940870452058
+PASS: All 1000 emails delivered
+PASS: SPF verification
+PASS: DKIM verification
+PASS: Both mail queues empty
+ALL BENCHMARK CHECKS COMPLETED
+===== FINAL CONTAINER STATUS =====
+NAME                           IMAGE                        COMMAND                  SERVICE        CREATED        STATUS          PORTS
+cn12-topology-client-alpha-1   cn12-nettools:local          "sh /lab/start.sh"       client-alpha   2 days ago     Up 18 minutes   
+cn12-topology-client-beta-1    cn12-nettools:local          "sh /lab/start.sh"       client-beta    2 days ago     Up 18 minutes   
+cn12-topology-dns-1            cn-mail-lab-dns:local        "sh -ec 'ip route re…"   dns            12 hours ago   Up 18 minutes   
+cn12-topology-mail-alpha-1     cn12-mail-alpha-imap:local   "sh /usr/local/bin/s…"   mail-alpha     11 hours ago   Up 18 minutes   
+cn12-topology-mail-beta-1      cn12-mail-beta-dkim:local    "sh /usr/local/bin/s…"   mail-beta      10 hours ago   Up 18 minutes   
+cn12-topology-r1-1             cn12-nettools:local          "sh /lab/start.sh"       r1             2 days ago     Up 18 minutes   
+cn12-topology-r2-1             cn12-nettools:local          "sh /lab/start.sh"       r2             2 days ago     Up 18 minutes   
+===== SAVING POSTFIX LOGS =====
+===== SAVED EVIDENCE =====
+total 1.6M
+-rw------- 1 system system  782 Nov 25 11:35 Network_RTT.txt
+-rw------- 1 system system 868K Nov 25 11:36 Postfix_Alpha.txt
+-rw------- 1 system system 595K Nov 25 11:36 Postfix_Beta.txt
+-rw------- 1 system system 4.3K Nov 25 11:36 Terminal_Log.txt
+-rw------- 1 system system 125K Nov 25 11:36 Test-03_Messages.csv
+-rw------- 1 system system  638 Nov 25 11:36 Test-03_Metrics.csv
+-rw------- 1 system system  772 Nov 25 11:36 Test-03_Metrics.json
+PERFORMANCE TEST 03 RESULT: PASSED

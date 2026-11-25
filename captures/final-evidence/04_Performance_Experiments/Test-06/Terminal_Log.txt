@@ -1,0 +1,145 @@
+========================================
+PERFORMANCE TEST 06
+Condition: 100ms_RTT
+Run: 3 of 3
+Messages: 1000
+========================================
+Wed Nov 25 11:44:21 AM PKT 2026
+===== STARTING COMPLETE PROJECT =====
+ Container cn12-topology-r2-1 Running 
+ Container cn12-topology-client-alpha-1 Running 
+ Container cn12-topology-client-beta-1 Running 
+ Container cn12-topology-mail-beta-1 Running 
+ Container cn12-topology-dns-1 Running 
+ Container cn12-topology-mail-alpha-1 Running 
+ Container cn12-topology-r1-1 Running 
+===== VERIFYING ALL CONTAINERS =====
+PASS: r1 running
+PASS: r2 running
+PASS: dns running
+PASS: client-alpha running
+PASS: client-beta running
+PASS: mail-alpha running
+PASS: mail-beta running
+===== IDENTIFYING ROUTER INTERFACES =====
+R1 core interface: eth1
+R2 core interface: eth0
+===== CHECKING EXISTING NETWORK CONDITIONS =====
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+===== CHECKING INITIAL MAIL QUEUES =====
+Mail queue is empty
+Mail queue is empty
+Mail queue is empty
+Mail queue is empty
+===== CHECKING AVAILABLE STORAGE =====
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2        98G   49G   45G  53% /
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2        98G   49G   45G  53% /home/adil/Maildir
+===== APPLYING NETWORK CONDITION =====
+PASS: 100ms additional RTT configured
+===== VERIFYING TRAFFIC CONTROL =====
+R1:
+qdisc netem 8005: root refcnt 5 limit 1000 delay 50ms
+ Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+R2:
+qdisc netem 8006: root refcnt 5 limit 1000 delay 50ms
+ Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+===== MEASURING NETWORK RTT =====
+PING 10.10.2.10 (10.10.2.10) 56(84) bytes of data.
+64 bytes from 10.10.2.10: icmp_seq=1 ttl=62 time=104 ms
+64 bytes from 10.10.2.10: icmp_seq=2 ttl=62 time=103 ms
+64 bytes from 10.10.2.10: icmp_seq=3 ttl=62 time=112 ms
+64 bytes from 10.10.2.10: icmp_seq=4 ttl=62 time=102 ms
+64 bytes from 10.10.2.10: icmp_seq=5 ttl=62 time=101 ms
+64 bytes from 10.10.2.10: icmp_seq=6 ttl=62 time=110 ms
+64 bytes from 10.10.2.10: icmp_seq=7 ttl=62 time=102 ms
+64 bytes from 10.10.2.10: icmp_seq=8 ttl=62 time=111 ms
+64 bytes from 10.10.2.10: icmp_seq=9 ttl=62 time=102 ms
+64 bytes from 10.10.2.10: icmp_seq=10 ttl=62 time=110 ms
+64 bytes from 10.10.2.10: icmp_seq=11 ttl=62 time=107 ms
+64 bytes from 10.10.2.10: icmp_seq=12 ttl=62 time=108 ms
+64 bytes from 10.10.2.10: icmp_seq=13 ttl=62 time=109 ms
+64 bytes from 10.10.2.10: icmp_seq=14 ttl=62 time=105 ms
+64 bytes from 10.10.2.10: icmp_seq=15 ttl=62 time=103 ms
+64 bytes from 10.10.2.10: icmp_seq=16 ttl=62 time=101 ms
+64 bytes from 10.10.2.10: icmp_seq=17 ttl=62 time=105 ms
+64 bytes from 10.10.2.10: icmp_seq=18 ttl=62 time=105 ms
+64 bytes from 10.10.2.10: icmp_seq=19 ttl=62 time=149 ms
+64 bytes from 10.10.2.10: icmp_seq=20 ttl=62 time=106 ms
+
+--- 10.10.2.10 ping statistics ---
+20 packets transmitted, 20 received, 0% packet loss, time 9561ms
+rtt min/avg/max/mdev = 101.307/107.691/148.835/9.990 ms
+===== CHECKING SMTP WORKLOAD GENERATOR =====
+SMTP generator: /usr/sbin/smtp-source
+===== EXECUTING BENCHMARK =====
+===== CHECKING INITIAL MAIL QUEUES =====
+PASS: Both mail queues empty
+Run identifier: CN12-Test-06-1795589088744892965
+===== SENDING 1000 EMAILS =====
+SMTP submission completed
+Submission time: 16.596 s
+Delivered: 452/1000
+Delivered: 521/1000
+Delivered: 681/1000
+Delivered: 855/1000
+Delivered: 918/1000
+Delivered: 1000/1000
+
+===== BENCHMARK RESULTS =====
+experiment: Test-06
+network_condition: 100ms_RTT
+added_rtt_ms: 100
+started_utc: 2026-11-25T06:44:48.744898+00:00
+subject: CN12-Test-06-1795589088744892965
+messages_requested: 1000
+messages_delivered: 1000
+delivery_success_percent: 100.0
+parallel_sessions: 10
+payload_bytes: 1024
+submission_seconds: 16.596410693000053
+submission_messages_per_second: 60.25399217324592
+observed_delivery_seconds: 39.66310281599999
+observed_delivery_messages_per_second: 25.212349236494997
+spf_pass: 1000
+dkim_pass: 1000
+spf_pass_percent: 100.0
+dkim_pass_percent: 100.0
+latency_samples: 1000
+estimated_mean_latency_ms: 12489.464713
+estimated_latency_stddev_ms: 5533.954987425798
+PASS: All 1000 emails delivered
+PASS: SPF verification
+PASS: DKIM verification
+PASS: Both mail queues empty
+ALL BENCHMARK CHECKS COMPLETED
+===== FINAL CONTAINER STATUS =====
+NAME                           IMAGE                        COMMAND                  SERVICE        CREATED        STATUS          PORTS
+cn12-topology-client-alpha-1   cn12-nettools:local          "sh /lab/start.sh"       client-alpha   2 days ago     Up 27 minutes   
+cn12-topology-client-beta-1    cn12-nettools:local          "sh /lab/start.sh"       client-beta    2 days ago     Up 27 minutes   
+cn12-topology-dns-1            cn-mail-lab-dns:local        "sh -ec 'ip route re…"   dns            12 hours ago   Up 27 minutes   
+cn12-topology-mail-alpha-1     cn12-mail-alpha-imap:local   "sh /usr/local/bin/s…"   mail-alpha     11 hours ago   Up 27 minutes   
+cn12-topology-mail-beta-1      cn12-mail-beta-dkim:local    "sh /usr/local/bin/s…"   mail-beta      10 hours ago   Up 27 minutes   
+cn12-topology-r1-1             cn12-nettools:local          "sh /lab/start.sh"       r1             2 days ago     Up 27 minutes   
+cn12-topology-r2-1             cn12-nettools:local          "sh /lab/start.sh"       r2             2 days ago     Up 27 minutes   
+===== BENCHMARK EXECUTION COMPLETED =====
+===== SAVING FINAL NETWORK STATISTICS =====
+===== RESTORING NORMAL NETWORK =====
+r1:
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+r2:
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+PASS: Normal network restored
+PERFORMANCE TEST 06 RESULT: PASSED

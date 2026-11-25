@@ -1,0 +1,142 @@
+========================================
+PERFORMANCE TEST 11
+Condition: 2Percent_Loss
+Run: 2 of 3
+Messages: 1000
+========================================
+Wed Nov 25 12:15:22 PM PKT 2026
+===== STARTING COMPLETE PROJECT =====
+ Container cn12-topology-client-alpha-1 Running 
+ Container cn12-topology-client-beta-1 Running 
+ Container cn12-topology-mail-beta-1 Running 
+ Container cn12-topology-dns-1 Running 
+ Container cn12-topology-mail-alpha-1 Running 
+ Container cn12-topology-r1-1 Running 
+ Container cn12-topology-r2-1 Running 
+===== VERIFYING ALL CONTAINERS =====
+PASS: r1 running
+PASS: r2 running
+PASS: dns running
+PASS: client-alpha running
+PASS: client-beta running
+PASS: mail-alpha running
+PASS: mail-beta running
+===== IDENTIFYING ROUTER INTERFACES =====
+R1 core interface: eth1
+R2 core interface: eth0
+===== CHECKING EXISTING NETWORK CONDITIONS =====
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+===== CHECKING INITIAL MAIL QUEUES =====
+Mail queue is empty
+Mail queue is empty
+Mail queue is empty
+Mail queue is empty
+===== CHECKING AVAILABLE STORAGE =====
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2        98G   49G   45G  53% /
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2        98G   49G   45G  53% /home/adil/Maildir
+===== APPLYING NETWORK CONDITION =====
+PASS: 2% forward-path random packet loss configured
+===== VERIFYING TRAFFIC CONTROL =====
+R1:
+qdisc netem 800f: root refcnt 5 limit 1000 loss 2%
+ Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+R2:
+qdisc noqueue 0: root refcnt 2 
+ Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+===== MEASURING NETWORK RTT =====
+PING 10.10.2.10 (10.10.2.10) 56(84) bytes of data.
+64 bytes from 10.10.2.10: icmp_seq=1 ttl=62 time=1.97 ms
+64 bytes from 10.10.2.10: icmp_seq=2 ttl=62 time=0.144 ms
+64 bytes from 10.10.2.10: icmp_seq=3 ttl=62 time=0.061 ms
+64 bytes from 10.10.2.10: icmp_seq=4 ttl=62 time=0.069 ms
+64 bytes from 10.10.2.10: icmp_seq=5 ttl=62 time=0.079 ms
+64 bytes from 10.10.2.10: icmp_seq=6 ttl=62 time=0.080 ms
+64 bytes from 10.10.2.10: icmp_seq=7 ttl=62 time=0.062 ms
+64 bytes from 10.10.2.10: icmp_seq=8 ttl=62 time=0.079 ms
+64 bytes from 10.10.2.10: icmp_seq=9 ttl=62 time=0.065 ms
+64 bytes from 10.10.2.10: icmp_seq=10 ttl=62 time=0.077 ms
+64 bytes from 10.10.2.10: icmp_seq=11 ttl=62 time=0.075 ms
+64 bytes from 10.10.2.10: icmp_seq=12 ttl=62 time=0.073 ms
+64 bytes from 10.10.2.10: icmp_seq=13 ttl=62 time=0.074 ms
+64 bytes from 10.10.2.10: icmp_seq=14 ttl=62 time=0.064 ms
+64 bytes from 10.10.2.10: icmp_seq=15 ttl=62 time=0.063 ms
+64 bytes from 10.10.2.10: icmp_seq=16 ttl=62 time=0.065 ms
+64 bytes from 10.10.2.10: icmp_seq=17 ttl=62 time=0.071 ms
+64 bytes from 10.10.2.10: icmp_seq=18 ttl=62 time=0.064 ms
+64 bytes from 10.10.2.10: icmp_seq=19 ttl=62 time=0.069 ms
+64 bytes from 10.10.2.10: icmp_seq=20 ttl=62 time=0.055 ms
+
+--- 10.10.2.10 ping statistics ---
+20 packets transmitted, 20 received, 0% packet loss, time 9580ms
+rtt min/avg/max/mdev = 0.055/0.168/1.973/0.414 ms
+===== CHECKING SMTP WORKLOAD GENERATOR =====
+SMTP generator: /usr/sbin/smtp-source
+===== EXECUTING BENCHMARK =====
+===== CHECKING INITIAL MAIL QUEUES =====
+PASS: Both mail queues empty
+Run identifier: CN12-Test-11-1795590950643005660
+===== SENDING 1000 EMAILS =====
+SMTP submission completed
+Submission time: 25.465 s
+Delivered: 839/1000
+Delivered: 999/1000
+Delivered: 1000/1000
+
+===== BENCHMARK RESULTS =====
+experiment: Test-11
+network_condition: 2Percent_Loss
+added_rtt_ms: 0
+started_utc: 2026-11-25T07:15:50.643086+00:00
+subject: CN12-Test-11-1795590950643005660
+messages_requested: 1000
+messages_delivered: 1000
+delivery_success_percent: 100.0
+parallel_sessions: 10
+payload_bytes: 1024
+submission_seconds: 25.465025745000275
+submission_messages_per_second: 39.26954600453671
+observed_delivery_seconds: 104.995051031
+observed_delivery_messages_per_second: 9.524258431044982
+spf_pass: 1000
+dkim_pass: 1000
+spf_pass_percent: 100.0
+dkim_pass_percent: 100.0
+latency_samples: 1000
+estimated_mean_latency_ms: 7681.351739
+estimated_latency_stddev_ms: 3532.60481149727
+PASS: All 1000 emails delivered
+PASS: SPF verification
+PASS: DKIM verification
+PASS: Both mail queues empty
+ALL BENCHMARK CHECKS COMPLETED
+===== FINAL CONTAINER STATUS =====
+NAME                           IMAGE                        COMMAND                  SERVICE        CREATED        STATUS          PORTS
+cn12-topology-client-alpha-1   cn12-nettools:local          "sh /lab/start.sh"       client-alpha   2 days ago     Up 59 minutes   
+cn12-topology-client-beta-1    cn12-nettools:local          "sh /lab/start.sh"       client-beta    2 days ago     Up 59 minutes   
+cn12-topology-dns-1            cn-mail-lab-dns:local        "sh -ec 'ip route re…"   dns            13 hours ago   Up 59 minutes   
+cn12-topology-mail-alpha-1     cn12-mail-alpha-imap:local   "sh /usr/local/bin/s…"   mail-alpha     12 hours ago   Up 59 minutes   
+cn12-topology-mail-beta-1      cn12-mail-beta-dkim:local    "sh /usr/local/bin/s…"   mail-beta      10 hours ago   Up 59 minutes   
+cn12-topology-r1-1             cn12-nettools:local          "sh /lab/start.sh"       r1             2 days ago     Up 59 minutes   
+cn12-topology-r2-1             cn12-nettools:local          "sh /lab/start.sh"       r2             2 days ago     Up 59 minutes   
+===== BENCHMARK EXECUTION COMPLETED =====
+===== SAVING FINAL NETWORK STATISTICS =====
+===== RESTORING NORMAL NETWORK =====
+r1:
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+r2:
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+PASS: Normal network restored
+PERFORMANCE TEST 11 RESULT: PASSED

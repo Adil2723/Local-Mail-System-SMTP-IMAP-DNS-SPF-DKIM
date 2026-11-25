@@ -1,0 +1,151 @@
+===== PERFORMANCE TEST 01 =====
+Baseline - Run 1 of 3
+Wed Nov 25 11:25:58 AM PKT 2026
+===== STARTING COMPLETE PROJECT =====
+ Container cn12-topology-mail-alpha-1 Running 
+ Container cn12-topology-r1-1 Running 
+ Container cn12-topology-r2-1 Running 
+ Container cn12-topology-client-alpha-1 Running 
+ Container cn12-topology-client-beta-1 Running 
+ Container cn12-topology-mail-beta-1 Running 
+ Container cn12-topology-dns-1 Running 
+PASS: r1 running
+PASS: r2 running
+PASS: dns running
+PASS: client-alpha running
+PASS: client-beta running
+PASS: mail-alpha running
+PASS: mail-beta running
+===== CHECKING BASELINE NETWORK =====
+r1:
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+r2:
+qdisc noqueue 0: dev lo root refcnt 2 
+qdisc noqueue 0: dev eth0 root refcnt 2 
+qdisc noqueue 0: dev eth1 root refcnt 2 
+PASS: No artificial network impairment detected
+===== MEASURING ACTUAL NETWORK RTT =====
+PING 10.10.2.10 (10.10.2.10) 56(84) bytes of data.
+64 bytes from 10.10.2.10: icmp_seq=1 ttl=62 time=2.61 ms
+64 bytes from 10.10.2.10: icmp_seq=2 ttl=62 time=0.094 ms
+64 bytes from 10.10.2.10: icmp_seq=3 ttl=62 time=0.066 ms
+64 bytes from 10.10.2.10: icmp_seq=4 ttl=62 time=0.240 ms
+64 bytes from 10.10.2.10: icmp_seq=5 ttl=62 time=0.078 ms
+64 bytes from 10.10.2.10: icmp_seq=6 ttl=62 time=0.098 ms
+64 bytes from 10.10.2.10: icmp_seq=7 ttl=62 time=0.088 ms
+64 bytes from 10.10.2.10: icmp_seq=8 ttl=62 time=0.144 ms
+64 bytes from 10.10.2.10: icmp_seq=9 ttl=62 time=0.058 ms
+64 bytes from 10.10.2.10: icmp_seq=10 ttl=62 time=0.073 ms
+
+--- 10.10.2.10 ping statistics ---
+10 packets transmitted, 10 received, 0% packet loss, time 9199ms
+rtt min/avg/max/mdev = 0.058/0.355/2.614/0.754 ms
+===== CHECKING SMTP WORKLOAD GENERATOR =====
+SMTP generator: /usr/sbin/smtp-source
+===== CHECKING DISK SPACE =====
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2        98G   49G   45G  53% /
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2        98G   49G   45G  53% /home/adil/Maildir
+===== STARTING BENCHMARK ENGINE =====
+
+========================================
+Pilot: 10 MESSAGES
+========================================
+PASS: Both mail queues empty
+Run identifier: CN12-Pilot-1795587986661963719
+SMTP submission completed
+Submission time: 0.894 s
+Delivered: 10/10
+
+===== BENCHMARK RESULTS =====
+experiment: Pilot
+network_condition: Baseline
+added_rtt_ms: 0
+started_utc: 2026-11-25T06:26:26.662127+00:00
+subject: CN12-Pilot-1795587986661963719
+messages_requested: 10
+messages_delivered: 10
+delivery_success_percent: 100.0
+parallel_sessions: 10
+payload_bytes: 1024
+submission_seconds: 0.8943192179999642
+submission_messages_per_second: 11.181689712945877
+observed_delivery_seconds: 1.927920677999964
+observed_delivery_messages_per_second: 5.18693539319992
+spf_pass: 10
+dkim_pass: 10
+spf_pass_percent: 100.0
+dkim_pass_percent: 100.0
+latency_samples: 10
+estimated_mean_latency_ms: 1134.1817
+estimated_latency_stddev_ms: 86.88239496142666
+PASS: All 10 emails delivered
+PASS: SPF verification
+PASS: DKIM verification
+PASS: Both mail queues empty
+
+PERFORMANCE PILOT RESULT: PASSED
+
+========================================
+Test-01: 1000 MESSAGES
+========================================
+PASS: Both mail queues empty
+Run identifier: CN12-Test-01-1795587991961015964
+SMTP submission completed
+Submission time: 25.947 s
+Delivered: 1000/1000
+
+===== BENCHMARK RESULTS =====
+experiment: Test-01
+network_condition: Baseline
+added_rtt_ms: 0
+started_utc: 2026-11-25T06:26:31.961024+00:00
+subject: CN12-Test-01-1795587991961015964
+messages_requested: 1000
+messages_delivered: 1000
+delivery_success_percent: 100.0
+parallel_sessions: 10
+payload_bytes: 1024
+submission_seconds: 25.946900831999983
+submission_messages_per_second: 38.540248273763495
+observed_delivery_seconds: 27.249810958000012
+observed_delivery_messages_per_second: 36.697502288778985
+spf_pass: 1000
+dkim_pass: 1000
+spf_pass_percent: 100.0
+dkim_pass_percent: 100.0
+latency_samples: 1000
+estimated_mean_latency_ms: 2026.617407
+estimated_latency_stddev_ms: 979.4634370100054
+PASS: All 1000 emails delivered
+PASS: SPF verification
+PASS: DKIM verification
+PASS: Both mail queues empty
+
+ALL TEST 01 CHECKS COMPLETED
+===== FINAL CONTAINER STATUS =====
+NAME                           IMAGE                        COMMAND                  SERVICE        CREATED        STATUS         PORTS
+cn12-topology-client-alpha-1   cn12-nettools:local          "sh /lab/start.sh"       client-alpha   2 days ago     Up 8 minutes   
+cn12-topology-client-beta-1    cn12-nettools:local          "sh /lab/start.sh"       client-beta    2 days ago     Up 8 minutes   
+cn12-topology-dns-1            cn-mail-lab-dns:local        "sh -ec 'ip route re…"   dns            12 hours ago   Up 8 minutes   
+cn12-topology-mail-alpha-1     cn12-mail-alpha-imap:local   "sh /usr/local/bin/s…"   mail-alpha     11 hours ago   Up 8 minutes   
+cn12-topology-mail-beta-1      cn12-mail-beta-dkim:local    "sh /usr/local/bin/s…"   mail-beta      10 hours ago   Up 8 minutes   
+cn12-topology-r1-1             cn12-nettools:local          "sh /lab/start.sh"       r1             2 days ago     Up 8 minutes   
+cn12-topology-r2-1             cn12-nettools:local          "sh /lab/start.sh"       r2             2 days ago     Up 8 minutes   
+===== SAVING POSTFIX LOGS =====
+===== SAVED EVIDENCE =====
+total 3.1M
+-rw------- 1 system system  782 Nov 25 11:26 Network_RTT.txt
+-rw------- 1 system system 1.4K Nov 25 11:26 Pilot_Messages.csv
+-rw------- 1 system system  620 Nov 25 11:26 Pilot_Metrics.csv
+-rw------- 1 system system  754 Nov 25 11:26 Pilot_Metrics.json
+-rw------- 1 system system 1.8M Nov 25 11:27 Postfix_Alpha.txt
+-rw------- 1 system system 1.2M Nov 25 11:27 Postfix_Beta.txt
+-rw------- 1 system system 5.3K Nov 25 11:27 Terminal_Log.txt
+-rw------- 1 system system 125K Nov 25 11:26 Test-01_Messages.csv
+-rw------- 1 system system  639 Nov 25 11:26 Test-01_Metrics.csv
+-rw------- 1 system system  773 Nov 25 11:26 Test-01_Metrics.json
+PERFORMANCE TEST 01 RESULT: PASSED

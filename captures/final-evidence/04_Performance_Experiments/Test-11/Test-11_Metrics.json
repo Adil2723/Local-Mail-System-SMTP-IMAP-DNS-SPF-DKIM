@@ -1,0 +1,23 @@
+{
+  "experiment": "Test-11",
+  "network_condition": "2Percent_Loss",
+  "added_rtt_ms": 0,
+  "started_utc": "2026-11-25T07:15:50.643086+00:00",
+  "subject": "CN12-Test-11-1795590950643005660",
+  "messages_requested": 1000,
+  "messages_delivered": 1000,
+  "delivery_success_percent": 100.0,
+  "parallel_sessions": 10,
+  "payload_bytes": 1024,
+  "submission_seconds": 25.465025745000275,
+  "submission_messages_per_second": 39.26954600453671,
+  "observed_delivery_seconds": 104.995051031,
+  "observed_delivery_messages_per_second": 9.524258431044982,
+  "spf_pass": 1000,
+  "dkim_pass": 1000,
+  "spf_pass_percent": 100.0,
+  "dkim_pass_percent": 100.0,
+  "latency_samples": 1000,
+  "estimated_mean_latency_ms": 7681.351739,
+  "estimated_latency_stddev_ms": 3532.60481149727
+}

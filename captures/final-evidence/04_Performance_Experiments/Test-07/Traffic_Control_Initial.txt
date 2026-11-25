@@ -1,0 +1,8 @@
+R1:
+qdisc netem 8007: root refcnt 5 limit 1000 delay 100ms
+ Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+R2:
+qdisc netem 8008: root refcnt 5 limit 1000 delay 100ms
+ Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0

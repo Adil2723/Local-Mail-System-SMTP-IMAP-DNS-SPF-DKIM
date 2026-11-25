@@ -1,0 +1,8 @@
+R1:
+qdisc tbf 8015: root refcnt 5 rate 1Mbit burst 16Kb lat 400ms 
+ Sent 2560551 bytes 8067 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+R2:
+qdisc tbf 8016: root refcnt 5 rate 1Mbit burst 16Kb lat 400ms 
+ Sent 667360 bytes 8104 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
