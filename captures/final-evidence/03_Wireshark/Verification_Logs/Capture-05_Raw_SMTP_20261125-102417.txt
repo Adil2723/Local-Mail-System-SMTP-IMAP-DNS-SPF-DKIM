@@ -1,0 +1,131 @@
+===== CAPTURE 05: RAW SMTP CONVERSATION =====
+Wed Nov 25 10:24:18 AM PKT 2026
+===== STARTING SMTP PACKET CAPTURE =====
+Capturing on 'eth0'
+File: -
+===== EXECUTING CUSTOM SMTP CLIENT =====
+S: 220 mail.alpha.lab ESMTP Postfix
+C: EHLO client-alpha.alpha.lab
+S: 250-mail.alpha.lab
+S: 250-PIPELINING
+S: 250-SIZE 10240000
+S: 250-VRFY
+S: 250-ETRN
+S: 250-STARTTLS
+S: 250-ENHANCEDSTATUSCODES
+S: 250-8BITMIME
+S: 250-DSN
+S: 250-SMTPUTF8
+S: 250 CHUNKING
+C: MAIL FROM:<zaid@alpha.lab>
+S: 250 2.1.0 Ok
+C: RCPT TO:<zaid@alpha.lab>
+S: 250 2.1.5 Ok
+C: DATA
+S: 354 End data with <CR><LF>.<CR><LF>
+C: [message data]
+S: 250 2.0.0 Ok: queued as D9F255606A3
+C: QUIT
+S: 221 2.0.0 Bye
+
+Packets captured: 23
+Packets received/dropped on interface 'eth0': 23/0 (pcap:0/dumpcap:0/flushed:0/ps_ifdrop:0) (100.0%)
+===== CAPTURE FILE INFORMATION =====
+File name:           /home/system/computer-networks-project/captures/02_packet_traces/Capture-05_Raw_SMTP_20261125-102417.pcapng
+File type:           Wireshark/... - pcapng
+File encapsulation:  Ethernet
+File timestamp precision:  nanoseconds (9)
+Packet size limit:   file hdr: (not set)
+Number of packets:   23
+File size:           3,416 bytes
+Data size:           2,251 bytes
+Capture duration:    0.351465857 seconds
+First packet time:   2026-11-25 10:24:21.681456657
+Last packet time:    2026-11-25 10:24:22.032922514
+Data byte rate:      6,404 bytes/s
+Data bit rate:       51 kbps
+Average packet size: 97.87 bytes
+Average packet rate: 65 packets/s
+SHA256:              353d419f8faf7543d947e870cd8df85208a785050bbf6e98eeb812a9051630e2
+SHA1:                da54b0a46b14048e0acd91bbe973611bdbf62b96
+Strict time order:   True
+Capture hardware:    12th Gen Intel(R) Core(TM) i5-1235U (with SSE4.2)
+Capture oper-sys:    Linux 6.17.0-23-generic
+Capture application: Dumpcap (Wireshark) 4.2.2 (Git v4.2.2 packaged as 4.2.2-1.1build3)
+Number of interfaces in file: 1
+Interface #0 info:
+                     Name = eth0
+                     Encapsulation = Ethernet (1 - ether)
+                     Capture length = 262144
+                     Time precision = nanoseconds (9)
+                     Time ticks per second = 1000000000
+                     Time resolution = 0x09
+                     Filter string = tcp port 25 and host 10.10.1.10
+                     Operating system = Linux 6.17.0-23-generic
+                     Number of stat entries = 1
+                     Number of packets = 23
+===== ANALYZING SMTP PACKETS =====
+    4 0.158751324   10.10.1.10 → 10.10.1.20   SMTP 100 S: 220 mail.alpha.lab ESMTP Postfix
+    6 0.159642098   10.10.1.20 → 10.10.1.10   SMTP 95 C: EHLO client-alpha.alpha.lab
+    8 0.160035687   10.10.1.10 → 10.10.1.20   SMTP 231 S: 250-mail.alpha.lab | PIPELINING | SIZE 10240000 | VRFY | ETRN | STARTTLS | ENHANCEDSTATUSCODES | 8BITMIME | DSN | SMTPUTF8 | CHUNKING
+    9 0.160832169   10.10.1.20 → 10.10.1.10   SMTP 94 C: MAIL FROM:<zaid@alpha.lab>
+   10 0.188493092   10.10.1.10 → 10.10.1.20   SMTP 80 S: 250 2.1.0 Ok
+   11 0.189260600   10.10.1.20 → 10.10.1.10   SMTP 92 C: RCPT TO:<zaid@alpha.lab>
+   12 0.212883279   10.10.1.10 → 10.10.1.20   SMTP 80 S: 250 2.1.5 Ok
+   13 0.213861737   10.10.1.20 → 10.10.1.10   SMTP 72 C: DATA
+   14 0.221126069   10.10.1.10 → 10.10.1.20   SMTP 103 S: 354 End data with <CR><LF>.<CR><LF>
+   15 0.222405811   10.10.1.20 → 10.10.1.10   SMTP/IMF 372 from: zaid@alpha.lab, subject: Python SMTP test,  (text/plain) | .
+   17 0.349970723   10.10.1.10 → 10.10.1.20   SMTP 103 S: 250 2.0.0 Ok: queued as D9F255606A3
+   18 0.350364813   10.10.1.20 → 10.10.1.10   SMTP 72 C: QUIT
+   20 0.350833507   10.10.1.10 → 10.10.1.20   SMTP 81 S: 221 2.0.0 Bye
+===== VERIFYING SMTP COMMANDS =====
+
+EHLO
+
+MAIL
+
+RCPT
+
+DATA
+
+
+
+QUIT
+EHLO
+PASS: EHLO command captured
+MAIL
+PASS: MAIL command captured
+RCPT
+PASS: RCPT command captured
+DATA
+PASS: DATA command captured
+QUIT
+PASS: QUIT command captured
+===== VERIFYING SMTP RESPONSE CODES =====
+220
+
+250
+
+250
+
+250
+
+354
+
+250
+
+221
+220
+PASS: SMTP response 220 captured
+250
+250
+250
+250
+PASS: SMTP response 250 captured
+354
+PASS: SMTP response 354 captured
+221
+PASS: SMTP response 221 captured
+PASS: All mandatory SMTP commands captured
+PASS: Raw SMTP conversation verified
+CAPTURE 05 RESULT: PASSED

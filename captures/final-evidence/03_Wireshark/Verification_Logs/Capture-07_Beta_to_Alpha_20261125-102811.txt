@@ -1,0 +1,157 @@
+===== CAPTURE 07: BETA TO ALPHA SMTP =====
+Wed Nov 25 10:28:11 AM PKT 2026
+===== STARTING SERVER-TO-SERVER CAPTURE =====
+Capturing on 'eth0'
+File: -
+===== SENDING EMAIL FROM ADIL TO ZAID =====
+send: 'ehlo mail.beta.lab\r\n'
+reply: b'250-mail.beta.lab\r\n'
+reply: b'250-PIPELINING\r\n'
+reply: b'250-SIZE 10240000\r\n'
+reply: b'250-VRFY\r\n'
+reply: b'250-ETRN\r\n'
+reply: b'250-ENHANCEDSTATUSCODES\r\n'
+reply: b'250-8BITMIME\r\n'
+reply: b'250-DSN\r\n'
+reply: b'250 CHUNKING\r\n'
+reply: retcode (250); Msg: b'mail.beta.lab\nPIPELINING\nSIZE 10240000\nVRFY\nETRN\nENHANCEDSTATUSCODES\n8BITMIME\nDSN\nCHUNKING'
+send: 'mail FROM:<adil@beta.lab> size=314\r\n'
+reply: b'250 2.1.0 Ok\r\n'
+reply: retcode (250); Msg: b'2.1.0 Ok'
+send: 'rcpt TO:<zaid@alpha.lab>\r\n'
+reply: b'250 2.1.5 Ok\r\n'
+reply: retcode (250); Msg: b'2.1.5 Ok'
+send: 'data\r\n'
+reply: b'354 End data with <CR><LF>.<CR><LF>\r\n'
+reply: retcode (354); Msg: b'End data with <CR><LF>.<CR><LF>'
+data: (354, b'End data with <CR><LF>.<CR><LF>')
+send: b'From: adil@beta.lab\r\nTo: zaid@alpha.lab\r\nSubject: Capture 07 - Reverse SMTP Delivery\r\nMessage-ID: <capture07-1795584493829831384@beta.lab>\r\nDate: Wed, 25 Nov 2026 05:28:14 +0000\r\nContent-Type: text/plain; charset="utf-8"\r\nContent-Transfer-Encoding: 7bit\r\nMIME-Version: 1.0\r\n\r\nWireshark reverse SMTP verification.\r\n.\r\n'
+reply: b'250 2.0.0 Ok: queued as B14E55606A3\r\n'
+reply: retcode (250); Msg: b'2.0.0 Ok: queued as B14E55606A3'
+data: (250, b'2.0.0 Ok: queued as B14E55606A3')
+send: 'QUIT\r\n'
+reply: b'221 2.0.0 Bye\r\n'
+reply: retcode (221); Msg: b'2.0.0 Bye'
+PASS: Beta Postfix accepted email
+Message-ID: <capture07-1795584493829831384@beta.lab>
+
+Packets captured: 16
+Packets received/dropped on interface 'eth0': 16/0 (pcap:0/dumpcap:0/flushed:0/ps_ifdrop:0) (100.0%)
+===== CAPTURE FILE INFORMATION =====
+File name:           /home/system/computer-networks-project/captures/02_packet_traces/Capture-07_Beta_to_Alpha_20261125-102811.pcapng
+File type:           Wireshark/... - pcapng
+File encapsulation:  Ethernet
+File timestamp precision:  nanoseconds (9)
+Packet size limit:   file hdr: (not set)
+Number of packets:   16
+File size:           2,956 bytes
+Data size:           1,996 bytes
+Capture duration:    0.109950492 seconds
+First packet time:   2026-11-25 10:28:14.866048175
+Last packet time:    2026-11-25 10:28:14.975998667
+Data byte rate:      18 kBps
+Data bit rate:       145 kbps
+Average packet size: 124.75 bytes
+Average packet rate: 145 packets/s
+SHA256:              eb291d427cb29590577bde0283c2c9e43444ac6d3cfe704da444f8b3f668dc9a
+SHA1:                62e602eaee09fa382dff618a43523c956e2f1e0d
+Strict time order:   True
+Capture hardware:    12th Gen Intel(R) Core(TM) i5-1235U (with SSE4.2)
+Capture oper-sys:    Linux 6.17.0-23-generic
+Capture application: Dumpcap (Wireshark) 4.2.2 (Git v4.2.2 packaged as 4.2.2-1.1build3)
+Number of interfaces in file: 1
+Interface #0 info:
+                     Name = eth0
+                     Encapsulation = Ethernet (1 - ether)
+                     Capture length = 262144
+                     Time precision = nanoseconds (9)
+                     Time ticks per second = 1000000000
+                     Time resolution = 0x09
+                     Filter string = tcp port 25 and host 10.10.2.10 and host 10.10.1.10
+                     Operating system = Linux 6.17.0-23-generic
+                     Number of stat entries = 1
+                     Number of packets = 16
+===== ANALYZING SMTP PACKETS =====
+    4 0.031471772   10.10.1.10 → 10.10.2.10   SMTP 100 S: 220 mail.alpha.lab ESMTP Postfix
+    6 0.032742032   10.10.2.10 → 10.10.1.10   SMTP 86 C: EHLO mail.beta.lab
+    8 0.033140079   10.10.1.10 → 10.10.2.10   SMTP 231 S: 250-mail.alpha.lab | PIPELINING | SIZE 10240000 | VRFY | ETRN | STARTTLS | ENHANCEDSTATUSCODES | 8BITMIME | DSN | SMTPUTF8 | CHUNKING
+    9 0.033366758   10.10.2.10 → 10.10.1.10   SMTP 162 C: MAIL FROM:<adil@beta.lab> SIZE=517 | RCPT TO:<zaid@alpha.lab> ORCPT=rfc822;zaid@alpha.lab | DATA
+   10 0.045181349   10.10.1.10 → 10.10.2.10   SMTP 131 S: 250 2.1.0 Ok | 250 2.1.5 Ok | 354 End data with <CR><LF>.<CR><LF>
+   11 0.045428217   10.10.2.10 → 10.10.1.10   SMTP/IMF 558 from: adil@beta.lab, subject: Capture 07 - Reverse SMTP Delivery,  (text/plain) | . | QUIT
+   13 0.107713977   10.10.1.10 → 10.10.2.10   SMTP 118 S: 250 2.0.0 Ok: queued as DDAAE5606A5 | 221 2.0.0 Bye
+===== VERIFYING NETWORK DIRECTIONS =====
+Beta-to-Alpha packets: 8
+Alpha-to-Beta response packets: 8
+PASS: Bidirectional SMTP transport captured
+===== VERIFYING SMTP COMMANDS =====
+
+EHLO
+
+MAIL,RCPT,DATA
+
+QUIT
+EHLO
+PASS: EHLO command captured
+MAIL
+PASS: MAIL command captured
+RCPT
+PASS: RCPT command captured
+DATA
+PASS: DATA command captured
+QUIT
+PASS: QUIT command captured
+===== VERIFYING ALPHA SMTP RESPONSES =====
+220
+250
+250,250,354
+250,221
+220
+PASS: Alpha SMTP response 220 captured
+250
+250
+250
+250
+PASS: Alpha SMTP response 250 captured
+354
+PASS: Alpha SMTP response 354 captured
+221
+PASS: Alpha SMTP response 221 captured
+===== VERIFYING ACTUAL ALPHA MAILDIR DELIVERY =====
+From: adil@beta.lab
+To: zaid@alpha.lab
+Subject: Capture 07 - Reverse SMTP Delivery
+Message-ID: <capture07-1795584493829831384@beta.lab>
+PASS: Matching email delivered to Alpha Maildir
+===== RECENT POSTFIX LOGS =====
+mail-alpha-1  | Nov 25 05:26:48 mail postfix/smtpd[124]: connect from cn12-topology-client-alpha-1.cn12-topology_alpha[10.10.1.20]
+mail-alpha-1  | Nov 25 05:26:48 mail postfix/smtpd[124]: 3B3795606A3: client=cn12-topology-client-alpha-1.cn12-topology_alpha[10.10.1.20]
+mail-alpha-1  | Nov 25 05:26:48 mail postfix/cleanup[128]: 3B3795606A3: message-id=<179558440815.70.1631446681198929840@alpha.lab>
+mail-alpha-1  | Nov 25 05:26:48 mail postfix/smtpd[124]: disconnect from cn12-topology-client-alpha-1.cn12-topology_alpha[10.10.1.20] ehlo=1 mail=1 rcpt=1 data=1 quit=1 commands=5
+mail-alpha-1  | Nov 25 05:26:48 mail postfix/qmgr[115]: 3B3795606A3: from=<zaid@alpha.lab>, size=555, nrcpt=1 (queue active)
+mail-alpha-1  | Nov 25 05:26:48 mail postfix/smtp[129]: 3B3795606A3: to=<adil@beta.lab>, relay=mail.beta.lab[10.10.2.10]:25, delay=0.75, delays=0.12/0.03/0.17/0.43, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as D15CC5606A5)
+mail-alpha-1  | Nov 25 05:26:48 mail postfix/qmgr[115]: 3B3795606A3: removed
+mail-alpha-1  | Nov 25 05:28:14 mail postfix/smtpd[124]: connect from unknown[10.10.2.10]
+mail-alpha-1  | Nov 25 05:28:14 mail postfix/smtpd[124]: DDAAE5606A5: client=unknown[10.10.2.10]
+mail-alpha-1  | Nov 25 05:28:14 mail postfix/cleanup[128]: DDAAE5606A5: message-id=<capture07-1795584493829831384@beta.lab>
+mail-alpha-1  | Nov 25 05:28:14 mail postfix/qmgr[115]: DDAAE5606A5: from=<adil@beta.lab>, size=688, nrcpt=1 (queue active)
+mail-alpha-1  | Nov 25 05:28:14 mail postfix/smtpd[124]: disconnect from unknown[10.10.2.10] ehlo=1 mail=1 rcpt=1 data=1 quit=1 commands=5
+mail-alpha-1  | Nov 25 05:28:15 mail postfix/local[131]: DDAAE5606A5: to=<zaid@alpha.lab>, relay=local, delay=0.1, delays=0.07/0.02/0/0.01, dsn=2.0.0, status=sent (delivered to maildir)
+mail-alpha-1  | Nov 25 05:28:15 mail postfix/qmgr[115]: DDAAE5606A5: removed
+mail-beta-1   | Nov 25 05:26:48 mail postfix/smtpd[192]: warning: dict_nis_init: NIS domain name not set - NIS lookups disabled
+mail-beta-1   | Nov 25 05:26:48 mail postfix/smtpd[192]: connect from unknown[10.10.1.10]
+mail-beta-1   | Nov 25 05:26:48 mail postfix/smtpd[192]: D15CC5606A5: client=unknown[10.10.1.10]
+mail-beta-1   | Nov 25 05:26:48 mail postfix/cleanup[199]: D15CC5606A5: message-id=<179558440815.70.1631446681198929840@alpha.lab>
+mail-beta-1   | Nov 25 05:26:48 mail postfix/smtpd[192]: disconnect from unknown[10.10.1.10] ehlo=1 mail=1 rcpt=1 data=1 quit=1 commands=5
+mail-beta-1   | Nov 25 05:26:48 mail postfix/qmgr[190]: D15CC5606A5: from=<zaid@alpha.lab>, size=1404, nrcpt=1 (queue active)
+mail-beta-1   | Nov 25 05:26:48 mail postfix/local[201]: warning: dict_nis_init: NIS domain name not set - NIS lookups disabled
+mail-beta-1   | Nov 25 05:26:49 mail postfix/local[201]: D15CC5606A5: to=<adil@beta.lab>, relay=local, delay=0.43, delays=0.41/0.01/0/0.01, dsn=2.0.0, status=sent (delivered to maildir)
+mail-beta-1   | Nov 25 05:26:49 mail postfix/qmgr[190]: D15CC5606A5: removed
+mail-beta-1   | Nov 25 05:28:14 mail postfix/smtpd[192]: connect from unknown[127.0.0.1]
+mail-beta-1   | Nov 25 05:28:14 mail postfix/smtpd[192]: B14E55606A3: client=unknown[127.0.0.1]
+mail-beta-1   | Nov 25 05:28:14 mail postfix/cleanup[199]: B14E55606A3: message-id=<capture07-1795584493829831384@beta.lab>
+mail-beta-1   | Nov 25 05:28:14 mail postfix/smtpd[192]: disconnect from unknown[127.0.0.1] ehlo=1 mail=1 rcpt=1 data=1 quit=1 commands=5
+mail-beta-1   | Nov 25 05:28:14 mail postfix/qmgr[190]: B14E55606A3: from=<adil@beta.lab>, size=517, nrcpt=1 (queue active)
+mail-beta-1   | Nov 25 05:28:14 mail postfix/smtp[208]: B14E55606A3: to=<zaid@alpha.lab>, relay=mail.alpha.lab[10.10.1.10]:25, delay=0.26, delays=0.07/0.07/0.04/0.07, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as DDAAE5606A5)
+mail-beta-1   | Nov 25 05:28:14 mail postfix/qmgr[190]: B14E55606A3: removed
+PASS: Beta-to-Alpha SMTP packet exchange verified
+CAPTURE 07 RESULT: PASSED

@@ -1,0 +1,130 @@
+===== CAPTURE 06: ALPHA TO BETA SMTP =====
+Wed Nov 25 10:26:44 AM PKT 2026
+===== STARTING SERVER-TO-SERVER CAPTURE =====
+Capturing on 'eth0'
+File: -
+===== SENDING EMAIL FROM ZAID TO ADIL =====
+S: 220 mail.alpha.lab ESMTP Postfix
+C: EHLO client-alpha.alpha.lab
+S: 250-mail.alpha.lab
+S: 250-PIPELINING
+S: 250-SIZE 10240000
+S: 250-VRFY
+S: 250-ETRN
+S: 250-STARTTLS
+S: 250-ENHANCEDSTATUSCODES
+S: 250-8BITMIME
+S: 250-DSN
+S: 250-SMTPUTF8
+S: 250 CHUNKING
+C: MAIL FROM:<zaid@alpha.lab>
+S: 250 2.1.0 Ok
+C: RCPT TO:<adil@beta.lab>
+S: 250 2.1.5 Ok
+C: DATA
+S: 354 End data with <CR><LF>.<CR><LF>
+C: [message data]
+S: 250 2.0.0 Ok: queued as 3B3795606A3
+C: QUIT
+S: 221 2.0.0 Bye
+
+Packets captured: 17
+Packets received/dropped on interface 'eth0': 17/0 (pcap:0/dumpcap:0/flushed:0/ps_ifdrop:0) (100.0%)
+===== CAPTURE FILE INFORMATION =====
+File name:           /home/system/computer-networks-project/captures/02_packet_traces/Capture-06_Alpha_to_Beta_20261125-102644.pcapng
+File type:           Wireshark/... - pcapng
+File encapsulation:  Ethernet
+File timestamp precision:  nanoseconds (9)
+Packet size limit:   file hdr: (not set)
+Number of packets:   17
+File size:           3,600 bytes
+Data size:           2,606 bytes
+Capture duration:    0.551306267 seconds
+First packet time:   2026-11-25 10:26:48.431123027
+Last packet time:    2026-11-25 10:26:48.982429294
+Data byte rate:      4,726 bytes/s
+Data bit rate:       37 kbps
+Average packet size: 153.29 bytes
+Average packet rate: 30 packets/s
+SHA256:              2ea3246c72ba97ebca210e1bdd7d53baf3ac05a35949eddd7ad773c957caca96
+SHA1:                d087a4d7735fb5a62a9fe162a01fdaf16a8a0cbd
+Strict time order:   True
+Capture hardware:    12th Gen Intel(R) Core(TM) i5-1235U (with SSE4.2)
+Capture oper-sys:    Linux 6.17.0-23-generic
+Capture application: Dumpcap (Wireshark) 4.2.2 (Git v4.2.2 packaged as 4.2.2-1.1build3)
+Number of interfaces in file: 1
+Interface #0 info:
+                     Name = eth0
+                     Encapsulation = Ethernet (1 - ether)
+                     Capture length = 262144
+                     Time precision = nanoseconds (9)
+                     Time ticks per second = 1000000000
+                     Time resolution = 0x09
+                     Filter string = tcp port 25 and host 10.10.1.10 and host 10.10.2.10
+                     Operating system = Linux 6.17.0-23-generic
+                     Number of stat entries = 1
+                     Number of packets = 17
+===== ANALYZING SERVER-TO-SERVER PACKETS =====
+    4 0.115652975   10.10.2.10 → 10.10.1.10   SMTP 99 S: 220 mail.beta.lab ESMTP Postfix
+    6 0.115746251   10.10.1.10 → 10.10.2.10   SMTP 87 C: EHLO mail.alpha.lab
+    8 0.115819284   10.10.2.10 → 10.10.1.10   SMTP 202 S: 250-mail.beta.lab | PIPELINING | SIZE 10240000 | VRFY | ETRN | ENHANCEDSTATUSCODES | 8BITMIME | DSN | CHUNKING
+    9 0.115866908   10.10.1.10 → 10.10.2.10   SMTP 161 C: MAIL FROM:<zaid@alpha.lab> SIZE=555 | RCPT TO:<adil@beta.lab> ORCPT=rfc822;adil@beta.lab | DATA
+   11 0.432215417   10.10.2.10 → 10.10.1.10   SMTP 131 S: 250 2.1.0 Ok | 250 2.1.5 Ok | 354 End data with <CR><LF>.<CR><LF>
+   12 0.432425668   10.10.1.10 → 10.10.2.10   SMTP/IMF 1132 from: zaid@alpha.lab, subject: Python SMTP test,  (text/plain) | . | QUIT
+   14 0.549927881   10.10.2.10 → 10.10.1.10   SMTP 118 S: 250 2.0.0 Ok: queued as D15CC5606A5 | 221 2.0.0 Bye
+===== VERIFYING FORWARD AND REVERSE PACKETS =====
+Alpha-to-Beta packets: 7
+Beta-to-Alpha response packets: 10
+PASS: Bidirectional SMTP transport captured
+===== VERIFYING SMTP COMMANDS =====
+
+EHLO
+
+MAIL,RCPT,DATA
+
+QUIT
+EHLO
+PASS: EHLO command captured
+MAIL
+PASS: MAIL command captured
+RCPT
+PASS: RCPT command captured
+DATA
+PASS: DATA command captured
+QUIT
+PASS: QUIT command captured
+===== VERIFYING BETA SMTP RESPONSES =====
+220
+250
+250,250,354
+250,221
+220
+PASS: Beta SMTP response 220 captured
+250
+250
+250
+250
+PASS: Beta SMTP response 250 captured
+354
+PASS: Beta SMTP response 354 captured
+221
+PASS: Beta SMTP response 221 captured
+===== RECENT MAIL DELIVERY LOGS =====
+mail-alpha-1  | Nov 25 05:26:48 mail postfix/smtpd[124]: connect from cn12-topology-client-alpha-1.cn12-topology_alpha[10.10.1.20]
+mail-alpha-1  | Nov 25 05:26:48 mail postfix/smtpd[124]: 3B3795606A3: client=cn12-topology-client-alpha-1.cn12-topology_alpha[10.10.1.20]
+mail-alpha-1  | Nov 25 05:26:48 mail postfix/cleanup[128]: 3B3795606A3: message-id=<179558440815.70.1631446681198929840@alpha.lab>
+mail-alpha-1  | Nov 25 05:26:48 mail postfix/smtpd[124]: disconnect from cn12-topology-client-alpha-1.cn12-topology_alpha[10.10.1.20] ehlo=1 mail=1 rcpt=1 data=1 quit=1 commands=5
+mail-alpha-1  | Nov 25 05:26:48 mail postfix/qmgr[115]: 3B3795606A3: from=<zaid@alpha.lab>, size=555, nrcpt=1 (queue active)
+mail-alpha-1  | Nov 25 05:26:48 mail postfix/smtp[129]: 3B3795606A3: to=<adil@beta.lab>, relay=mail.beta.lab[10.10.2.10]:25, delay=0.75, delays=0.12/0.03/0.17/0.43, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as D15CC5606A5)
+mail-alpha-1  | Nov 25 05:26:48 mail postfix/qmgr[115]: 3B3795606A3: removed
+mail-beta-1   | Nov 25 05:26:48 mail postfix/smtpd[192]: warning: dict_nis_init: NIS domain name not set - NIS lookups disabled
+mail-beta-1   | Nov 25 05:26:48 mail postfix/smtpd[192]: connect from unknown[10.10.1.10]
+mail-beta-1   | Nov 25 05:26:48 mail postfix/smtpd[192]: D15CC5606A5: client=unknown[10.10.1.10]
+mail-beta-1   | Nov 25 05:26:48 mail postfix/cleanup[199]: D15CC5606A5: message-id=<179558440815.70.1631446681198929840@alpha.lab>
+mail-beta-1   | Nov 25 05:26:48 mail postfix/smtpd[192]: disconnect from unknown[10.10.1.10] ehlo=1 mail=1 rcpt=1 data=1 quit=1 commands=5
+mail-beta-1   | Nov 25 05:26:48 mail postfix/qmgr[190]: D15CC5606A5: from=<zaid@alpha.lab>, size=1404, nrcpt=1 (queue active)
+mail-beta-1   | Nov 25 05:26:48 mail postfix/local[201]: warning: dict_nis_init: NIS domain name not set - NIS lookups disabled
+mail-beta-1   | Nov 25 05:26:49 mail postfix/local[201]: D15CC5606A5: to=<adil@beta.lab>, relay=local, delay=0.43, delays=0.41/0.01/0/0.01, dsn=2.0.0, status=sent (delivered to maildir)
+mail-beta-1   | Nov 25 05:26:49 mail postfix/qmgr[190]: D15CC5606A5: removed
+PASS: Alpha-to-Beta SMTP packet exchange verified
+CAPTURE 06 RESULT: PASSED

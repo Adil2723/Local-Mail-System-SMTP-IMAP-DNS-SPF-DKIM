@@ -1,0 +1,106 @@
+===== CAPTURE 02: TRACEROUTE =====
+Wed Nov 25 10:16:32 AM PKT 2026
+===== STARTING PACKET CAPTURE =====
+Capturing on 'eth0'
+File: -
+===== EXECUTING TRACEROUTE =====
+traceroute to 10.10.2.10 (10.10.2.10), 8 hops max, 60 byte packets
+ 1  10.10.1.254  1.182 ms  0.015 ms  0.004 ms
+ 2  10.10.0.12  0.784 ms  0.016 ms  0.006 ms
+ 3  10.10.2.10  0.341 ms  0.011 ms  0.007 ms
+
+Packets captured: 44
+Packets received/dropped on interface 'eth0': 44/0 (pcap:0/dumpcap:0/flushed:0/ps_ifdrop:0) (100.0%)
+===== VERIFYING ROUTER HOPS =====
+ 1  10.10.1.254  1.182 ms  0.015 ms  0.004 ms
+PASS: Expected hop 10.10.1.254 verified
+ 2  10.10.0.12  0.784 ms  0.016 ms  0.006 ms
+PASS: Expected hop 10.10.0.12 verified
+ 3  10.10.2.10  0.341 ms  0.011 ms  0.007 ms
+PASS: Expected hop 10.10.2.10 verified
+===== CAPTURE FILE INFORMATION =====
+File name:           /home/system/computer-networks-project/captures/02_packet_traces/Capture-02_Traceroute_20261125-101632.pcapng
+File type:           Wireshark/... - pcapng
+File encapsulation:  Ethernet
+File timestamp precision:  nanoseconds (9)
+Packet size limit:   file hdr: (not set)
+Number of packets:   44
+File size:           5,316 bytes
+Data size:           3,424 bytes
+Capture duration:    0.001806402 seconds
+First packet time:   2026-11-25 10:16:34.813216454
+Last packet time:    2026-11-25 10:16:34.815022856
+Data byte rate:      1,895 kBps
+Data bit rate:       15 Mbps
+Average packet size: 77.82 bytes
+Average packet rate: 24 kpackets/s
+SHA256:              d2df4f78a486ca5d0b50fe9b3cca0cc1c5bbf5cdf77a7cd35609034c843cbb2f
+SHA1:                72da6956d6a563fc350a8d5cce1088f44a86d5b4
+Strict time order:   True
+Capture hardware:    12th Gen Intel(R) Core(TM) i5-1235U (with SSE4.2)
+Capture oper-sys:    Linux 6.17.0-23-generic
+Capture application: Dumpcap (Wireshark) 4.2.2 (Git v4.2.2 packaged as 4.2.2-1.1build3)
+Number of interfaces in file: 1
+Interface #0 info:
+                     Name = eth0
+                     Encapsulation = Ethernet (1 - ether)
+                     Capture length = 262144
+                     Time precision = nanoseconds (9)
+                     Time ticks per second = 1000000000
+                     Time resolution = 0x09
+                     Filter string = icmp and host 10.10.1.20
+                     Operating system = Linux 6.17.0-23-generic
+                     Number of stat entries = 1
+                     Number of packets = 44
+===== ANALYZING CAPTURED PACKETS =====
+    1 0.000000000   10.10.1.20 → 10.10.2.10   ICMP 74 Echo (ping) request  id=0x0009, seq=1/256, ttl=1
+    2 0.000413151  10.10.1.254 → 10.10.1.20   ICMP 102 Time-to-live exceeded (Time to live exceeded in transit)
+    3 0.000458642   10.10.1.20 → 10.10.2.10   ICMP 74 Echo (ping) request  id=0x0009, seq=2/512, ttl=1
+    4 0.000466494  10.10.1.254 → 10.10.1.20   ICMP 102 Time-to-live exceeded (Time to live exceeded in transit)
+    5 0.000470036   10.10.1.20 → 10.10.2.10   ICMP 74 Echo (ping) request  id=0x0009, seq=3/768, ttl=1
+    6 0.000472951  10.10.1.254 → 10.10.1.20   ICMP 102 Time-to-live exceeded (Time to live exceeded in transit)
+    7 0.000481919   10.10.1.20 → 10.10.2.10   ICMP 74 Echo (ping) request  id=0x0009, seq=4/1024, ttl=2
+    8 0.001264897   10.10.0.12 → 10.10.1.20   ICMP 102 Time-to-live exceeded (Time to live exceeded in transit)
+    9 0.001294088   10.10.1.20 → 10.10.2.10   ICMP 74 Echo (ping) request  id=0x0009, seq=5/1280, ttl=2
+   10 0.001305394   10.10.0.12 → 10.10.1.20   ICMP 102 Time-to-live exceeded (Time to live exceeded in transit)
+   11 0.001308377   10.10.1.20 → 10.10.2.10   ICMP 74 Echo (ping) request  id=0x0009, seq=6/1536, ttl=2
+   12 0.001313019   10.10.0.12 → 10.10.1.20   ICMP 102 Time-to-live exceeded (Time to live exceeded in transit)
+   13 0.001315985   10.10.1.20 → 10.10.2.10   ICMP 74 Echo (ping) request  id=0x0009, seq=7/1792, ttl=3
+   14 0.001656354   10.10.2.10 → 10.10.1.20   ICMP 74 Echo (ping) reply    id=0x0009, seq=7/1792, ttl=62 (request in 13)
+   15 0.001665395   10.10.1.20 → 10.10.2.10   ICMP 74 Echo (ping) request  id=0x0009, seq=8/2048, ttl=3
+   16 0.001673369   10.10.2.10 → 10.10.1.20   ICMP 74 Echo (ping) reply    id=0x0009, seq=8/2048, ttl=62 (request in 15)
+   17 0.001675544   10.10.1.20 → 10.10.2.10   ICMP 74 Echo (ping) request  id=0x0009, seq=9/2304, ttl=3
+   18 0.001681141   10.10.2.10 → 10.10.1.20   ICMP 74 Echo (ping) reply    id=0x0009, seq=9/2304, ttl=62 (request in 17)
+   19 0.001684162   10.10.1.20 → 10.10.2.10   ICMP 74 Echo (ping) request  id=0x0009, seq=10/2560, ttl=4
+   20 0.001689580   10.10.2.10 → 10.10.1.20   ICMP 74 Echo (ping) reply    id=0x0009, seq=10/2560, ttl=62 (request in 19)
+   21 0.001691674   10.10.1.20 → 10.10.2.10   ICMP 74 Echo (ping) request  id=0x0009, seq=11/2816, ttl=4
+   22 0.001697819   10.10.2.10 → 10.10.1.20   ICMP 74 Echo (ping) reply    id=0x0009, seq=11/2816, ttl=62 (request in 21)
+   23 0.001699585   10.10.1.20 → 10.10.2.10   ICMP 74 Echo (ping) request  id=0x0009, seq=12/3072, ttl=4
+   24 0.001704563   10.10.2.10 → 10.10.1.20   ICMP 74 Echo (ping) reply    id=0x0009, seq=12/3072, ttl=62 (request in 23)
+   25 0.001706642   10.10.1.20 → 10.10.2.10   ICMP 74 Echo (ping) request  id=0x0009, seq=13/3328, ttl=5
+   26 0.001711655   10.10.2.10 → 10.10.1.20   ICMP 74 Echo (ping) reply    id=0x0009, seq=13/3328, ttl=62 (request in 25)
+   27 0.001713932   10.10.1.20 → 10.10.2.10   ICMP 74 Echo (ping) request  id=0x0009, seq=14/3584, ttl=5
+   28 0.001719387   10.10.2.10 → 10.10.1.20   ICMP 74 Echo (ping) reply    id=0x0009, seq=14/3584, ttl=62 (request in 27)
+   29 0.001721210   10.10.1.20 → 10.10.2.10   ICMP 74 Echo (ping) request  id=0x0009, seq=15/3840, ttl=5
+   30 0.001726189   10.10.2.10 → 10.10.1.20   ICMP 74 Echo (ping) reply    id=0x0009, seq=15/3840, ttl=62 (request in 29)
+   31 0.001728259   10.10.1.20 → 10.10.2.10   ICMP 74 Echo (ping) request  id=0x0009, seq=16/4096, ttl=6
+   32 0.001734711   10.10.2.10 → 10.10.1.20   ICMP 74 Echo (ping) reply    id=0x0009, seq=16/4096, ttl=62 (request in 31)
+   33 0.001757821   10.10.1.20 → 10.10.2.10   ICMP 74 Echo (ping) request  id=0x0009, seq=17/4352, ttl=6
+   34 0.001762742   10.10.2.10 → 10.10.1.20   ICMP 74 Echo (ping) reply    id=0x0009, seq=17/4352, ttl=62 (request in 33)
+   35 0.001767820   10.10.1.20 → 10.10.2.10   ICMP 74 Echo (ping) request  id=0x0009, seq=18/4608, ttl=6
+   36 0.001772685   10.10.2.10 → 10.10.1.20   ICMP 74 Echo (ping) reply    id=0x0009, seq=18/4608, ttl=62 (request in 35)
+   37 0.001776390   10.10.1.20 → 10.10.2.10   ICMP 74 Echo (ping) request  id=0x0009, seq=19/4864, ttl=7
+   38 0.001781175   10.10.2.10 → 10.10.1.20   ICMP 74 Echo (ping) reply    id=0x0009, seq=19/4864, ttl=62 (request in 37)
+   39 0.001785035   10.10.1.20 → 10.10.2.10   ICMP 74 Echo (ping) request  id=0x0009, seq=20/5120, ttl=7
+   40 0.001789948   10.10.2.10 → 10.10.1.20   ICMP 74 Echo (ping) reply    id=0x0009, seq=20/5120, ttl=62 (request in 39)
+   41 0.001793273   10.10.1.20 → 10.10.2.10   ICMP 74 Echo (ping) request  id=0x0009, seq=21/5376, ttl=7
+   42 0.001798116   10.10.2.10 → 10.10.1.20   ICMP 74 Echo (ping) reply    id=0x0009, seq=21/5376, ttl=62 (request in 41)
+   43 0.001801623   10.10.1.20 → 10.10.2.10   ICMP 74 Echo (ping) request  id=0x0009, seq=22/5632, ttl=8
+   44 0.001806402   10.10.2.10 → 10.10.1.20   ICMP 74 Echo (ping) reply    id=0x0009, seq=22/5632, ttl=62 (request in 43)
+Router R1 Time Exceeded packets: 3
+Router R2 Time Exceeded packets: 3
+Destination Echo Reply packets: 16
+PASS: Router R1 responses captured
+PASS: Router R2 responses captured
+PASS: Destination response captured
+CAPTURE 02 RESULT: PASSED

@@ -1,0 +1,118 @@
+===== CAPTURE 04: SPF AND DKIM TXT RECORDS =====
+Wed Nov 25 10:22:04 AM PKT 2026
+===== STARTING DNS PACKET CAPTURE =====
+Capturing on 'eth0'
+File: -
+===== GENERATING SPF DNS QUERY =====
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.9-Ubuntu <<>> @10.10.0.53 alpha.lab TXT +norecurse +time=2 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 57412
+;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 0117569b9295371d010000006b067080db45b8b8f4ebcb6a (good)
+;; QUESTION SECTION:
+;alpha.lab.			IN	TXT
+
+;; ANSWER SECTION:
+alpha.lab.		300	IN	TXT	"v=spf1 ip4:10.10.1.10 -all"
+
+;; AUTHORITY SECTION:
+lab.			300	IN	NS	ns.lab.
+
+;; ADDITIONAL SECTION:
+ns.lab.			300	IN	A	10.10.0.53
+
+;; Query time: 2 msec
+;; SERVER: 10.10.0.53#53(10.10.0.53) (UDP)
+;; WHEN: Wed Nov 25 05:22:08 UTC 2026
+;; MSG SIZE  rcvd: 138
+
+===== GENERATING DKIM DNS QUERY =====
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.9-Ubuntu <<>> @10.10.0.53 mail._domainkey.alpha.lab TXT +norecurse +time=2 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 32508
+;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: ad5e917e4739d346010000006b0670802ca15615e7eff5d4 (good)
+;; QUESTION SECTION:
+;mail._domainkey.alpha.lab.	IN	TXT
+
+;; ANSWER SECTION:
+mail._domainkey.alpha.lab. 300	IN	TXT	"v=DKIM1; h=sha256; k=rsa; " "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxSldTMQY58rYsmNM0Zulq215k7fA25BcMd23KOLSAp8pFGQ1QDqKF5Z08ncCcOmt1DooI2sx4WJrZehfq7AjhtrlkzvvDXFJvdG5HzxyeonB7VUpDSDfMKASuDNmKNqeOhrmRcG2PCJ3OUzrMomkBnULOdbekobPtXg+gz6DrZPkK8HQuJDTE3lpZBtQqwLGOnyn5b/mtuZNF3" "SHeOirIFk9q2Ps1Kw9XPZ8efC5zonOx/ILvL8EkwJVcU2kQPOf+nPc+ZctV3BZPwCG65G7+xOZEeBhSS69aJKAdnOPSC5+VXSJ0zzmWaNnjLvm2lFbbNAHDPo+5r/9Od64BEOcnQIDAQAB"
+
+;; AUTHORITY SECTION:
+lab.			300	IN	NS	ns.lab.
+
+;; ADDITIONAL SECTION:
+ns.lab.			300	IN	A	10.10.0.53
+
+;; Query time: 3 msec
+;; SERVER: 10.10.0.53#53(10.10.0.53) (UDP)
+;; WHEN: Wed Nov 25 05:22:08 UTC 2026
+;; MSG SIZE  rcvd: 553
+
+
+Packets captured: 4
+Packets received/dropped on interface 'eth0': 4/0 (pcap:0/dumpcap:0/flushed:0/ps_ifdrop:0) (100.0%)
+===== CAPTURE FILE INFORMATION =====
+File name:           /home/system/computer-networks-project/captures/02_packet_traces/Capture-04_DNS_SPF_DKIM_20261125-102204.pcapng
+File type:           Wireshark/... - pcapng
+File encapsulation:  Ethernet
+File timestamp precision:  nanoseconds (9)
+Packet size limit:   file hdr: (not set)
+Number of packets:   4
+File size:           1,500 bytes
+Data size:           975 bytes
+Capture duration:    0.621430358 seconds
+First packet time:   2026-11-25 10:22:08.080457052
+Last packet time:    2026-11-25 10:22:08.701887410
+Data byte rate:      1,568 bytes/s
+Data bit rate:       12 kbps
+Average packet size: 243.75 bytes
+Average packet rate: 6 packets/s
+SHA256:              02305287eca9b738ef5c32c0b9eb0a1826386266546cc2fcbb034029f71beca6
+SHA1:                374ce7313e82ea3d61f6b6582e51dbc084e86fdd
+Strict time order:   True
+Capture hardware:    12th Gen Intel(R) Core(TM) i5-1235U (with SSE4.2)
+Capture oper-sys:    Linux 6.17.0-23-generic
+Capture application: Dumpcap (Wireshark) 4.2.2 (Git v4.2.2 packaged as 4.2.2-1.1build3)
+Number of interfaces in file: 1
+Interface #0 info:
+                     Name = eth0
+                     Encapsulation = Ethernet (1 - ether)
+                     Capture length = 262144
+                     Time precision = nanoseconds (9)
+                     Time ticks per second = 1000000000
+                     Time resolution = 0x09
+                     Filter string = port 53 and host 10.10.0.53
+                     Operating system = Linux 6.17.0-23-generic
+                     Number of stat entries = 1
+                     Number of packets = 4
+===== ANALYZING DNS PACKETS =====
+    1 0.000000000   10.10.1.20 → 10.10.0.53   DNS 92 Standard query 0xe044 TXT alpha.lab OPT
+    2 0.003037003   10.10.0.53 → 10.10.1.20   DNS 180 Standard query response 0xe044 TXT alpha.lab TXT NS ns.lab A 10.10.0.53 OPT
+    3 0.618818958   10.10.1.20 → 10.10.0.53   DNS 108 Standard query 0x7efc TXT mail._domainkey.alpha.lab OPT
+    4 0.621430358   10.10.0.53 → 10.10.1.20   DNS 595 Standard query response 0x7efc TXT mail._domainkey.alpha.lab TXT NS ns.lab A 10.10.0.53 OPT
+===== VERIFYING CAPTURED SPF RECORD =====
+v=spf1 ip4:10.10.1.10 -all
+v=spf1 ip4:10.10.1.10 -all
+PASS: SPF TXT record captured
+===== VERIFYING CAPTURED DKIM RECORD =====
+v=DKIM1; h=sha256; k=rsa; ,p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxSldTMQY58rYsmNM0Zulq215k7fA25BcMd23KOLSAp8pFGQ1QDqKF5Z08ncCcOmt1DooI2sx4WJrZehfq7AjhtrlkzvvDXFJvdG5HzxyeonB7VUpDSDfMKASuDNmKNqeOhrmRcG2PCJ3OUzrMomkBnULOdbekobPtXg+gz6DrZPkK8HQuJDTE3lpZBtQqwLGOnyn5b/mtuZNF3,SHeOirIFk9q2Ps1Kw9XPZ8efC5zonOx/ILvL8EkwJVcU2kQPOf+nPc+ZctV3BZPwCG65G7+xOZEeBhSS69aJKAdnOPSC5+VXSJ0zzmWaNnjLvm2lFbbNAHDPo+5r/9Od64BEOcnQIDAQAB
+v=DKIM1; h=sha256; k=rsa; ,p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxSldTMQY58rYsmNM0Zulq215k7fA25BcMd23KOLSAp8pFGQ1QDqKF5Z08ncCcOmt1DooI2sx4WJrZehfq7AjhtrlkzvvDXFJvdG5HzxyeonB7VUpDSDfMKASuDNmKNqeOhrmRcG2PCJ3OUzrMomkBnULOdbekobPtXg+gz6DrZPkK8HQuJDTE3lpZBtQqwLGOnyn5b/mtuZNF3,SHeOirIFk9q2Ps1Kw9XPZ8efC5zonOx/ILvL8EkwJVcU2kQPOf+nPc+ZctV3BZPwCG65G7+xOZEeBhSS69aJKAdnOPSC5+VXSJ0zzmWaNnjLvm2lFbbNAHDPo+5r/9Od64BEOcnQIDAQAB
+v=DKIM1; h=sha256; k=rsa; ,p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxSldTMQY58rYsmNM0Zulq215k7fA25BcMd23KOLSAp8pFGQ1QDqKF5Z08ncCcOmt1DooI2sx4WJrZehfq7AjhtrlkzvvDXFJvdG5HzxyeonB7VUpDSDfMKASuDNmKNqeOhrmRcG2PCJ3OUzrMomkBnULOdbekobPtXg+gz6DrZPkK8HQuJDTE3lpZBtQqwLGOnyn5b/mtuZNF3,SHeOirIFk9q2Ps1Kw9XPZ8efC5zonOx/ILvL8EkwJVcU2kQPOf+nPc+ZctV3BZPwCG65G7+xOZEeBhSS69aJKAdnOPSC5+VXSJ0zzmWaNnjLvm2lFbbNAHDPo+5r/9Od64BEOcnQIDAQAB
+PASS: DKIM TXT public key captured
+TXT Queries: 2
+TXT Responses: 2
+PASS: Both DNS TXT query-response exchanges verified
+CAPTURE 04 RESULT: PASSED

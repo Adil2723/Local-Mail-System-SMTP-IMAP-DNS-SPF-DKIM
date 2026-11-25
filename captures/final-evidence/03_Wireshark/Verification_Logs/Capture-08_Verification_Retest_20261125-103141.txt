@@ -1,0 +1,74 @@
+===== CAPTURE 08: CORRECTED STARTTLS VERIFICATION =====
+Wed Nov 25 10:31:41 AM PKT 2026
+Using existing capture: captures/02_packet_traces/Capture-08_STARTTLS_20261125-102930.pcapng
+File name:           captures/02_packet_traces/Capture-08_STARTTLS_20261125-102930.pcapng
+File type:           Wireshark/... - pcapng
+File encapsulation:  Ethernet
+File timestamp precision:  nanoseconds (9)
+Packet size limit:   file hdr: (not set)
+Number of packets:   33
+File size:           7,180 bytes
+Data size:           5,667 bytes
+Capture duration:    0.210629959 seconds
+First packet time:   2026-11-25 10:29:33.626650892
+Last packet time:    2026-11-25 10:29:33.837280851
+Data byte rate:      26 kBps
+Data bit rate:       215 kbps
+Average packet size: 171.73 bytes
+Average packet rate: 156 packets/s
+SHA256:              e4a0140ae4e6a60719a52d9216d4323e190ab5b0933336bdb7ff366b5f6b6404
+SHA1:                862fe17aef450a7c4eacca31d80cfd853be6848a
+Strict time order:   True
+Capture hardware:    12th Gen Intel(R) Core(TM) i5-1235U (with SSE4.2)
+Capture oper-sys:    Linux 6.17.0-23-generic
+Capture application: Dumpcap (Wireshark) 4.2.2 (Git v4.2.2 packaged as 4.2.2-1.1build3)
+Number of interfaces in file: 1
+Interface #0 info:
+                     Name = eth0
+                     Encapsulation = Ethernet (1 - ether)
+                     Capture length = 262144
+                     Time precision = nanoseconds (9)
+                     Time ticks per second = 1000000000
+                     Time resolution = 0x09
+                     Filter string = tcp port 25 and host 10.10.1.10
+                     Operating system = Linux 6.17.0-23-generic
+                     Number of stat entries = 1
+                     Number of packets = 33
+===== ANALYZING SMTP AND TLS PACKETS =====
+    4 0.005192135   10.10.1.10 → 10.10.1.20   SMTP 100 S: 220 mail.alpha.lab ESMTP Postfix
+    6 0.005452953   10.10.1.20 → 10.10.1.10   SMTP 95 C: EHLO client-alpha.alpha.lab
+    8 0.005635489   10.10.1.10 → 10.10.1.20   SMTP 231 S: 250-mail.alpha.lab | PIPELINING | SIZE 10240000 | VRFY | ETRN | STARTTLS | ENHANCEDSTATUSCODES | 8BITMIME | DSN | SMTPUTF8 | CHUNKING
+    9 0.021095788   10.10.1.20 → 10.10.1.10   SMTP 76 C: STARTTLS
+   10 0.021347089   10.10.1.10 → 10.10.1.20   SMTP 96 S: 220 2.0.0 Ready to start TLS
+   12 0.092088186   10.10.1.20 → 10.10.1.10   TLSv1 583 Client Hello (SNI=mail.alpha.lab)
+   13 0.102588338   10.10.1.10 → 10.10.1.20   TLSv1.3 1476 Server Hello, Change Cipher Spec, Application Data, Application Data, Application Data, Application Data
+   15 0.104570081   10.10.1.20 → 10.10.1.10   TLSv1.3 146 Change Cipher Spec, Application Data
+   16 0.105205046   10.10.1.10 → 10.10.1.20   TLSv1.3 321 Application Data
+   17 0.105626320   10.10.1.20 → 10.10.1.10   TLSv1.3 117 Application Data
+   18 0.105681728   10.10.1.10 → 10.10.1.20   TLSv1.3 239 Application Data
+   19 0.105983446   10.10.1.20 → 10.10.1.10   TLSv1.3 116 Application Data
+   20 0.106893354   10.10.1.10 → 10.10.1.20   TLSv1.3 102 Application Data
+   21 0.107136037   10.10.1.20 → 10.10.1.10   TLSv1.3 113 Application Data
+   22 0.109839314   10.10.1.10 → 10.10.1.20   TLSv1.3 102 Application Data
+   23 0.110181605   10.10.1.20 → 10.10.1.10   TLSv1.3 94 Application Data
+   24 0.111789881   10.10.1.10 → 10.10.1.20   TLSv1.3 125 Application Data
+   25 0.112218816   10.10.1.20 → 10.10.1.10   TLSv1.3 393 Application Data
+   27 0.206812984   10.10.1.10 → 10.10.1.20   TLSv1.3 125 Application Data
+   28 0.207823186   10.10.1.20 → 10.10.1.10   TLSv1.3 94 Application Data
+   30 0.208387404   10.10.1.10 → 10.10.1.20   TLSv1.3 103 Application Data
+   32 0.210613805   10.10.1.10 → 10.10.1.20   TLSv1.3 90 Application Data
+===== VERIFYING STARTTLS =====
+    9 0.021095788   10.10.1.20 → 10.10.1.10   SMTP 76 C: STARTTLS
+PASS: STARTTLS command captured
+   10 0.021347089   10.10.1.10 → 10.10.1.20   SMTP 96 S: 220 2.0.0 Ready to start TLS
+PASS: Server accepted STARTTLS
+===== VERIFYING TLS HANDSHAKE =====
+Client Hello packets: 1
+Server Hello packets: 1
+PASS: TLS Client Hello captured
+PASS: TLS Server Hello captured
+===== VERIFYING ENCRYPTED TRAFFIC =====
+Packets containing encrypted TLS records: 16
+PASS: Encrypted TLS records captured
+PASS: STARTTLS protocol transition verified
+CAPTURE 08 RESULT: PASSED

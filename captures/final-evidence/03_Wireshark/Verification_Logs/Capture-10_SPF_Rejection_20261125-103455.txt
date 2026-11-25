@@ -1,0 +1,81 @@
+===== CAPTURE 10: SPF UNAUTHORIZED SENDER REJECTION =====
+Wed Nov 25 10:34:55 AM PKT 2026
+===== STARTING SMTP PACKET CAPTURE =====
+Capturing on 'eth0'
+File: -
+===== EXECUTING UNAUTHORIZED SENDER TEST =====
+Direct SMTP connection source IP: 10.10.1.20
+MAIL FROM: 250 2.1.0 Ok
+RCPT TO: 550 5.7.23 <adil@beta.lab>: Recipient address rejected: Message rejected due to: SPF fail - not authorized. Please see http://www.openspf.net/Why?s=mfrom;id=zaid@alpha.lab;ip=10.10.1.20;r=beta.lab
+PASS: SPF rejected unauthorized source at RCPT
+
+Packets captured: 19
+Packets received/dropped on interface 'eth0': 19/0 (pcap:0/dumpcap:0/flushed:0/ps_ifdrop:0) (100.0%)
+Direct SMTP connection source IP: 10.10.1.20
+RCPT TO: 550 5.7.23 <adil@beta.lab>: Recipient address rejected: Message rejected due to: SPF fail - not authorized. Please see http://www.openspf.net/Why?s=mfrom;id=zaid@alpha.lab;ip=10.10.1.20;r=beta.lab
+PASS: SPF rejected unauthorized source at RCPT
+===== CAPTURE FILE INFORMATION =====
+File name:           /home/system/computer-networks-project/captures/02_packet_traces/Capture-10_SPF_Rejection_20261125-103455.pcapng
+File type:           Wireshark/... - pcapng
+File encapsulation:  Ethernet
+File timestamp precision:  nanoseconds (9)
+Packet size limit:   file hdr: (not set)
+Number of packets:   19
+File size:           2,792 bytes
+Data size:           1,754 bytes
+Capture duration:    0.349222621 seconds
+First packet time:   2026-11-25 10:34:58.944974164
+Last packet time:    2026-11-25 10:34:59.294196785
+Data byte rate:      5,022 bytes/s
+Data bit rate:       40 kbps
+Average packet size: 92.32 bytes
+Average packet rate: 54 packets/s
+SHA256:              f3c7a1cb07c15347deab8fd214b691b1b89aedd8518fc9fc4c25699ebaadbe77
+SHA1:                a9089fa9000ffc5d228647df868873d8479bfbff
+Strict time order:   True
+Capture hardware:    12th Gen Intel(R) Core(TM) i5-1235U (with SSE4.2)
+Capture oper-sys:    Linux 6.17.0-23-generic
+Capture application: Dumpcap (Wireshark) 4.2.2 (Git v4.2.2 packaged as 4.2.2-1.1build3)
+Number of interfaces in file: 1
+Interface #0 info:
+                     Name = eth0
+                     Encapsulation = Ethernet (1 - ether)
+                     Capture length = 262144
+                     Time precision = nanoseconds (9)
+                     Time ticks per second = 1000000000
+                     Time resolution = 0x09
+                     Filter string = tcp port 25 and host 10.10.2.10
+                     Operating system = Linux 6.17.0-23-generic
+                     Number of stat entries = 1
+                     Number of packets = 19
+===== ANALYZING SMTP PACKETS =====
+    4 0.083198302   10.10.2.10 → 10.10.1.20   SMTP 99 S: 220 mail.beta.lab ESMTP Postfix
+    6 0.085016683   10.10.1.20 → 10.10.2.10   SMTP 95 C: ehlo client-alpha.alpha.lab
+    8 0.085294041   10.10.2.10 → 10.10.1.20   SMTP 202 S: 250-mail.beta.lab | PIPELINING | SIZE 10240000 | VRFY | ETRN | ENHANCEDSTATUSCODES | 8BITMIME | DSN | CHUNKING
+    9 0.085971062   10.10.1.20 → 10.10.2.10   SMTP 94 C: mail FROM:<zaid@alpha.lab>
+   10 0.104567317   10.10.2.10 → 10.10.1.20   SMTP 80 S: 250 2.1.0 Ok
+   11 0.104922970   10.10.1.20 → 10.10.2.10   SMTP 91 C: rcpt TO:<adil@beta.lab>
+   13 0.346716285   10.10.2.10 → 10.10.1.20   SMTP 264 S: 550 5.7.23 <adil@beta.lab>: Recipient address rejected: Message rejected due to: SPF fail - not authorized. Please see http://www.openspf.net/Why?s=mfrom;id=zaid@alpha.lab;ip=10.10.1.20;r=beta.lab
+   14 0.347425381   10.10.1.20 → 10.10.2.10   SMTP 72 C: QUIT
+   16 0.348917596   10.10.2.10 → 10.10.1.20   SMTP 81 S: 221 2.0.0 Bye
+===== VERIFYING UNAUTHORIZED SOURCE IP =====
+6
+9
+11
+14
+PASS: Unauthorized SMTP source captured
+===== VERIFYING SMTP REJECTION =====
+   13 0.346716285   10.10.2.10 → 10.10.1.20   SMTP 264 S: 550 5.7.23 <adil@beta.lab>: Recipient address rejected: Message rejected due to: SPF fail - not authorized. Please see http://www.openspf.net/Why?s=mfrom;id=zaid@alpha.lab;ip=10.10.1.20;r=beta.lab
+PASS: SMTP 550 rejection captured
+===== VERIFYING DATA WAS NOT SUBMITTED =====
+PASS: Spoofed email blocked before DATA
+===== VERIFYING POSTFIX SPF REJECTION LOG =====
+mail-beta-1  | Nov 25 05:34:58 mail postfix/smtpd[216]: warning: dict_nis_init: NIS domain name not set - NIS lookups disabled
+mail-beta-1  | Nov 25 05:34:59 mail postfix/smtpd[216]: connect from unknown[10.10.1.20]
+mail-beta-1  | Nov 25 05:34:59 mail postfix/smtpd[216]: NOQUEUE: reject: RCPT from unknown[10.10.1.20]: 550 5.7.23 <adil@beta.lab>: Recipient address rejected: Message rejected due to: SPF fail - not authorized. Please see http://www.openspf.net/Why?s=mfrom;id=zaid@alpha.lab;ip=10.10.1.20;r=beta.lab; from=<zaid@alpha.lab> to=<adil@beta.lab> proto=ESMTP helo=<client-alpha.alpha.lab>
+mail-beta-1  | Nov 25 05:34:59 mail postfix/smtpd[216]: using backwards-compatible default setting smtpd_relay_before_recipient_restrictions=no to reject recipient "adil@beta.lab" from client "unknown[10.10.1.20]"
+mail-beta-1  | Nov 25 05:34:59 mail postfix/smtpd[216]: disconnect from unknown[10.10.1.20] ehlo=1 mail=1 rcpt=0/1 quit=1 commands=3/4
+mail-beta-1  | Nov 25 05:34:59 mail postfix/smtpd[216]: NOQUEUE: reject: RCPT from unknown[10.10.1.20]: 550 5.7.23 <adil@beta.lab>: Recipient address rejected: Message rejected due to: SPF fail - not authorized. Please see http://www.openspf.net/Why?s=mfrom;id=zaid@alpha.lab;ip=10.10.1.20;r=beta.lab; from=<zaid@alpha.lab> to=<adil@beta.lab> proto=ESMTP helo=<client-alpha.alpha.lab>
+PASS: SPF rejection confirmed in Postfix logs
+PASS: Unauthorized sender packet evidence verified
+CAPTURE 10 RESULT: PASSED

@@ -1,0 +1,92 @@
+===== CAPTURE 09: IMAP EMAIL RETRIEVAL =====
+Wed Nov 25 10:33:16 AM PKT 2026
+PASS: IMAP authentication successful
+Starting capture after authentication
+Capturing on 'eth0'
+File: -
+
+Packets captured: 18
+Packets received/dropped on interface 'eth0': 18/0 (pcap:0/dumpcap:0/flushed:0/ps_ifdrop:0) (100.0%)
+INBOX messages: 24
+From: zaid@alpha.lab
+To: adil@beta.lab
+Subject: Test 17 - DKIM Valid Signature
+Message-ID: <test17-dkim-1795554496879499171@alpha.lab>
+Retrieved message bytes: 1646
+PASS: IMAP email retrieval successful
+PASS: IMAP logout successful
+
+PASS: Post-authentication IMAP capture saved
+===== CAPTURE FILE INFORMATION =====
+File name:           /home/system/computer-networks-project/captures/02_packet_traces/Capture-09_IMAP_20261125-103316.pcapng
+File type:           Wireshark/... - pcapng
+File encapsulation:  Ethernet
+File timestamp precision:  nanoseconds (9)
+Packet size limit:   file hdr: (not set)
+Number of packets:   18
+File size:           4,500 bytes
+Data size:           3,474 bytes
+Capture duration:    0.056282364 seconds
+First packet time:   2026-11-25 10:33:22.185704489
+Last packet time:    2026-11-25 10:33:22.241986853
+Data byte rate:      61 kBps
+Data bit rate:       493 kbps
+Average packet size: 193.00 bytes
+Average packet rate: 319 packets/s
+SHA256:              c6cf99e8321651bc8146bfbe1531d3c1294988a5c769ba940e71d994e7e31fe8
+SHA1:                d59732798b5f679737da51a0999fab9ae1177238
+Strict time order:   True
+Capture hardware:    12th Gen Intel(R) Core(TM) i5-1235U (with SSE4.2)
+Capture oper-sys:    Linux 6.17.0-23-generic
+Capture application: Dumpcap (Wireshark) 4.2.2 (Git v4.2.2 packaged as 4.2.2-1.1build3)
+Number of interfaces in file: 1
+Interface #0 info:
+                     Name = eth0
+                     Encapsulation = Ethernet (1 - ether)
+                     Capture length = 262144
+                     Time precision = nanoseconds (9)
+                     Time ticks per second = 1000000000
+                     Time resolution = 0x09
+                     Filter string = tcp and host 10.10.2.10 and port 143 and port 41346
+                     Operating system = Linux 6.17.0-23-generic
+                     Number of stat entries = 1
+                     Number of packets = 18
+===== ANALYZING IMAP PACKETS =====
+    1 0.000000000   10.10.2.20 → 10.10.2.10   IMAP 87 Request: GOFP2 EXAMINE INBOX
+    2 0.000096268   10.10.2.10 → 10.10.2.20   TCP 66 143 → 41346 [ACK] Seq=1 Ack=22 Win=64 Len=0 TSval=166542489 TSecr=338759058
+    3 0.030869445   10.10.2.10 → 10.10.2.20   IMAP 370 Response: GOFP2 OK [READ-ONLY] Examine completed (0.031 + 0.000 + 0.030 secs).
+    4 0.030922679   10.10.2.20 → 10.10.2.10   TCP 66 41346 → 143 [ACK] Seq=22 Ack=305 Win=63 Len=0 TSval=338759089 TSecr=166542520
+    5 0.031255886   10.10.2.20 → 10.10.2.10   IMAP 121 Request: GOFP3 SEARCH SUBJECT "Test 17 - DKIM Valid Signature"
+    6 0.031304035   10.10.2.10 → 10.10.2.20   TCP 66 143 → 41346 [ACK] Seq=305 Ack=77 Win=64 Len=0 TSval=166542520 TSecr=338759089
+    7 0.052907302   10.10.2.10 → 10.10.2.20   IMAP 136 Response: GOFP3 OK Search completed (0.022 + 0.000 + 0.021 secs).
+    8 0.053450967   10.10.2.20 → 10.10.2.10   IMAP 96 Request: GOFP4 FETCH 19 (BODY.PEEK[])
+    9 0.053506191   10.10.2.10 → 10.10.2.20   TCP 66 143 → 41346 [ACK] Seq=375 Ack=107 Win=64 Len=0 TSval=166542543 TSecr=338759112
+   10 0.054034014   10.10.2.10 → 10.10.2.20   TCP 1514 143 → 41346 [ACK] Seq=375 Ack=107 Win=64 Len=1448 TSval=166542543 TSecr=338759112 [TCP segment of a reassembled PDU]
+   11 0.054094125   10.10.2.10 → 10.10.2.20   IMAP/IMF 342 from: zaid@alpha.lab, subject: Test 17 - DKIM Valid Signature,  (text/plain)
+   12 0.054097799   10.10.2.20 → 10.10.2.10   TCP 66 41346 → 143 [ACK] Seq=107 Ack=2099 Win=69 Len=0 TSval=338759112 TSecr=166542543
+   13 0.055535560   10.10.2.20 → 10.10.2.10   IMAP 80 Request: GOFP5 LOGOUT
+   14 0.055609980   10.10.2.10 → 10.10.2.20   TCP 66 143 → 41346 [ACK] Seq=2099 Ack=121 Win=64 Len=0 TSval=166542545 TSecr=338759114
+   15 0.055947374   10.10.2.10 → 10.10.2.20   IMAP 134 Response: GOFP5 OK Logout completed (0.001 + 0.000 secs).
+   16 0.056038332   10.10.2.10 → 10.10.2.20   TCP 66 143 → 41346 [FIN, ACK] Seq=2167 Ack=121 Win=64 Len=0 TSval=166542545 TSecr=338759114
+   17 0.056245415   10.10.2.20 → 10.10.2.10   TCP 66 41346 → 143 [FIN, ACK] Seq=121 Ack=2168 Win=69 Len=0 TSval=338759114 TSecr=166542545
+   18 0.056282364   10.10.2.10 → 10.10.2.20   TCP 66 143 → 41346 [ACK] Seq=2168 Ack=122 Win=64 Len=0 TSval=166542545 TSecr=338759114
+===== VERIFYING IMAP COMMANDS =====
+1
+PASS: EXAMINE command captured
+5
+PASS: SEARCH command captured
+8
+PASS: FETCH command captured
+13
+PASS: LOGOUT command captured
+===== VERIFYING SERVER RESPONSES =====
+3
+7
+10
+11
+15
+PASS: IMAP server responses captured
+===== CHECKING FOR AUTHENTICATION COMMANDS =====
+PASS: No LOGIN or AUTHENTICATE commands detected
+PASS: IMAP packet evidence verified
+CAPTURE 09 RESULT: PASSED

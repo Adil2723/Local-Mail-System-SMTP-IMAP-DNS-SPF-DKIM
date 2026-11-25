@@ -1,0 +1,59 @@
+===== CAPTURE 03: CORRECTED DNS VERIFICATION =====
+Wed Nov 25 10:21:05 AM PKT 2026
+Using existing capture: captures/02_packet_traces/Capture-03_DNS_MX_A_20261125-101846.pcapng
+File name:           captures/02_packet_traces/Capture-03_DNS_MX_A_20261125-101846.pcapng
+File type:           Wireshark/... - pcapng
+File encapsulation:  Ethernet
+File timestamp precision:  nanoseconds (9)
+Packet size limit:   file hdr: (not set)
+Number of packets:   8
+File size:           1,724 bytes
+Data size:           1,060 bytes
+Capture duration:    1.030305278 second
+First packet time:   2026-11-25 10:18:50.554280458
+Last packet time:    2026-11-25 10:18:51.584585736
+Data byte rate:      1,028 bytes/s
+Data bit rate:       8,230 bits/s
+Average packet size: 132.50 bytes
+Average packet rate: 7 packets/s
+SHA256:              2c2ef798b31f3685e9ac22e5939b04d5fc5336cfdb74afa04fe6c3efb6849c22
+SHA1:                56afb931adfeafcfb70114bfe405f745d296ec08
+Strict time order:   True
+Capture hardware:    12th Gen Intel(R) Core(TM) i5-1235U (with SSE4.2)
+Capture oper-sys:    Linux 6.17.0-23-generic
+Capture application: Dumpcap (Wireshark) 4.2.2 (Git v4.2.2 packaged as 4.2.2-1.1build3)
+Number of interfaces in file: 1
+Interface #0 info:
+                     Name = eth0
+                     Encapsulation = Ethernet (1 - ether)
+                     Capture length = 262144
+                     Time precision = nanoseconds (9)
+                     Time ticks per second = 1000000000
+                     Time resolution = 0x09
+                     Filter string = port 53 and host 10.10.0.53
+                     Operating system = Linux 6.17.0-23-generic
+                     Number of stat entries = 1
+                     Number of packets = 8
+===== DNS PACKETS =====
+    1 0.000000000   10.10.1.20 → 10.10.0.53   DNS 92 Standard query 0x0b32 MX alpha.lab OPT
+    2 0.012652655   10.10.0.53 → 10.10.1.20   DNS 178 Standard query response 0x0b32 MX alpha.lab MX 10 mail.alpha.lab NS ns.lab A 10.10.1.10 A 10.10.0.53 OPT
+    3 0.349168262   10.10.1.20 → 10.10.0.53   DNS 91 Standard query 0x9797 MX beta.lab OPT
+    4 0.350067004   10.10.0.53 → 10.10.1.20   DNS 177 Standard query response 0x9797 MX beta.lab MX 10 mail.beta.lab NS ns.lab A 10.10.2.10 A 10.10.0.53 OPT
+    5 0.695964679   10.10.1.20 → 10.10.0.53   DNS 97 Standard query 0x4243 A mail.alpha.lab OPT
+    6 0.696685416   10.10.0.53 → 10.10.1.20   DNS 165 Standard query response 0x4243 A mail.alpha.lab A 10.10.1.10 NS ns.lab A 10.10.0.53 OPT
+    7 1.029733063   10.10.1.20 → 10.10.0.53   DNS 96 Standard query 0x0587 A mail.beta.lab OPT
+    8 1.030305278   10.10.0.53 → 10.10.1.20   DNS 164 Standard query response 0x0587 A mail.beta.lab A 10.10.2.10 NS ns.lab A 10.10.0.53 OPT
+DNS Queries: 4
+DNS Responses: 4
+===== VERIFYING MX RECORDS =====
+mail.alpha.lab
+PASS: Alpha MX record captured
+mail.beta.lab
+PASS: Beta MX record captured
+===== VERIFYING A RECORDS =====
+10.10.1.10
+PASS: Alpha A record captured
+10.10.2.10
+PASS: Beta A record captured
+All four DNS record responses verified
+CAPTURE 03 RESULT: PASSED
